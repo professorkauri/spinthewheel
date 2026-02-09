@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Spin the Wheel</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #display {
+      flex: 1;
+      display: flex;
+      border-bottom: 2px solid #ddd;
+      overflow: hidden;
+    }
+
+    #list {
+      width: 40%;
+      padding: 16px;
+      overflow-y: auto;
+      border-right: 2px solid #ddd;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      border-radius: 6px;
+      background: #f6f6f6;
+    }
+
+    .list-item.completed {
+      opacity: 0.4;
+      text-decoration: line-through;
+    }
+
+    .list-item img {
+      width: 40px;
+      height: 40px;
+      image-rendering: pixelated;
+    }
+
+    #wheel-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas {
+      cursor: pointer;
+    }
+
+    #inputs {
+      height: 35%;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100%;
+      resize: none;
+      padding: 10px;
+      font-family: monospace;
+    }
+
+    button {
+      align-self: flex-start;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="display">
+    <div id="list"></div>
+
+    <div id="wheel-container">
+      <canvas id="wheel" width="400" height="400"></canvas>
+    </div>
+  </div>
+
+  <div id="inputs">
+    <button id="apply">Apply List</button>
+    <textarea id="input">
+Pikachu | 25
+Bulbasaur | 1
+Charmander | 4
+Squirtle | 7
+    </textarea>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
