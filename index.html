@@ -33,9 +33,33 @@
       }
     }
 
+    @keyframes iconScale {
+      0% {
+        transform: scale(1);
+      }
+
+      30% {
+        transform: scale(2);
+      }
+
+      60% {
+        transform: scale(1);
+      }
+
+      85% {
+        transform: scale(1.4);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
     /* Apply bounce to the LIST icon only, when temporarily flagged */
-    .list-item.just-completed {
-      animation: iconBounce 0.3s ease-in-out infinite;
+    .list-item.just-completed img {
+      animation: iconScale 0.5s ease-in-out;
+      position:relative;
+      z-index:2;
     }
 
 
@@ -69,7 +93,7 @@
       font-size: 20px;
       font-weight: 600;
       text-align: center;
-      color:var(--kauri-blue);
+      color: var(--kauri-blue);
     }
 
     #title-input {
@@ -219,7 +243,7 @@
       <input id="title-input" type="text" placeholder="Enter wheel title" />
       <input id="completed-input" type="text" placeholder="Completed text (e.g. CAUGHT)" />
     </div>
-    
+
 
     <button id="apply">Apply List</button>
 

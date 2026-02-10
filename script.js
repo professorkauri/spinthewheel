@@ -8,11 +8,14 @@ const listTitleEl = document.getElementById("list-title");
 const completedInput = document.getElementById("completed-input");
 const listProgressEl = document.getElementById("list-progress");
 
+let progressAnimRaf = null;
+let displayedProgress = 0;
+
 
 // ---------------------------
 // Segment styling controls
 // ---------------------------
-const SEGMENT_FONT_SIZE = 26;                 // change me
+const SEGMENT_FONT_SIZE = 20;                 // change me
 const SEGMENT_FONT_FAMILY = "system-ui, sans-serif";
 const SEGMENT_FONT_WEIGHT = "600";            // bold
 const SEGMENT_ICON_SIZE = 120;                 // change me
@@ -48,6 +51,37 @@ function saveState() {
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
+
+function animateProgressTo(targetPct, duration = 1000) {
+  if (progressAnimRaf) {
+    cancelAnimationFrame(progressAnimRaf);
+    progressAnimRaf = null;
+  }
+
+  const startPct = displayedProgress;
+  const delta = targetPct - startPct;
+  const startTime = performance.now();
+
+  function tick(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+
+    const current = Math.round(startPct + delta * eased);
+    displayedProgress = current;
+    listProgressEl.textContent = `${current}%`;
+
+    if (t < 1) {
+      progressAnimRaf = requestAnimationFrame(tick);
+    } else {
+      displayedProgress = targetPct;
+      listProgressEl.textContent = `${targetPct}%`;
+      progressAnimRaf = null;
+    }
+  }
+
+  progressAnimRaf = requestAnimationFrame(tick);
+}
+
 
 
 function startWinnerBounce() {
@@ -145,8 +179,11 @@ function renderProgress() {
   const total = items.length;
   const completedCount = items.filter(i => i.completed).length;
 
-  const pct = total === 0 ? 0 : Math.round((completedCount / total) * 100);
-  listProgressEl.textContent = `${pct}%`;
+  const targetPct = total === 0
+    ? 0
+    : Math.round((completedCount / total) * 100);
+
+  animateProgressTo(targetPct, 500);
 
   const allComplete = total > 0 && completedCount === total;
 
@@ -154,6 +191,7 @@ function renderProgress() {
   listTitleEl.classList.toggle("all-complete", allComplete);
   listProgressEl.classList.toggle("all-complete", allComplete);
 }
+
 
 function renderTitle() {
   const title = titleInput.value.trim();
@@ -529,6 +567,7 @@ const didLoad = loadState();
 renderTitle();
 renderList();
 renderProgress();
+displayedProgress = parseInt(listProgressEl.textContent, 10) || 0;
 drawWheel();
 
 // If nothing was saved yet, fall back to textarea defaults
