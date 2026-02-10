@@ -58,8 +58,8 @@
     /* Apply bounce to the LIST icon only, when temporarily flagged */
     .list-item.just-completed img {
       animation: iconScale 0.5s ease-in-out;
-      position:relative;
-      z-index:2;
+      position: relative;
+      z-index: 2;
     }
 
 
@@ -68,6 +68,7 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow:hidden;
     }
 
     #display {
@@ -221,6 +222,56 @@
       padding: 8px;
       font-size: 16px;
     }
+
+
+    /* Sliding inputs panel */
+    #inputs {
+      height: 35%;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position:absolute;
+      bottom: 0;
+      width: 100%;
+      z-index: 4;
+      background: #fff;
+
+      /* slide behaviour */
+      transition: transform 250ms ease, box-shadow 250ms ease;
+      transform: translateY(100%);
+      box-shadow: none;
+    }
+
+    /* When open */
+    body.inputs-open #inputs {
+      transform: translateY(0);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    /* The little tab */
+    #inputs-tab {
+      position: absolute;
+      right: 2em;
+      bottom: 100%;
+      /*transform: translateX(-50%);*/
+      z-index: 10;
+
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 10px 10px 0 0;
+      background: var(--kauri-blue);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Optional: make the tab look “active” when open */
+    body.inputs-open #inputs-tab {
+      background: #3f61ac;
+    }
   </style>
 </head>
 
@@ -239,6 +290,11 @@
   </div>
 
   <div id="inputs">
+
+    <button id="inputs-tab" aria-expanded="false" title="Show / hide inputs">
+      Inputs
+    </button>
+    
     <div id="meta-inputs">
       <input id="title-input" type="text" placeholder="Enter wheel title" />
       <input id="completed-input" type="text" placeholder="Completed text (e.g. CAUGHT)" />

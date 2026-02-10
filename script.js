@@ -11,6 +11,9 @@ const listProgressEl = document.getElementById("list-progress");
 let progressAnimRaf = null;
 let displayedProgress = 0;
 
+const inputsEl = document.getElementById("inputs");
+const inputsTabEl = document.getElementById("inputs-tab");
+
 
 // ---------------------------
 // Segment styling controls
@@ -36,6 +39,7 @@ let winnerAnimTime = 0;
 // localStorage persistence
 // ---------------------------
 const STORAGE_KEY = "spinWheelState.v2";
+const INPUTS_OPEN_KEY = "spinWheelInputsOpen.v1";
 
 function saveState() {
   const state = {
@@ -51,6 +55,17 @@ function saveState() {
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
+
+function setInputsOpen(isOpen) {
+  document.body.classList.toggle("inputs-open", isOpen);
+  inputsTabEl.setAttribute("aria-expanded", String(isOpen));
+  localStorage.setItem(INPUTS_OPEN_KEY, isOpen ? "1" : "0");
+}
+
+function getInputsOpen() {
+  return localStorage.getItem(INPUTS_OPEN_KEY) === "1";
+}
+
 
 function animateProgressTo(targetPct, duration = 1000) {
   if (progressAnimRaf) {
@@ -173,6 +188,9 @@ titleInput.addEventListener("input", renderTitle);
 completedInput.addEventListener("input", () => {
   saveState();
   renderList(); // so existing completed items update their data attribute immediately
+});
+inputsTabEl.addEventListener("click", () => {
+  setInputsOpen(!document.body.classList.contains("inputs-open"));
 });
 
 function renderProgress() {
@@ -569,6 +587,7 @@ renderList();
 renderProgress();
 displayedProgress = parseInt(listProgressEl.textContent, 10) || 0;
 drawWheel();
+setInputsOpen(false);
 
 // If nothing was saved yet, fall back to textarea defaults
 if (!didLoad) {
