@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Spin the Wheel</title>
@@ -7,6 +8,8 @@
     * {
       box-sizing: border-box;
       font-family: system-ui, sans-serif;
+      --kauri-blue: #5476c2; /* RGB 84 118 194 */
+      --kauri-bluelight: #e5eaf6; /* RGB 229 234 246 */
     }
 
     body {
@@ -21,20 +24,43 @@
       display: flex;
       border-bottom: 2px solid #ddd;
       overflow: hidden;
+      justify-content: center;
+      align-items: center;
+      gap:2em;
+    }
+
+    #list-container {
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #list-title {
+      margin: 0 0 12px 0;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    #title-input {
+      padding: 8px;
+      font-size: 16px;
     }
 
     #list {
-      width: 40%;
       padding: 16px;
       overflow-y: auto;
-      border-right: 2px solid #ddd;
+      flex: 1;
     }
 
     .list-item {
       display: flex;
+      position:relative;
       align-items: center;
       gap: 10px;
-      padding: 8px;
+      padding: 8px 16px 8px 8px;
       margin-bottom: 8px;
       cursor: pointer;
       border-radius: 6px;
@@ -42,8 +68,25 @@
     }
 
     .list-item.completed {
-      opacity: 0.4;
-      text-decoration: line-through;
+      font-style: italic;
+      background: var(--kauri-bluelight);
+      color:var(--kauri-blue);
+    }
+    .list-item.completed:before {
+      display:block;
+      position:absolute;
+      content: "CAUGHT";
+      color: var(--kauri-blue);
+      background-color:white;
+      border-radius:3px 0 0 0;
+      padding:0px 7px;
+      right:0;
+      bottom:0;
+      font-size:0.5em;
+      letter-spacing: 0.1em;
+    }
+    .list-item.winner span {
+      color:var(--kauri-blue);
     }
 
     .list-item img {
@@ -53,9 +96,8 @@
     }
 
     #wheel-container {
-      flex: 1;
       display: flex;
-      justify-content: center;
+      justify-content: start;
       align-items: center;
     }
 
@@ -86,26 +128,33 @@
     }
   </style>
 </head>
+
 <body>
 
   <div id="display">
-    <div id="list"></div>
+    <div id="list-container">
+      <h2 id="list-title"></h2>
+      <div id="list"></div>
+    </div>
 
     <div id="wheel-container">
-      <canvas id="wheel" width="400" height="400"></canvas>
+      <canvas id="wheel" width="600" height="600"></canvas>
     </div>
   </div>
 
   <div id="inputs">
+    <input id="title-input" type="text" placeholder="Enter wheel title" />
+
     <button id="apply">Apply List</button>
+
     <textarea id="input">
-Pikachu | 25
-Bulbasaur | 1
-Charmander | 4
-Squirtle | 7
+  Manager | Pikachu-s
+  Designer | Bulbasaur-s
+  Artist | Charmander-s
     </textarea>
   </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>
