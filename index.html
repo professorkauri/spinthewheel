@@ -101,7 +101,8 @@
     .list-item.completed:before {
       display: block;
       position: absolute;
-      content: "CAUGHT";
+      content: attr(data-completed-text);
+      text-transform: uppercase;
       color: var(--kauri-blue);
       background-color: white;
       border-radius: 3px 0 0 0;
@@ -158,6 +159,16 @@
       padding: 8px 16px;
       cursor: pointer;
     }
+
+    #meta-inputs {
+      display: flex;
+      gap: 10px;
+    }
+
+    #meta-inputs input {
+      padding: 8px;
+      font-size: 16px;
+    }
   </style>
 </head>
 
@@ -175,7 +186,11 @@
   </div>
 
   <div id="inputs">
-    <input id="title-input" type="text" placeholder="Enter wheel title" />
+    <div id="meta-inputs">
+      <input id="title-input" type="text" placeholder="Enter wheel title" />
+      <input id="completed-input" type="text" placeholder="Completed text (e.g. CAUGHT)" />
+    </div>
+    
 
     <button id="apply">Apply List</button>
 

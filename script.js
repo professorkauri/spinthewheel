@@ -5,6 +5,7 @@ const inputEl = document.getElementById("input");
 const applyBtn = document.getElementById("apply");
 const titleInput = document.getElementById("title-input");
 const listTitleEl = document.getElementById("list-title");
+const completedInput = document.getElementById("completed-input");
 
 // ---------------------------
 // Segment styling controls
@@ -34,16 +35,18 @@ const STORAGE_KEY = "spinWheelState.v2";
 function saveState() {
   const state = {
     title: titleInput.value || "",
+    completedText: completedInput.value || "",
     angle: angle || 0,
     items: items.map(i => ({
       title: i.title,
       spriteName: i.spriteName,
       completed: !!i.completed,
       completedBounceUntil: i.completedBounceUntil || 0
-    }))    
+    }))
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
+
 
 function startWinnerBounce() {
   if (winnerAnimRaf) return;
@@ -87,6 +90,9 @@ function loadState() {
     if (typeof state.title === "string") {
       titleInput.value = state.title;
     }
+    if (typeof state.completedText === "string") {
+      completedInput.value = state.completedText;
+    }
 
     if (typeof state.angle === "number") {
       angle = state.angle;
@@ -127,6 +133,10 @@ const radius = size / 2;
 applyBtn.addEventListener("click", loadItems);
 canvas.addEventListener("click", spin);
 titleInput.addEventListener("input", renderTitle);
+completedInput.addEventListener("input", () => {
+  saveState();
+  renderList(); // so existing completed items update their data attribute immediately
+});
 
 function renderTitle() {
   const title = titleInput.value.trim();
@@ -136,6 +146,10 @@ function renderTitle() {
 
 
 function loadItems() {
+  const prevByKey = new Map(
+    items.map(i => [i.spriteName, i])
+  );
+
   const parsed = inputEl.value
     .split("\n")
     .map(line => line.trim())
@@ -144,12 +158,15 @@ function loadItems() {
       const [titleRaw, spriteRaw] = line.split("|").map(s => (s ?? "").trim());
 
       const title = titleRaw || "(Unnamed)";
-      const spriteName = (spriteRaw || "").trim().toLowerCase(); // IMPORTANT
+      const spriteName = (spriteRaw || "").trim().toLowerCase();
+
+      const prev = prevByKey.get(spriteName);
 
       return {
         title,
         spriteName,
-        completed: false,
+        completed: prev ? !!prev.completed : false,
+        completedBounceUntil: prev ? (prev.completedBounceUntil || 0) : 0,
         img: loadImage(spriteName)
       };
     });
@@ -158,10 +175,11 @@ function loadItems() {
   winnerItem = null;
 
   renderTitle();
-  renderList();
+  renderList();   // <- this applies latest completedInput text to ALL completed items
   drawWheel();
   saveState();
 }
+
 
 
 
@@ -196,6 +214,12 @@ function renderList() {
 
     // Base classes
     div.className = "list-item" + (item.completed ? " completed" : "");
+    // Apply completed data attribute when completed
+    if (item.completed) {
+      div.dataset.completedText = completedInput.value.trim();
+    } else {
+      delete div.dataset.completedText;
+    }
 
     if (isWinner) div.classList.add("winner");
 
@@ -324,24 +348,24 @@ function drawWheel() {
     // Segment content (text then icon) – rotated 90° clockwise
     ctx.save();
     ctx.translate(radius, radius);
-    
+
     // 1) Aim at the middle of this slice
     ctx.rotate(start + slice / 2);
-    
+
     // 2) Move outward along the slice direction
     const contentR = radius * SEGMENT_CONTENT_X;
     ctx.translate(contentR, 0);
-    
+
     // 3) Rotate the CONTENT 90° clockwise (canvas +ve rotation is clockwise)
     ctx.rotate(Math.PI / 2);
-    
+
     // 4) Draw text first (above), icon second (below), centred on local origin
     ctx.fillStyle = isWinner ? "#5476c2" : "#111";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.font = `${SEGMENT_FONT_WEIGHT} ${SEGMENT_FONT_SIZE}px ${SEGMENT_FONT_FAMILY}`;
     ctx.fillText(item.title, 0, SEGMENT_TEXT_Y);
-    
+
     if (item.img && item.img.complete && item.img.naturalWidth > 0) {
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = "high"; // supported in modern browsers
@@ -350,7 +374,7 @@ function drawWheel() {
       // “Bouncing” usually looks best going up and back to rest (not above rest),
       // so we use -abs(sin) to keep it on one side.
       const bounce = isWinner ? (-Math.abs(Math.sin(phase)) * WINNER_BOUNCE_AMPLITUDE) : 0;
-      
+
       ctx.drawImage(
         item.img,
         -SEGMENT_ICON_SIZE / 2,
@@ -358,11 +382,11 @@ function drawWheel() {
         SEGMENT_ICON_SIZE,
         SEGMENT_ICON_SIZE
       );
-      
+
     }
-    
+
     ctx.restore();
-    
+
 
   });
 
