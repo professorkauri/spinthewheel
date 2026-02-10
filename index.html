@@ -10,6 +10,8 @@
       /* RGB 84 118 194 */
       --kauri-bluelight: #e5eaf6;
       /* RGB 229 234 246 */
+      --kauri-bluefaint: #f4f6fc;
+      /* RGB 244 246 252 */
     }
 
     * {
@@ -67,6 +69,7 @@
       font-size: 20px;
       font-weight: 600;
       text-align: center;
+      color:var(--kauri-blue);
     }
 
     #title-input {
@@ -74,10 +77,29 @@
       font-size: 16px;
     }
 
+    #list-progress {
+      margin: -8px 0 12px 0;
+      font-size: 2em;
+      font-weight: 600;
+      color: var(--kauri-blue);
+      text-align: center;
+    }
+
+    /* Sticky “all completed” celebration – stays until something is uncompleted */
+    #list-title.all-complete,
+    #list-progress.all-complete {
+      animation: iconBounce 0.3s ease-in-out infinite;
+    }
+
     #list {
       padding: 16px;
       overflow-y: auto;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      max-height: 420px;
+      gap: 0 1em;
     }
 
     .list-item {
@@ -90,11 +112,17 @@
       cursor: pointer;
       border-radius: 6px;
       background: #f6f6f6;
+      transition: left 0.25s;
+      left: 0;
+    }
+
+    .list-item:hover:not(.completed) {
+      left: -6px;
     }
 
     .list-item.completed {
       font-style: italic;
-      background: var(--kauri-bluelight);
+      background: var(--kauri-bluefaint);
       color: var(--kauri-blue);
     }
 
@@ -177,6 +205,7 @@
   <div id="display">
     <div id="list-container">
       <h2 id="list-title"></h2>
+      <div id="list-progress">0%</div>
       <div id="list"></div>
     </div>
 

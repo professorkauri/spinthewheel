@@ -6,6 +6,8 @@ const applyBtn = document.getElementById("apply");
 const titleInput = document.getElementById("title-input");
 const listTitleEl = document.getElementById("list-title");
 const completedInput = document.getElementById("completed-input");
+const listProgressEl = document.getElementById("list-progress");
+
 
 // ---------------------------
 // Segment styling controls
@@ -114,6 +116,7 @@ function loadState() {
     // Keep textarea in sync
     inputEl.value = items.map(i => `${i.title} | ${i.spriteName}`).join("\n");
 
+    renderProgress();
     return true;
   } catch {
     return false;
@@ -137,6 +140,20 @@ completedInput.addEventListener("input", () => {
   saveState();
   renderList(); // so existing completed items update their data attribute immediately
 });
+
+function renderProgress() {
+  const total = items.length;
+  const completedCount = items.filter(i => i.completed).length;
+
+  const pct = total === 0 ? 0 : Math.round((completedCount / total) * 100);
+  listProgressEl.textContent = `${pct}%`;
+
+  const allComplete = total > 0 && completedCount === total;
+
+  // Persisting animation state (until anything becomes incomplete)
+  listTitleEl.classList.toggle("all-complete", allComplete);
+  listProgressEl.classList.toggle("all-complete", allComplete);
+}
 
 function renderTitle() {
   const title = titleInput.value.trim();
@@ -176,6 +193,7 @@ function loadItems() {
 
   renderTitle();
   renderList();   // <- this applies latest completedInput text to ALL completed items
+  renderProgress();
   drawWheel();
   saveState();
 }
@@ -264,6 +282,7 @@ function renderList() {
       }
 
       renderList();
+      renderProgress();
       drawWheel();
       saveState();
     };
@@ -302,13 +321,30 @@ function drawWheel() {
   const active = items.filter(i => !i.completed);
 
   if (!active.length) {
-    drawPointer();
+    // Background fill for completed wheel
     ctx.save();
-    ctx.fillStyle = "#333";
-    ctx.font = "16px sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillText("All Pokemon Caught", radius, radius);
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, size, size);
     ctx.restore();
+  
+    // Optional subtle inner circle to keep wheel identity
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(radius, radius, radius - 6, 0, Math.PI * 2);
+    ctx.fillStyle = "#e5eaf6";
+    ctx.fill();
+    ctx.restore();
+  
+    // Text
+    ctx.save();
+    ctx.fillStyle = "#5476c2";
+    ctx.font = "600 18px system-ui, sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("All Pokémon Caught", radius, radius);
+    ctx.restore();
+  
+    drawPointer();
     return;
   }
 
@@ -440,7 +476,7 @@ function spin() {
   if (spinning) return;
 
   const active = items.filter(i => !i.completed);
-  if (active.length < 2) return;
+  if (active.length < 1) return;
 
   spinning = true;
 
@@ -481,6 +517,8 @@ function spin() {
 
       drawWheel();
       renderList();
+      renderProgress();
+      saveState();
     }
   }
 
@@ -490,6 +528,7 @@ const didLoad = loadState();
 
 renderTitle();
 renderList();
+renderProgress();
 drawWheel();
 
 // If nothing was saved yet, fall back to textarea defaults
