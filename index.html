@@ -5,12 +5,37 @@
   <meta charset="UTF-8" />
   <title>Spin the Wheel</title>
   <style>
+    :root {
+      --kauri-blue: #5476c2;
+      /* RGB 84 118 194 */
+      --kauri-bluelight: #e5eaf6;
+      /* RGB 229 234 246 */
+    }
+
     * {
       box-sizing: border-box;
       font-family: system-ui, sans-serif;
-      --kauri-blue: #5476c2; /* RGB 84 118 194 */
-      --kauri-bluelight: #e5eaf6; /* RGB 229 234 246 */
     }
+
+    @keyframes iconBounce {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-3px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Apply bounce to the LIST icon only, when temporarily flagged */
+    .list-item.just-completed img {
+      animation: iconBounce 0.3s ease-in-out infinite;
+    }
+
 
     body {
       margin: 0;
@@ -26,7 +51,7 @@
       overflow: hidden;
       justify-content: center;
       align-items: center;
-      gap:2em;
+      gap: 2em;
     }
 
     #list-container {
@@ -57,7 +82,7 @@
 
     .list-item {
       display: flex;
-      position:relative;
+      position: relative;
       align-items: center;
       gap: 10px;
       padding: 8px 16px 8px 8px;
@@ -70,29 +95,36 @@
     .list-item.completed {
       font-style: italic;
       background: var(--kauri-bluelight);
-      color:var(--kauri-blue);
+      color: var(--kauri-blue);
     }
+
     .list-item.completed:before {
-      display:block;
-      position:absolute;
+      display: block;
+      position: absolute;
       content: "CAUGHT";
       color: var(--kauri-blue);
-      background-color:white;
-      border-radius:3px 0 0 0;
-      padding:0px 7px;
-      right:0;
-      bottom:0;
-      font-size:0.5em;
+      background-color: white;
+      border-radius: 3px 0 0 0;
+      padding: 0px 7px;
+      right: 0;
+      bottom: 0;
+      font-size: 0.5em;
       letter-spacing: 0.1em;
     }
+
+    .list-item.winner {
+      outline: var(--kauri-blue) solid 3px;
+      background: var(--kauri-bluelight);
+    }
+
     .list-item.winner span {
-      color:var(--kauri-blue);
+      color: var(--kauri-blue);
     }
 
     .list-item img {
       width: 40px;
       height: 40px;
-      image-rendering: pixelated;
+      image-rendering: auto;
     }
 
     #wheel-container {
@@ -148,9 +180,12 @@
     <button id="apply">Apply List</button>
 
     <textarea id="input">
-  Manager | Pikachu-s
-  Designer | Bulbasaur-s
-  Artist | Charmander-s
+      Fighter | tinkaton-s
+      Paladin | aggron-s
+      Cleric | clefable-s
+      Rogue | kecleon-s
+      Wizard | drampa-s
+      Monk | simisage-s
     </textarea>
   </div>
 

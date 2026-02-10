@@ -37,9 +37,10 @@ function saveState() {
     angle: angle || 0,
     items: items.map(i => ({
       title: i.title,
-      spriteName: i.spriteName,       // already normalised lower-case
-      completed: !!i.completed
-    }))
+      spriteName: i.spriteName,
+      completed: !!i.completed,
+      completedBounceUntil: i.completedBounceUntil || 0
+    }))    
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
@@ -60,6 +61,16 @@ function stopWinnerBounce() {
   if (!winnerAnimRaf) return;
   cancelAnimationFrame(winnerAnimRaf);
   winnerAnimRaf = null;
+}
+
+const COMPLETED_BOUNCE_DURATION_MS = 1000;
+
+function nowMs() {
+  return Date.now();
+}
+
+function shouldBounceCompleted(item) {
+  return typeof item.completedBounceUntil === "number" && item.completedBounceUntil > nowMs();
 }
 
 function loadState() {
@@ -89,6 +100,7 @@ function loadState() {
         title,
         spriteName,
         completed: !!it.completed,
+        completedBounceUntil: typeof it.completedBounceUntil === "number" ? it.completedBounceUntil : 0,
         img: loadImage(spriteName)
       };
     });
@@ -185,18 +197,17 @@ function renderList() {
     // Base classes
     div.className = "list-item" + (item.completed ? " completed" : "");
 
-    // Winner class (temporary – disappears on next render when winnerItem changes/clears)
-    if (isWinner) {
-      div.classList.add("winner");
-    }
+    if (isWinner) div.classList.add("winner");
 
-    // Keep your inline winner styling (optional)
-    if (isWinner) {
-      div.style.outline = "3px solid #5476c2";
-      div.style.background = "#e5eaf6";
-    } else {
-      div.style.outline = "";
-      div.style.background = "";
+    // Apply "just completed" bounce class if still within window
+    if (shouldBounceCompleted(item)) {
+      div.classList.add("just-completed");
+
+      // Ensure we re-render when the bounce window ends (so the class drops off)
+      const remaining = item.completedBounceUntil - nowMs();
+      window.setTimeout(() => {
+        renderList();
+      }, Math.max(0, remaining));
     }
 
     div.innerHTML = `
@@ -205,21 +216,29 @@ function renderList() {
     `;
 
     div.onclick = () => {
+      const wasCompleted = item.completed;
+
       item.completed = !item.completed;
+
+      // Start 2s bounce window when it becomes completed
+      if (!wasCompleted && item.completed) {
+        item.completedBounceUntil = nowMs() + COMPLETED_BOUNCE_DURATION_MS;
+      } else {
+        item.completedBounceUntil = 0;
+      }
 
       // Clear winner if winner item got completed
       if (winnerItem === item && item.completed) {
         winnerItem = null;
-        if (!winnerItem) stopWinnerBounce();
+        stopWinnerBounce();
       }
 
       // Clear winner if it is no longer in active items
       if (!items.filter(i => !i.completed).includes(winnerItem)) {
         winnerItem = null;
-        if (!winnerItem) stopWinnerBounce();
+        stopWinnerBounce();
       }
 
-      // This re-render clears the temporary .winner class automatically
       renderList();
       drawWheel();
       saveState();
@@ -228,6 +247,7 @@ function renderList() {
     listEl.appendChild(div);
   });
 }
+
 
 
 
@@ -323,7 +343,8 @@ function drawWheel() {
     ctx.fillText(item.title, 0, SEGMENT_TEXT_Y);
     
     if (item.img && item.img.complete && item.img.naturalWidth > 0) {
-      ctx.imageSmoothingEnabled = false;
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high"; // supported in modern browsers
       const phase = (winnerAnimTime / WINNER_BOUNCE_PERIOD) * Math.PI * 2;
 
       // “Bouncing” usually looks best going up and back to rest (not above rest),
