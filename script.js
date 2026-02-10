@@ -213,7 +213,7 @@ function renderProgress() {
 
 function renderTitle() {
   const title = titleInput.value.trim();
-  listTitleEl.textContent = title || "Wheel Items";
+  listTitleEl.textContent = title || "Shiny Team";
   saveState();
 }
 
