@@ -12,6 +12,8 @@
       /* RGB 229 234 246 */
       --kauri-bluefaint: #f4f6fc;
       /* RGB 244 246 252 */
+      --kauri-grey: #f6f6f6;
+      --kauri-darkgrey: #bebebe;
     }
 
     * {
@@ -97,11 +99,6 @@
       color: var(--kauri-blue);
     }
 
-    #title-input {
-      padding: 8px;
-      font-size: 16px;
-    }
-
     #list-progress {
       margin: -8px 0 12px 0;
       font-size: 2em;
@@ -136,7 +133,7 @@
       margin-bottom: 8px;
       cursor: pointer;
       border-radius: 6px;
-      background: #f6f6f6;
+      background: var(--kauri-grey);
       transition: left 0.25s;
       left: 0;
     }
@@ -191,56 +188,55 @@
       cursor: pointer;
     }
 
-    #inputs {
-      height: 35%;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
     textarea {
-      width: 100%;
-      height: 100%;
+      width:300px;
+      height: 150px;
       resize: none;
-      padding: 10px;
-      font-family: monospace;
     }
 
     button {
       align-self: flex-start;
       padding: 8px 16px;
       cursor: pointer;
+      background: var(--kauri-bluelight);
+      color:#000;
+      border-radius:5px;
+      outline:none;
+      border: 1px solid var(--kauri-blue);
+      font-weight: 600;
+      transition: background 250ms ease, color 250ms ease;
+    }
+    button:hover {
+      background: var(--kauri-blue);
+      color:#fff
     }
 
     #meta-inputs {
       display: flex;
+      flex-direction:column;
       gap: 10px;
-    }
-
-    #meta-inputs input {
-      padding: 8px;
-      font-size: 16px;
     }
 
 
     /* Sliding inputs panel */
     #inputs {
-      height: 35%;
       padding: 16px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       gap: 10px;
       position:absolute;
       bottom: 0;
       width: 100%;
       z-index: 4;
       background: #fff;
+      justify-content: center;
+      border-top:2px solid var(--kauri-blue);
 
       /* slide behaviour */
       transition: transform 250ms ease, box-shadow 250ms ease;
       transform: translateY(100%);
       box-shadow: none;
+      text-transform: uppercase;
     }
 
     /* When open */
@@ -257,13 +253,15 @@
       /*transform: translateX(-50%);*/
       z-index: 10;
 
-      padding: 10px 16px;
+      padding: 2px 8px 5px 8px;
       border: 0;
-      border-radius: 10px 10px 0 0;
+      border-radius: 7px 7px 0 0;
       background: var(--kauri-blue);
       color: #fff;
       font-weight: 600;
       cursor: pointer;
+      font-size: 12px;
+      text-transform: uppercase;
 
       box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15);
     }
@@ -271,6 +269,32 @@
     /* Optional: make the tab look “active” when open */
     body.inputs-open #inputs-tab {
       background: #3f61ac;
+    }
+
+    input, textarea {
+      position:relative;
+      border: 1px solid var(--kauri-darkgrey);
+      border-radius: 4px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--kauri-blue);
+      box-shadow: 0 0 0 2px var(--kauri-bluelight);
+    }
+    label {
+      display: block;
+      position: relative;
+      margin-bottom: -17px;
+      font-size: 0.6em;
+      color: var(--kauri-blue);
+      z-index: 1;
+      background-color: #fff;
+      width: fit-content;
+      padding: 0 5px 0 0;
+      text-transform: uppercase;
+      font-weight: 700;
     }
   </style>
 </head>
@@ -296,21 +320,24 @@
     </button>
     
     <div id="meta-inputs">
-      <input id="title-input" type="text" placeholder="Enter wheel title" />
-      <input id="completed-input" type="text" placeholder="Completed text (e.g. CAUGHT)" />
+      <label for="title-input">Team Name</label>
+      <input id="title-input" type="text" placeholder="Enter wheel title"/>
+      <label for="completed-input">Completed Term</label>
+      <input id="completed-input" type="text" placeholder="Completed text (e.g. CAUGHT)"/>
+      <button id="apply">Apply List</button>
     </div>
 
-
-    <button id="apply">Apply List</button>
-
-    <textarea id="input">
+    <div id="meta-inputs">
+      <label for="input">Pokemon List</label>
+      <textarea id="input" data-title="Pokemon List" placeholder="ROLE | PKMN/-s">
 Fighter | chesnaught-s
 Druid | Simisage-s
 Cleric | Florges-s
 Rogue | abra-s
 Wizard | drampa-s
 BBEG | golisopod-s
-    </textarea>
+      </textarea>
+    </div>
   </div>
 
   <script src="script.js"></script>
