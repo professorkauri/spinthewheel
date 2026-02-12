@@ -35,6 +35,7 @@ const WINNER_BOUNCE_PERIOD = 700;     // ms (lower = faster)
 let winnerAnimRaf = null;
 let winnerAnimTime = 0;
 
+
 // ---------------------------
 // localStorage persistence
 // ---------------------------
@@ -96,6 +97,88 @@ function animateProgressTo(targetPct, duration = 1000) {
 
   progressAnimRaf = requestAnimationFrame(tick);
 }
+
+
+// ---------------------------
+// Sound effects (DOM-backed preloading)
+// ---------------------------
+const SFX = {
+  spin: document.getElementById("sfx-spin"),
+  complete: document.getElementById("sfx-complete"),
+};
+
+SFX.spin.volume = 0.35;
+SFX.complete.volume = 0.45;
+
+// Track readiness so play feels instant
+const sfxReady = {
+  spin: false,
+  complete: false,
+};
+
+function preloadSfx() {
+  for (const [key, a] of Object.entries(SFX)) {
+    if (!a) continue;
+
+    // Force a fetch/prepare as early as possible
+    try { a.load(); } catch {}
+
+    // Mark ready when the browser says it can play through
+    a.addEventListener("canplaythrough", () => {
+      sfxReady[key] = true;
+    }, { once: true });
+  }
+}
+
+// iOS/Safari can require "unlocking" audio after first user gesture
+let audioUnlocked = false;
+function unlockAudioOnce() {
+  if (audioUnlocked) return;
+  audioUnlocked = true;
+
+  // A muted play/pause unlock is fine, but only works after a user gesture
+  for (const a of Object.values(SFX)) {
+    if (!a) continue;
+    try {
+      a.muted = true;
+      a.play().then(() => {
+        a.pause();
+        a.currentTime = 0;
+        a.muted = false;
+      }).catch(() => {
+        a.muted = false;
+      });
+    } catch {
+      // ignore
+    }
+  }
+}
+
+function playSfx(name) {
+  const a = SFX[name];
+  if (!a) return;
+
+  // If it’s not ready yet, queue a play as soon as it is
+  if (!sfxReady[name]) {
+    const onReady = () => {
+      sfxReady[name] = true;
+      playSfx(name);
+    };
+    a.addEventListener("canplaythrough", onReady, { once: true });
+    try { a.load(); } catch {}
+    return;
+  }
+
+  try {
+    a.pause();
+    a.currentTime = 0;
+    a.play().catch(() => {});
+  } catch {
+    // ignore
+  }
+}
+
+
 
 
 
@@ -321,6 +404,8 @@ function renderList() {
       // Start 2s bounce window when it becomes completed
       if (!wasCompleted && item.completed) {
         item.completedBounceUntil = nowMs() + COMPLETED_BOUNCE_DURATION_MS;
+        unlockAudioOnce();
+        playSfx("complete");
       } else {
         item.completedBounceUntil = 0;
       }
@@ -353,12 +438,11 @@ function renderList() {
 function loadImage(spriteName) {
   const img = new Image();
 
-  img.onload = () => drawWheel();
-  img.onerror = () => drawWheel();
+  const FALLBACK_SRC = "images/pokemon/---/regular.png";
 
   const raw = (spriteName || "").trim().toLowerCase();
   if (!raw) {
-    img.src = "";
+    img.src = FALLBACK_SRC;
     return img;
   }
 
@@ -366,9 +450,21 @@ function loadImage(spriteName) {
   const baseName = isShiny ? raw.slice(0, -2) : raw;
   const variant = isShiny ? "shiny" : "regular";
 
-  img.src = `images/pokemon/${baseName}/${variant}.png`;
+  const primarySrc = `images/pokemon/${baseName}/${variant}.png`;
+
+  img.onload = () => drawWheel();
+
+  img.onerror = () => {
+    // Only fallback if we're not already using fallback
+    if (img.src.endsWith(FALLBACK_SRC)) return;
+    img.src = FALLBACK_SRC;
+  };
+
+  img.src = primarySrc;
+
   return img;
 }
+
 
 
 function drawWheel() {
@@ -534,6 +630,9 @@ function spin() {
   const active = items.filter(i => !i.completed);
   if (active.length < 1) return;
 
+  unlockAudioOnce();
+  playSfx("spin");
+
   spinning = true;
 
   // Clear winner while spinning (optional – feels better visually)
@@ -581,6 +680,8 @@ function spin() {
   requestAnimationFrame(animate);
 }
 const didLoad = loadState();
+
+preloadSfx();
 
 renderTitle();
 renderList();

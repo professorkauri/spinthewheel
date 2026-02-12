@@ -180,7 +180,6 @@
 
     #wheel-container {
       display: flex;
-      justify-content: start;
       align-items: center;
     }
 
@@ -211,7 +210,7 @@
       color:#fff
     }
 
-    #meta-inputs {
+    .meta-inputs {
       display: flex;
       flex-direction:column;
       gap: 10px;
@@ -319,7 +318,7 @@
       Inputs
     </button>
     
-    <div id="meta-inputs">
+    <div class="meta-inputs">
       <label for="title-input">Team Name</label>
       <input id="title-input" type="text" placeholder="Enter wheel title"/>
       <label for="completed-input">Completed Term</label>
@@ -327,7 +326,7 @@
       <button id="apply">Apply List</button>
     </div>
 
-    <div id="meta-inputs">
+    <div class="meta-inputs">
       <label for="input">Pokemon List</label>
       <textarea id="input" data-title="Pokemon List" placeholder="ROLE | PKMN/-s">
 Fighter | chesnaught-s
@@ -339,6 +338,10 @@ BBEG | golisopod-s
       </textarea>
     </div>
   </div>
+
+  <!-- Preloaded SFX -->
+  <audio id="sfx-spin" preload="auto" src="sounds/spin.mp3"></audio>
+  <audio id="sfx-complete" preload="auto" src="sounds/complete.mp3"></audio>
 
   <script src="script.js"></script>
 </body>
