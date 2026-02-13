@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Favourite Pokemon</title>
+
+  <style>
+    :root {
+      --kauri-blue: #5476c2;
+      --kauri-bluelight: #e5eaf6;
+      --kauri-bluefaint: #f4f6fc;
+      --kauri-grey: #f6f6f6;
+      --kauri-darkgrey: #bebebe;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    /* Main display */
+    #display {
+      flex: 1;
+      overflow: auto;
+      padding: 22px;
+    }
+
+    h1 {
+      margin: 0 0 18px 0;
+      font-size: 26px;
+      font-weight: normal;
+      font-style: italic;
+      color: var(--kauri-blue);
+      letter-spacing: 0.02em;
+      text-align: center;
+      opacity: 0.5;
+    }
+
+    .category {
+      width:fit-content;
+      max-width:1350px;
+      margin: 0 auto 14px auto;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      padding: 16px 16px 24px 16px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .category h2 {
+      margin: 0 0 12px 0;
+      font-size: 18px;
+      font-weight: 400;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--kauri-blue);
+    }
+
+    .pokemon-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .poke-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--kauri-grey);
+      border: 1px solid #ececec;
+    }
+
+    .poke-card:hover {
+      border-color: var(--kauri-blue);
+      box-shadow: 0 10px 26px rgba(84, 118, 194, 0.12);
+    }
+
+    .poke-icon {
+      position:relative;
+      border-radius: 8px;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      border: 1px solid #ececec;
+      overflow: hidden;
+    }
+
+    .poke-icon[data-shiny="yes"]:before {
+      display: block;
+      position: absolute;
+      content: " ";
+      width: 20px;
+      height: 20px;
+      background-image: url(images/shiny_icon.png);
+      background-size: contain;
+      top: 5px;
+      left: 5px;
+      z-index: 1;
+      opacity: 0.2;
+    }
+
+    .poke-icon img {
+      position:relative;
+      width: 100px;
+      height: 100px;
+      image-rendering: auto;
+      display: block;
+    }
+
+    .poke-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .criteria {
+      font-size: 9px;
+      font-weight:600;
+      color: #111;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .poke-name {
+      font-size: 15px;
+      color: var(--kauri-blue);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: capitalize;
+    }
+
+    /* Inputs panel (sliding) */
+    #inputs {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 4;
+
+      background: #fff;
+      border-top: 2px solid var(--kauri-blue);
+
+      transition: transform 250ms ease, box-shadow 250ms ease;
+      transform: translateY(100%);
+      box-shadow: none;
+    }
+
+    body.inputs-open #inputs {
+      transform: translateY(0);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    #inputs-tab {
+      position: absolute;
+      right: 2em;
+      bottom: 100%;
+      z-index: 10;
+
+      padding: 2px 8px 5px 8px;
+      border: 0;
+      border-radius: 7px 7px 0 0;
+      background: var(--kauri-blue);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 12px;
+      text-transform: uppercase;
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    body.inputs-open #inputs-tab {
+      background: #3f61ac;
+    }
+
+    .inputs-topbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 8px 14px;
+      cursor: pointer;
+      background: var(--kauri-bluelight);
+      color: #000;
+      border-radius: 8px;
+      outline: none;
+      border: 1px solid var(--kauri-blue);
+      font-weight: 650;
+      transition: background 250ms ease, color 250ms ease, transform 120ms ease;
+    }
+
+    button:hover {
+      background: var(--kauri-blue);
+      color: #fff;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button.ghost {
+      background: #fff;
+      color: var(--kauri-blue);
+    }
+
+    button.danger {
+      background: #fff;
+      color: #b00020;
+      border-color: #f0c0c0;
+    }
+
+    button.danger:hover {
+      background: #b00020;
+      color: #fff;
+      border-color: #b00020;
+    }
+
+    .categories-editor {
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 46vh;
+      overflow: auto;
+      padding: 2px;
+    }
+
+    .cat-editor {
+      border: 1px solid #e8e8e8;
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cat-editor-top {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    label {
+      display: block;
+      position: relative;
+      margin-bottom: -5px;
+      font-size: 0.6em;
+      color: var(--kauri-blue);
+      z-index: 1;
+      background-color: #fff;
+      width: fit-content;
+      padding: 0 6px 0 0;
+      text-transform: uppercase;
+      font-weight: normal;
+      letter-spacing: 0.08em;
+    }
+
+    input,
+    textarea {
+      border: 1px solid var(--kauri-darkgrey);
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 15px;
+      width: 100%;
+    }
+
+    textarea {
+      height: 320px;
+      resize: vertical;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--kauri-blue);
+      box-shadow: 0 0 0 2px var(--kauri-bluelight);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="display">
+    <h1>My Favourite Pokemon</h1>
+    <div id="categories-view"></div>
+  </div>
+
+  <div id="inputs">
+    <button id="inputs-tab" aria-expanded="false" title="Show / hide inputs">Inputs</button>
+
+    <div class="inputs-topbar">
+      <button id="btn-add-category">Add Category</button>
+      <button id="btn-save" class="ghost" title="Downloads a favourite.js file">Save</button>
+      <button id="btn-reset" class="danger" title="Clears local storage and resets to defaults">Reset</button>
+    </div>
+
+    <div id="categories-editor" class="categories-editor"></div>
+  </div>
+
+  <script src="favourite.js"></script>
+  <script>
+    /* -----------------------------
+       Storage + defaults
+    ------------------------------ */
+    
+
+    function uid() {
+      return Math.random().toString(16).slice(2) + Date.now().toString(16);
+    }
+
+    const DEFAULT_DATA = Array.isArray(window.FAVOURITE_POKEMON_DATA) && window.FAVOURITE_POKEMON_DATA.length
+      ? window.FAVOURITE_POKEMON_DATA.map(c => ({
+          id: String(c.id || uid()),
+          title: String(c.title || "").trim(),
+          text: String(c.text || "")
+        }))
+      : [
+          {
+            id: uid(),
+            title: "Comfort Picks",
+            text: [
+              "Favourite starter | chesnaught-s",
+              "Favourite sleepy vibe | snorlax",
+              "Favourite gremlin | sableye-s"
+            ].join("\n")
+          },
+          {
+            id: uid(),
+            title: "Battle Choices",
+            text: [
+              "Favourite bulky | toxapex",
+              "Favourite fast | jolteon-s",
+              "Favourite mage | gardevoir"
+            ].join("\n")
+          }
+        ];
+
+
+    /* -----------------------------
+       File export (download prompt)
+    ------------------------------ */
+    function downloadTextFile(filename, text) {
+      const blob = new Blob([text], { type: "text/javascript;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      URL.revokeObjectURL(url);
+    }
+
+    function resetData() {
+      const base = location.href.split("?")[0];
+      location.href = base + "?v=" + Date.now();
+    }
+
+
+    function exportAsFavouriteJS(categories) {
+      // You can later load this by copying it into a project, or parsing it in another tool.
+      const payload = JSON.stringify(categories, null, 2);
+      return `// Generated by My Favourite Pokemon\nwindow.FAVOURITE_POKEMON_DATA = ${payload};\n`;
+    }
+
+    /* -----------------------------
+       Parsing helpers
+    ------------------------------ */
+    function toDisplayName(pokemonRaw) {
+      return pokemonRaw.trim();
+    }
+
+    function slugifyPokemon(pokemonRaw) {
+      // Matches folder names like "mr-mime", "tapu-koko", etc.
+      return pokemonRaw
+        .trim()
+        .toLowerCase()
+        .replace(/['’]/g, "")
+        .replace(/\s+/g, "-");
+    }
+
+    function parseCategoryText(text) {
+      const lines = String(text || "")
+        .split("\n")
+        .map(l => l.trim())
+        .filter(l => l.length > 0);
+
+      const items = [];
+
+      for (const line of lines) {
+        const parts = line.split("|");
+        if (parts.length < 2) continue;
+
+        const criteria = parts[0].trim();
+        const pokemonPart = parts.slice(1).join("|").trim();
+
+        if (!criteria || !pokemonPart) continue;
+
+        const isShiny = pokemonPart.toLowerCase().endsWith("-s");
+        const pokemonClean = isShiny ? pokemonPart.slice(0, -2) : pokemonPart;
+
+        const pokemonSlug = slugifyPokemon(pokemonClean);
+        const displayName = toDisplayName(pokemonClean);
+
+        items.push({
+          criteria,
+          pokemonSlug,
+          displayName,
+          isShiny
+        });
+      }
+
+      return items;
+    }
+
+    function iconPath(pokemonSlug, isShiny) {
+      const file = isShiny ? "shiny.png" : "regular.png";
+      return `images/pokemon/${pokemonSlug}/${file}`;
+    }
+
+    /* -----------------------------
+       State
+    ------------------------------ */
+    const state = {
+      categories: structuredClone(DEFAULT_DATA)
+    };
+
+
+    /* -----------------------------
+       Inputs panel toggle
+    ------------------------------ */
+    const inputsTab = document.getElementById("inputs-tab");
+    inputsTab.addEventListener("click", () => {
+      const open = document.body.classList.toggle("inputs-open");
+      inputsTab.setAttribute("aria-expanded", String(open));
+    });
+
+    const displayEl = document.getElementById("display");
+    const inputsEl = document.getElementById("inputs");
+
+    function updateDisplayPadding() {
+      if (document.body.classList.contains("inputs-open")) {
+        const height = inputsEl.offsetHeight;
+        displayEl.style.paddingBottom = height + 20 + "px"; 
+      } else {
+        displayEl.style.paddingBottom = "92px";
+      }
+    }
+
+    // Update when toggled
+    inputsTab.addEventListener("click", () => {
+      requestAnimationFrame(updateDisplayPadding);
+    });
+
+    // Also update on resize (in case window changes)
+    window.addEventListener("resize", updateDisplayPadding);
+
+
+
+
+    /* -----------------------------
+       Rendering
+    ------------------------------ */
+    const viewEl = document.getElementById("categories-view");
+    const editorEl = document.getElementById("categories-editor");
+
+    function renderView() {
+      viewEl.innerHTML = "";
+
+      for (const cat of state.categories) {
+        const title = (cat.title || "").trim() || "Untitled Category";
+        const items = parseCategoryText(cat.text);
+
+        const catWrap = document.createElement("div");
+        catWrap.className = "category";
+
+        const h2 = document.createElement("h2");
+        h2.textContent = title;
+        catWrap.appendChild(h2);
+
+        const row = document.createElement("div");
+        row.className = "pokemon-row";
+
+        if (items.length === 0) {
+          const empty = document.createElement("div");
+          empty.style.color = "#666";
+          empty.style.fontSize = "13px";
+          empty.textContent = "No entries yet – add some lines in Inputs.";
+          catWrap.appendChild(empty);
+        } else {
+          for (const item of items) {
+            const card = document.createElement("div");
+            card.className = "poke-card";
+
+            const icon = document.createElement("div");
+            icon.className = "poke-icon";
+
+            // Move shiny data attribute to the container instead
+            icon.dataset.shiny = item.isShiny ? "yes" : "no";
+
+            const img = document.createElement("img");
+            img.loading = "lazy";
+            img.alt = item.displayName;
+            img.src = iconPath(item.pokemonSlug, item.isShiny);
+
+            img.onerror = () => {
+              img.onerror = null;
+              img.src = "images/pokemon/---/regular.png";
+            };
+
+
+            icon.appendChild(img);
+
+            const meta = document.createElement("div");
+            meta.className = "poke-meta";
+
+            const criteria = document.createElement("div");
+            criteria.className = "criteria";
+            criteria.textContent = item.criteria;
+
+            const name = document.createElement("div");
+            name.className = "poke-name";
+            name.textContent = item.displayName;
+
+            meta.appendChild(criteria);
+            meta.appendChild(name);
+
+            card.appendChild(icon);
+            card.appendChild(meta);
+
+            row.appendChild(card);
+          }
+          catWrap.appendChild(row);
+        }
+
+        viewEl.appendChild(catWrap);
+      }
+    }
+
+    function renderEditor() {
+      editorEl.innerHTML = "";
+
+      state.categories.forEach((cat, index) => {
+        const wrap = document.createElement("div");
+        wrap.className = "cat-editor";
+
+        const top = document.createElement("div");
+        top.className = "cat-editor-top";
+
+        const titleWrap = document.createElement("div");
+        titleWrap.style.flex = "1";
+        titleWrap.style.minWidth = "260px";
+
+        const titleLabel = document.createElement("label");
+        titleLabel.textContent = "Category Title";
+
+        const titleInput = document.createElement("input");
+        titleInput.type = "text";
+        titleInput.value = cat.title || "";
+        titleInput.placeholder = "e.g. Favourite Starters";
+
+        titleInput.addEventListener("input", () => {
+          state.categories[index].title = titleInput.value;
+          renderView();
+        });
+
+        titleWrap.appendChild(titleLabel);
+        titleWrap.appendChild(titleInput);
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "danger";
+        delBtn.textContent = "Remove";
+        delBtn.title = "Remove this category";
+        delBtn.addEventListener("click", () => {
+          state.categories.splice(index, 1);
+          renderAll();
+        });
+
+        top.appendChild(titleWrap);
+        top.appendChild(delBtn);
+
+        const textWrap = document.createElement("div");
+
+        const textLabel = document.createElement("label");
+        textLabel.textContent = "Entries";
+
+        const textarea = document.createElement("textarea");
+        textarea.value = cat.text || "";
+        textarea.placeholder = [
+          "criteria | pokemon",
+          "Favourite Grass | chesnaught-s",
+          "Favourite Electric | jolteon"
+        ].join("\n");
+
+        textarea.addEventListener("input", () => {
+          state.categories[index].text = textarea.value;
+          renderView();
+        });
+
+        textWrap.appendChild(textLabel);
+        textWrap.appendChild(textarea);
+
+        wrap.appendChild(top);
+        wrap.appendChild(textWrap);
+
+        editorEl.appendChild(wrap);
+      });
+    }
+
+    function renderAll() {
+      renderView();
+      renderEditor();
+    }
+
+    /* -----------------------------
+       Buttons
+    ------------------------------ */
+    document.getElementById("btn-add-category").addEventListener("click", () => {
+      state.categories.push({
+        id: uid(),
+        title: "",
+        text: ""
+      });
+      renderAll();
+    });
+
+    // Save button now triggers a download prompt (and also stores latest in local storage).
+    document.getElementById("btn-save").addEventListener("click", () => {
+
+
+      // Trigger file download
+      downloadTextFile("favourite.js", exportAsFavouriteJS(state.categories));
+
+      // Small UI hint without popups
+      const btn = document.getElementById("btn-save");
+      const prev = btn.textContent;
+      btn.textContent = "Saved";
+      setTimeout(() => btn.textContent = prev, 700);
+    });
+
+    document.getElementById("btn-reset").addEventListener("click", () => {
+      resetData();
+    });
+
+    /* -----------------------------
+       Init
+    ------------------------------ */
+    renderAll();
+
+  </script>
+</body>
+
+</html>
