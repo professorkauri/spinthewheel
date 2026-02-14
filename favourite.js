@@ -8,7 +8,7 @@ window.FAVOURITE_POKEMON_DATA = [
   {
     "id": "80f746dc7e9fd19c53d2381e",
     "title": "Group Shinies",
-    "text": "Kanto Starter | ivysaur-s\nJohto Starter | cyndaquil-s\nHoenn Starter | mudkip-s\nSinnoh Starter | empoleon-s\nUnova Starter | servine-s\nKalos Starter | braixen-s\nAlola Starter | dartrix-s\nGalar Starter | rillaboom-s\nHisui Starter | samurott hisui-s\nPaldea Starter | skeledirge-s\nLegendary | giratina-altered-s\nMythical | meloetta pirouette-s\nEeveelution | Vaporeon-s\nFossil | Kabuto-s\nLegendary Bird | Articuno-s\nLegendary Beast | raikou-s\nRegi | regigigas-s\nEon | Latias-s\nSword of justice | virizion-s\nTapu | Tapu koko-s\nUltra Beast | naganadel-s\nAlolan form | rattata alola-s\nGalarian form | voltorb hisui-s\nHisuian form | ponyta galar-s\nPsuedo-legendary | Dragapult-s\nPast Paradox | slither wing-s\nFuture Paradox | iron valiant-s\nTreasure of Ruin | chi-yu-s\n"
+    "text": "Kanto Starter | ivysaur-s\nJohto Starter | cyndaquil-s\nHoenn Starter | mudkip-s\nSinnoh Starter | empoleon-s\nUnova Starter | servine-s\nKalos Starter | braixen-s\nAlola Starter | dartrix-s\nGalar Starter | rillaboom-s\nHisui Starter | samurott hisui-s\nPaldea Starter | skeledirge-s\nLegendary | giratina-altered-s\nMythical | meloetta pirouette-s\nEeveelution | Vaporeon-s\nFossil | armaldo-s\nLegendary Bird | Articuno-s\nLegendary Beast | raikou-s\nRegi | regigigas-s\nEon | Latias-s\nSword of justice | virizion-s\nTapu | Tapu koko-s\nUltra Beast | naganadel-s\nAlolan form | rattata alola-s\nGalarian form | ponyta galar-s\nHisuian form | voltorb hisui-s\nPsuedo-legendary | Dragapult-s\nPast Paradox | slither wing-s\nFuture Paradox | iron valiant-s\nTreasure of Ruin | chi-yu-s\n"
   },
   {
     "id": "555fadbfa6335819c5393d97b",
@@ -103,22 +103,22 @@ window.FAVOURITE_POKEMON_DATA = [
   {
     "id": "cf5fa339d77cf819c5481dee2",
     "title": "Kanto Legends",
-    "text": "Legendary Bird | Articuno\n★ Legendary Bird | Articuno-s\nMew / Mewtwo | Mewtwo\n★ Mew / Mewtwo | Mewtwo-s"
+    "text": "Legendary Bird | Articuno\nMew / Mewtwo | Mewtwo\n"
   },
   {
     "id": "c8ac65b58893b819c548235bd",
     "title": "Johto Legends",
-    "text": "Legendary Beast | Raikou\n★ Legendary Beast | Raikou-s\nLegendary Giants| Regirock\n★ Legendary Giants| Regigigas-s\nTower Duo | Lugia\n★ Tower Duo | Lugia-s"
+    "text": "Legendary Beast | Raikou\nLegendary Giants| Regirock\nTower Duo | Lugia\n"
   },
   {
     "id": "e488c256380bd19c54829d5d",
     "title": "Hoenn Legends",
-    "text": "Eon Duo | Latias\n★ Eon Duo | Latias-s\nDeoxys | Deoxys attack\nWeather Trio | Rayquaza\n★ Weather Trio | Rayquaza-s\nWeather Trio Primal | Kyogre-primal\n★ Weather Trio Primal | kyogre-primal-s\n"
+    "text": "Eon Duo | Latias\nDeoxys | Deoxys attack\nWeather Trio | Rayquaza\nWeather Trio Primal | Kyogre-primal\n"
   },
   {
     "id": "dfec4c87e03ac819c54835f17",
     "title": "Sinnoh Legends",
-    "text": "Lake Trio | Uxie\n★ Lake Trio | Azelf-s\nLuna Duo | Cresselia\n★ Luna Duo | Cresselia-s\nPokemon of Myth | Palkia\n★ Pokemon of Myth | Palkia-s\nOrigin Forms | Giratina origin\n★ Origin Forms | giratina origin-s\nShaymin | shaymin land\n★ Shaymin | shaymin land-s\n"
+    "text": "Lake Trio | Uxie\nLuna Duo | Cresselia\nPokemon of Myth | Palkia\nOrigin Forms | Giratina origin\nShaymin | shaymin land"
   },
   {
     "id": "59ca4ebcae7fd819c5483d849",
