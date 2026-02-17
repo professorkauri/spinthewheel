@@ -58,13 +58,55 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
     }
 
-    .category h2 {
+    h2 {
+      margin: 4em 0 2em 0;
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 400;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--kauri-blue);
+    }
+
+    h3 {
       margin: 0 0 12px 0;
       font-size: 18px;
       font-weight: 400;
       text-transform: uppercase;
       text-align: center;
       color: var(--kauri-blue);
+    }
+
+    h4 {
+      position:relative;
+      margin: 14px 0 10px 0;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      color: #111;
+      letter-spacing: 0.08em;
+      opacity: 0.75;
+    }
+
+    h4 span {
+      display: inline-block;
+      position: relative;
+      padding: 0 10px;
+      background: #fff;
+      z-index: 2;
+    }
+
+    h4:before {
+      display: block;
+      position: absolute;
+      content: " ";
+      width: 100%;
+      height: 1px;
+      background: #ccc;
+      margin: 0.8em 0 0 0;
+      transform: translateY(-2px);
+      z-index: 0;
     }
 
     .pokemon-row {
@@ -314,6 +356,24 @@
       border-color: var(--kauri-blue);
       box-shadow: 0 0 0 2px var(--kauri-bluelight);
     }
+
+    .reorder {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .reorder button {
+      padding: 8px 10px;
+      min-width: 38px;
+      line-height: 1;
+    }
+
+    .reorder button:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
   </style>
 </head>
 
@@ -329,6 +389,7 @@
 
     <div class="inputs-topbar">
       <button id="btn-add-category">Add Category</button>
+      <button id="btn-add-heading">Add Heading</button>
       <button id="btn-save" class="ghost" title="Downloads a favourite.js file">Save</button>
       <button id="btn-reset" class="danger" title="Clears local storage and resets to defaults">Reset</button>
     </div>
@@ -348,31 +409,35 @@
     }
 
     const DEFAULT_DATA = Array.isArray(window.FAVOURITE_POKEMON_DATA) && window.FAVOURITE_POKEMON_DATA.length
-      ? window.FAVOURITE_POKEMON_DATA.map(c => ({
-          id: String(c.id || uid()),
-          title: String(c.title || "").trim(),
-          text: String(c.text || "")
-        }))
-      : [
-          {
-            id: uid(),
-            title: "Comfort Picks",
-            text: [
-              "Favourite starter | chesnaught-s",
-              "Favourite sleepy vibe | snorlax",
-              "Favourite gremlin | sableye-s"
-            ].join("\n")
-          },
-          {
-            id: uid(),
-            title: "Battle Choices",
-            text: [
-              "Favourite bulky | toxapex",
-              "Favourite fast | jolteon-s",
-              "Favourite mage | gardevoir"
-            ].join("\n")
-          }
-        ];
+    ? window.FAVOURITE_POKEMON_DATA.map(c => ({
+        id: String(c.id || uid()),
+        type: (c.type === "heading") ? "heading" : "category",
+        title: String(c.title || "").trim(),
+        text: String(c.text || "")
+      }))
+    : [
+        {
+          id: uid(),
+          type: "category",
+          title: "Comfort Picks",
+          text: [
+            "Favourite starter | chesnaught-s",
+            "Favourite sleepy vibe | snorlax",
+            "Favourite gremlin | sableye-s"
+          ].join("\n")
+        },
+        {
+          id: uid(),
+          type: "category",
+          title: "Battle Choices",
+          text: [
+            "Favourite bulky | toxapex",
+            "Favourite fast | jolteon-s",
+            "Favourite mage | gardevoir"
+          ].join("\n")
+        }
+      ];
+
 
 
     /* -----------------------------
@@ -426,33 +491,42 @@
         .map(l => l.trim())
         .filter(l => l.length > 0);
 
-      const items = [];
+      const tokens = [];
 
       for (const line of lines) {
+        // --- Heading --- line (e.g. --- Starters ---)
+        const m = line.match(/^---\s*(.+?)\s*---$/);
+        if (m) {
+          const headingText = (m[1] || "").trim();
+          if (headingText) {
+            tokens.push({ type: "subheading", text: headingText });
+          }
+          continue;
+        }
+
+        // Normal entry line: criteria | pokemon
         const parts = line.split("|");
         if (parts.length < 2) continue;
 
         const criteria = parts[0].trim();
         const pokemonPart = parts.slice(1).join("|").trim();
-
         if (!criteria || !pokemonPart) continue;
 
         const isShiny = pokemonPart.toLowerCase().endsWith("-s");
         const pokemonClean = isShiny ? pokemonPart.slice(0, -2) : pokemonPart;
 
-        const pokemonSlug = slugifyPokemon(pokemonClean);
-        const displayName = toDisplayName(pokemonClean);
-
-        items.push({
+        tokens.push({
+          type: "entry",
           criteria,
-          pokemonSlug,
-          displayName,
+          pokemonSlug: slugifyPokemon(pokemonClean),
+          displayName: toDisplayName(pokemonClean),
           isShiny
         });
       }
 
-      return items;
+      return tokens;
     }
+
 
     function iconPath(pokemonSlug, isShiny) {
       const file = isShiny ? "shiny.png" : "regular.png";
@@ -505,50 +579,94 @@
     const viewEl = document.getElementById("categories-view");
     const editorEl = document.getElementById("categories-editor");
 
+    function moveItem(fromIndex, direction) {
+      const toIndex = fromIndex + direction;
+      if (toIndex < 0 || toIndex >= state.categories.length) return;
+
+      const list = state.categories;
+      [list[fromIndex], list[toIndex]] = [list[toIndex], list[fromIndex]];
+    }
+
     function renderView() {
       viewEl.innerHTML = "";
 
-      for (const cat of state.categories) {
-        const title = (cat.title || "").trim() || "Untitled Category";
-        const items = parseCategoryText(cat.text);
+      for (const item of state.categories) {
+        const title = (item.title || "").trim() || (item.type === "heading" ? "Untitled Heading" : "Untitled Category");
+
+        // Heading-only item
+        if (item.type === "heading") {
+          const h2 = document.createElement("h2");
+          h2.textContent = title;
+          viewEl.appendChild(h2);
+          continue;
+        }
+
+        // Normal category
+        const tokens = parseCategoryText(item.text);
 
         const catWrap = document.createElement("div");
         catWrap.className = "category";
 
-        const h2 = document.createElement("h2");
-        h2.textContent = title;
-        catWrap.appendChild(h2);
+        const h3 = document.createElement("h3");
+        h3.textContent = title;
+        catWrap.appendChild(h3);
 
-        const row = document.createElement("div");
-        row.className = "pokemon-row";
+        function makeRow() {
+          const r = document.createElement("div");
+          r.className = "pokemon-row";
+          return r;
+        }
 
-        if (items.length === 0) {
+        let row = makeRow();
+        let hasAnyEntries = false;
+
+        function flushRow() {
+          if (row && row.childElementCount > 0) {
+            catWrap.appendChild(row);
+          }
+          row = makeRow();
+        }
+
+        if (tokens.length === 0) {
           const empty = document.createElement("div");
           empty.style.color = "#666";
           empty.style.fontSize = "13px";
           empty.textContent = "No entries yet – add some lines in Inputs.";
           catWrap.appendChild(empty);
         } else {
-          for (const item of items) {
+          for (const t of tokens) {
+            if (t.type === "subheading") {
+              // Put the heading between entry groups
+              flushRow();
+              
+              const h4 = document.createElement("h4");
+              const h4span = document.createElement("span");
+              h4span.textContent = t.text;
+              h4.appendChild(h4span);
+              catWrap.appendChild(h4);
+
+              continue;
+            }
+
+            // Entry token
+            hasAnyEntries = true;
+
             const card = document.createElement("div");
             card.className = "poke-card";
 
             const icon = document.createElement("div");
             icon.className = "poke-icon";
-
-            // Move shiny data attribute to the container instead
-            icon.dataset.shiny = item.isShiny ? "yes" : "no";
+            icon.dataset.shiny = t.isShiny ? "yes" : "no";
 
             const img = document.createElement("img");
             img.loading = "lazy";
-            img.alt = item.displayName;
-            img.src = iconPath(item.pokemonSlug, item.isShiny);
+            img.alt = t.displayName;
+            img.src = iconPath(t.pokemonSlug, t.isShiny);
 
             img.onerror = () => {
               img.onerror = null;
               img.src = "images/pokemon/---/regular.png";
             };
-
 
             icon.appendChild(img);
 
@@ -557,11 +675,11 @@
 
             const criteria = document.createElement("div");
             criteria.className = "criteria";
-            criteria.textContent = item.criteria;
+            criteria.textContent = t.criteria;
 
             const name = document.createElement("div");
             name.className = "poke-name";
-            name.textContent = item.displayName;
+            name.textContent = t.displayName;
 
             meta.appendChild(criteria);
             meta.appendChild(name);
@@ -571,17 +689,29 @@
 
             row.appendChild(card);
           }
-          catWrap.appendChild(row);
+
+          // Flush final row
+          flushRow();
+
+          // If the user only typed headings and no valid entries
+          if (!hasAnyEntries) {
+            const empty = document.createElement("div");
+            empty.style.color = "#666";
+            empty.style.fontSize = "13px";
+            empty.textContent = "No valid entries yet – add lines like: criteria | pokemon";
+            catWrap.appendChild(empty);
+          }
         }
 
         viewEl.appendChild(catWrap);
+
       }
     }
 
     function renderEditor() {
       editorEl.innerHTML = "";
 
-      state.categories.forEach((cat, index) => {
+      state.categories.forEach((item, index) => {
         const wrap = document.createElement("div");
         wrap.className = "cat-editor";
 
@@ -593,12 +723,12 @@
         titleWrap.style.minWidth = "260px";
 
         const titleLabel = document.createElement("label");
-        titleLabel.textContent = "Category Title";
+        titleLabel.textContent = item.type === "heading" ? "Heading" : "Category Title";
 
         const titleInput = document.createElement("input");
         titleInput.type = "text";
-        titleInput.value = cat.title || "";
-        titleInput.placeholder = "e.g. Favourite Starters";
+        titleInput.value = item.title || "";
+        titleInput.placeholder = item.type === "heading" ? "e.g. Legends Z-A Zones" : "e.g. Favourite Starters";
 
         titleInput.addEventListener("input", () => {
           state.categories[index].title = titleInput.value;
@@ -608,41 +738,73 @@
         titleWrap.appendChild(titleLabel);
         titleWrap.appendChild(titleInput);
 
+        // Reorder buttons (between title and remove)
+        const reorder = document.createElement("div");
+        reorder.className = "reorder";
+
+        const upBtn = document.createElement("button");
+        upBtn.type = "button";
+        upBtn.textContent = "↑";
+        upBtn.title = "Move up";
+        upBtn.disabled = index === 0;
+        upBtn.addEventListener("click", () => {
+          moveItem(index, -1);
+          renderAll();
+        });
+
+        const downBtn = document.createElement("button");
+        downBtn.type = "button";
+        downBtn.textContent = "↓";
+        downBtn.title = "Move down";
+        downBtn.disabled = index === state.categories.length - 1;
+        downBtn.addEventListener("click", () => {
+          moveItem(index, +1);
+          renderAll();
+        });
+
+        reorder.appendChild(upBtn);
+        reorder.appendChild(downBtn);
+
         const delBtn = document.createElement("button");
         delBtn.className = "danger";
         delBtn.textContent = "Remove";
-        delBtn.title = "Remove this category";
+        delBtn.title = item.type === "heading" ? "Remove this heading" : "Remove this category";
         delBtn.addEventListener("click", () => {
           state.categories.splice(index, 1);
           renderAll();
         });
 
         top.appendChild(titleWrap);
+        top.appendChild(reorder);
         top.appendChild(delBtn);
 
-        const textWrap = document.createElement("div");
-
-        const textLabel = document.createElement("label");
-        textLabel.textContent = "Entries";
-
-        const textarea = document.createElement("textarea");
-        textarea.value = cat.text || "";
-        textarea.placeholder = [
-          "criteria | pokemon",
-          "Favourite Grass | chesnaught-s",
-          "Favourite Electric | jolteon"
-        ].join("\n");
-
-        textarea.addEventListener("input", () => {
-          state.categories[index].text = textarea.value;
-          renderView();
-        });
-
-        textWrap.appendChild(textLabel);
-        textWrap.appendChild(textarea);
-
         wrap.appendChild(top);
-        wrap.appendChild(textWrap);
+
+        // Only categories get an Entries textarea
+        if (item.type !== "heading") {
+          const textWrap = document.createElement("div");
+
+          const textLabel = document.createElement("label");
+          textLabel.textContent = "Entries";
+
+          const textarea = document.createElement("textarea");
+          textarea.value = item.text || "";
+          textarea.placeholder = [
+            "criteria | pokemon",
+            "Favourite Grass | chesnaught-s",
+            "Favourite Electric | jolteon"
+          ].join("\n");
+
+          textarea.addEventListener("input", () => {
+            state.categories[index].text = textarea.value;
+            renderView();
+          });
+
+          textWrap.appendChild(textLabel);
+          textWrap.appendChild(textarea);
+
+          wrap.appendChild(textWrap);
+        }
 
         editorEl.appendChild(wrap);
       });
@@ -659,11 +821,23 @@
     document.getElementById("btn-add-category").addEventListener("click", () => {
       state.categories.push({
         id: uid(),
+        type: "category",
         title: "",
         text: ""
       });
       renderAll();
     });
+
+    document.getElementById("btn-add-heading").addEventListener("click", () => {
+      state.categories.push({
+        id: uid(),
+        type: "heading",
+        title: "",
+        text: ""
+      });
+      renderAll();
+    });
+
 
     // Save button now triggers a download prompt (and also stores latest in local storage).
     document.getElementById("btn-save").addEventListener("click", () => {
