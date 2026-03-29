@@ -16,7 +16,7 @@ window.FAVOURITE_POKEMON_DATA = [
     "id": "688be4c457314819c53e534e6",
     "type": "category",
     "title": "Pokemon Groups",
-    "text": "Legendary | Koraidon\nMythical | Shaymin land\nHitmons | hitmonchan\nEeveelution | Leafeon\nFossil Pokemon | Anorith\nPikaclones | plusle\nElemental Monkeys | Simisage\nArtificial Pokemon | Trubbish\nObject Pokemon | vanillite\nBaby pokemon | Munchlax\nExtraterrestrial | cosmog\npsuedo-legendary | Dragapult\n--- Shiny ---\nLegendary | giratina-altered-s\nMythical | meloetta pirouette-s\nHitmons | tyrogue-s\nEeveelution | Vaporeon-s\nFossil | armaldo-s\nPikaclones | pachirisu-s\nElemental Monkeys | panpour-s\nArtificial Pokemon | revavroom-s\nObject Pokemon | vanillite-s\nBaby pokemon | munchlax-s\nExtraterrestrial | staryu-s\nPsuedo-legendary | Dragapult-s"
+    "text": "Legendary | Koraidon\nMythical | Shaymin land\nHitmons | hitmonchan\nEeveelution | Leafeon\nFossil Pokemon | Anorith\nPikaclones | plusle\nElemental Monkeys | Simisage\nArtificial Pokemon | Trubbish\nObject Pokemon | vanillite\nBaby pokemon | Munchlax\nExtra-terrestrial | cosmog\npsuedo-legendary | Dragapult\n--- Shiny ---\nLegendary | giratina-altered-s\nMythical | meloetta pirouette-s\nHitmons | tyrogue-s\nEeveelution | Vaporeon-s\nFossil | armaldo-s\nPikaclones | pachirisu-s\nElemental Monkeys | panpour-s\nArtificial Pokemon | revavroom-s\nObject Pokemon | vanillite-s\nBaby pokemon | munchlax-s\nExtra-terrestrial | staryu-s\nPsuedo-legendary | Dragapult-s"
   },
   {
     "id": "80f746dc7e9fd19c53d2381e",
