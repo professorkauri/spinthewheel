@@ -13,6 +13,7 @@
       --kauri-bluefaint: #f4f6fc;
       --kauri-grey: #f6f6f6;
       --kauri-darkgrey: #bebebe;
+      --shiny-gold: #d6b34a;
     }
 
     * {
@@ -48,8 +49,8 @@
     }
 
     .category {
-      width:fit-content;
-      max-width:1350px;
+      width: fit-content;
+      max-width: 1350px;
       margin: 0 auto 14px auto;
       border: 1px solid #e8e8e8;
       border-radius: 12px;
@@ -68,8 +69,16 @@
       color: var(--kauri-blue);
     }
 
-    h3 {
+    .category-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       margin: 0 0 12px 0;
+    }
+
+    h3 {
+      margin: 0;
       font-size: 12px;
       font-weight: 400;
       text-transform: uppercase;
@@ -77,8 +86,33 @@
       color: var(--kauri-blue);
     }
 
+    .shiny-toggle {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--kauri-blue);
+      background: #fff;
+      color: var(--kauri-blue);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 250ms ease, color 250ms ease, border-color 250ms ease, transform 120ms ease;
+    }
+
+    .shiny-toggle:hover {
+      background: var(--kauri-blue);
+      color: #fff;
+    }
+
+    .shiny-toggle.is-active {
+      background: var(--kauri-blue);
+      border-color: var(--kauri-blue);
+      color: #fff;
+    }
+
     h4 {
-      position:relative;
+      position: relative;
       margin: 14px 0 10px 0;
       font-size: 14px;
       font-weight: 700;
@@ -122,13 +156,13 @@
       flex-direction: column;
       gap: 10px;
       align-items: center;
-      width:82px;
-
+      width: 82px;
       padding: 0 0 10px 0;
       border-radius: 10px;
       background: var(--kauri-grey);
       border: 1px solid #ececec;
-      overflow:hidden;
+      overflow: hidden;
+      transition: border-color 250ms ease, box-shadow 250ms ease, transform 120ms ease;
     }
 
     .poke-card:hover {
@@ -136,12 +170,24 @@
       box-shadow: 0 10px 26px rgba(84, 118, 194, 0.12);
     }
 
+    .poke-card.top_fav {
+      border-color: rgba(214, 179, 74, 0.9);
+      box-shadow: 0 10px 26px rgba(214, 179, 74, 0.18);
+      background: linear-gradient(to bottom, #faf8ef, var(--kauri-grey));
+    }
+
+    .poke-card.top_fav .criteria,
+    .poke-card.top_fav .poke-name {
+      color: #7a5d11;
+    }
+
     .poke-icon {
-      position:relative;
+      position: relative;
       background: #fff;
       display: grid;
       place-items: center;
       overflow: hidden;
+      width: 100%;
     }
 
     .poke-icon[data-shiny="yes"]:before {
@@ -158,8 +204,21 @@
       opacity: 0.2;
     }
 
+    .poke-card.top_fav .poke-icon:after {
+      display: block;
+      position: absolute;
+      content: "★";
+      top: 4px;
+      right: 6px;
+      z-index: 2;
+      font-size: 14px;
+      line-height: 1;
+      color: var(--shiny-gold);
+      opacity: 0.9;
+    }
+
     .poke-icon img {
-      position:relative;
+      position: relative;
       width: 80px;
       height: 80px;
       image-rendering: auto;
@@ -177,13 +236,13 @@
 
     .criteria {
       font-size: 9px;
-      font-weight:600;
+      font-weight: 600;
       color: #111;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       overflow: hidden;
       text-overflow: ellipsis;
-      text-align:center;
+      text-align: center;
     }
 
     .poke-name {
@@ -192,7 +251,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       text-transform: capitalize;
-      text-align:center;
+      text-align: center;
     }
 
     /* Inputs panel (sliding) */
@@ -374,7 +433,6 @@
       opacity: 0.35;
       cursor: not-allowed;
     }
-
   </style>
 </head>
 
@@ -400,50 +458,40 @@
 
   <script src="favourite.js"></script>
   <script>
-    /* -----------------------------
-       Storage + defaults
-    ------------------------------ */
-    
-
     function uid() {
       return Math.random().toString(16).slice(2) + Date.now().toString(16);
     }
 
     const DEFAULT_DATA = Array.isArray(window.FAVOURITE_POKEMON_DATA) && window.FAVOURITE_POKEMON_DATA.length
-    ? window.FAVOURITE_POKEMON_DATA.map(c => ({
-        id: String(c.id || uid()),
-        type: (c.type === "heading") ? "heading" : "category",
-        title: String(c.title || "").trim(),
-        text: String(c.text || "")
-      }))
-    : [
-        {
-          id: uid(),
-          type: "category",
-          title: "Comfort Picks",
-          text: [
-            "Favourite starter | chesnaught-s",
-            "Favourite sleepy vibe | snorlax",
-            "Favourite gremlin | sableye-s"
-          ].join("\n")
-        },
-        {
-          id: uid(),
-          type: "category",
-          title: "Battle Choices",
-          text: [
-            "Favourite bulky | toxapex",
-            "Favourite fast | jolteon-s",
-            "Favourite mage | gardevoir"
-          ].join("\n")
-        }
-      ];
+      ? window.FAVOURITE_POKEMON_DATA.map(c => ({
+          id: String(c.id || uid()),
+          type: (c.type === "heading") ? "heading" : "category",
+          title: String(c.title || "").trim(),
+          text: String(c.text || "")
+        }))
+      : [
+          {
+            id: uid(),
+            type: "category",
+            title: "Comfort Picks",
+            text: [
+              "Favourite starter | chesnaught* | chesnaught",
+              "Favourite sleepy vibe | snorlax | snorlax",
+              "Favourite gremlin | sableye | sableye*"
+            ].join("\n")
+          },
+          {
+            id: uid(),
+            type: "category",
+            title: "Battle Choices",
+            text: [
+              "Favourite bulky | toxapex | toxapex",
+              "Favourite fast | jolteon | jolteon*",
+              "Favourite mage | gardevoir | gardevoir"
+            ].join("\n")
+          }
+        ];
 
-
-
-    /* -----------------------------
-       File export (download prompt)
-    ------------------------------ */
     function downloadTextFile(filename, text) {
       const blob = new Blob([text], { type: "text/javascript;charset=utf-8" });
       const url = URL.createObjectURL(blob);
@@ -463,27 +511,40 @@
       location.href = base + "?v=" + Date.now();
     }
 
-
     function exportAsFavouriteJS(categories) {
-      // You can later load this by copying it into a project, or parsing it in another tool.
       const payload = JSON.stringify(categories, null, 2);
       return `// Generated by My Favourite Pokemon\nwindow.FAVOURITE_POKEMON_DATA = ${payload};\n`;
     }
 
-    /* -----------------------------
-       Parsing helpers
-    ------------------------------ */
-    function toDisplayName(pokemonRaw) {
-      return pokemonRaw.trim();
-    }
-
     function slugifyPokemon(pokemonRaw) {
-      // Matches folder names like "mr-mime", "tapu-koko", etc.
-      return pokemonRaw
+      return String(pokemonRaw || "")
         .trim()
         .toLowerCase()
         .replace(/['’]/g, "")
         .replace(/\s+/g, "-");
+    }
+
+    function parsePokemonField(rawValue, forceShiny = false) {
+      let value = String(rawValue || "").trim();
+      if (!value) return null;
+
+      let isTopFav = false;
+
+      if (value.endsWith("*")) {
+        isTopFav = true;
+        value = value.slice(0, -1).trim();
+      }
+
+      if (value.toLowerCase().endsWith("-s")) {
+        value = value.slice(0, -2).trim();
+      }
+
+      return {
+        displayName: value,
+        pokemonSlug: slugifyPokemon(value),
+        isTopFav,
+        isShiny: !!forceShiny
+      };
     }
 
     function parseCategoryText(text) {
@@ -495,56 +556,76 @@
       const tokens = [];
 
       for (const line of lines) {
-        // --- Heading --- line (e.g. --- Starters ---)
-        const m = line.match(/^---\s*(.+?)\s*---$/);
-        if (m) {
-          const headingText = (m[1] || "").trim();
+        const headingMatch = line.match(/^---\s*(.+?)\s*---$/);
+        if (headingMatch) {
+          const headingText = (headingMatch[1] || "").trim();
           if (headingText) {
             tokens.push({ type: "subheading", text: headingText });
           }
           continue;
         }
 
-        // Normal entry line: criteria | pokemon
-        const parts = line.split("|");
+        const parts = line.split("|").map(p => p.trim());
         if (parts.length < 2) continue;
 
-        const criteria = parts[0].trim();
-        const pokemonPart = parts.slice(1).join("|").trim();
-        if (!criteria || !pokemonPart) continue;
+        const criteria = parts[0];
+        if (!criteria) continue;
 
-        const isShiny = pokemonPart.toLowerCase().endsWith("-s");
-        const pokemonClean = isShiny ? pokemonPart.slice(0, -2) : pokemonPart;
+        // New format: criteria | regular | shiny
+        if (parts.length >= 3) {
+          const regularData = parsePokemonField(parts[1], false);
+          const shinyData = parsePokemonField(parts[2], true);
+          if (!regularData || !shinyData) continue;
+
+          tokens.push({
+            type: "entry",
+            criteria,
+            regular: regularData,
+            shiny: shinyData
+          });
+          continue;
+        }
+
+        // Backwards-compatible format: criteria | pokemon or criteria | pokemon-s
+        const legacyValue = parts[1];
+        if (!legacyValue) continue;
+
+        const legacyIsShiny = legacyValue.toLowerCase().endsWith("-s");
+        const baseData = parsePokemonField(legacyValue, legacyIsShiny);
+
+        if (!baseData) continue;
 
         tokens.push({
           type: "entry",
           criteria,
-          pokemonSlug: slugifyPokemon(pokemonClean),
-          displayName: toDisplayName(pokemonClean),
-          isShiny
+          regular: {
+            displayName: baseData.displayName,
+            pokemonSlug: baseData.pokemonSlug,
+            isTopFav: baseData.isTopFav,
+            isShiny: false
+          },
+          shiny: {
+            displayName: baseData.displayName,
+            pokemonSlug: baseData.pokemonSlug,
+            isTopFav: baseData.isTopFav,
+            isShiny: true
+          }
         });
       }
 
       return tokens;
     }
 
-
     function iconPath(pokemonSlug, isShiny) {
       const file = isShiny ? "shiny.png" : "regular.png";
       return `images/pokemon/${pokemonSlug}/${file}`;
     }
 
-    /* -----------------------------
-       State
-    ------------------------------ */
     const state = {
-      categories: structuredClone(DEFAULT_DATA)
+      categories: structuredClone(DEFAULT_DATA),
+      shinyByCategoryId: {}
     };
 
-
-    /* -----------------------------
-       Inputs panel toggle
-    ------------------------------ */
     const inputsTab = document.getElementById("inputs-tab");
     inputsTab.addEventListener("click", () => {
       const open = document.body.classList.toggle("inputs-open");
@@ -557,26 +638,18 @@
     function updateDisplayPadding() {
       if (document.body.classList.contains("inputs-open")) {
         const height = inputsEl.offsetHeight;
-        displayEl.style.paddingBottom = height + 20 + "px"; 
+        displayEl.style.paddingBottom = height + 20 + "px";
       } else {
         displayEl.style.paddingBottom = "92px";
       }
     }
 
-    // Update when toggled
     inputsTab.addEventListener("click", () => {
       requestAnimationFrame(updateDisplayPadding);
     });
 
-    // Also update on resize (in case window changes)
     window.addEventListener("resize", updateDisplayPadding);
 
-
-
-
-    /* -----------------------------
-       Rendering
-    ------------------------------ */
     const viewEl = document.getElementById("categories-view");
     const editorEl = document.getElementById("categories-editor");
 
@@ -588,13 +661,21 @@
       [list[fromIndex], list[toIndex]] = [list[toIndex], list[fromIndex]];
     }
 
+    function isCategoryShinyOn(categoryId) {
+      return !!state.shinyByCategoryId[categoryId];
+    }
+
+    function toggleCategoryShiny(categoryId) {
+      state.shinyByCategoryId[categoryId] = !state.shinyByCategoryId[categoryId];
+      renderView();
+    }
+
     function renderView() {
       viewEl.innerHTML = "";
 
       for (const item of state.categories) {
         const title = (item.title || "").trim() || (item.type === "heading" ? "Untitled Heading" : "Untitled Category");
 
-        // Heading-only item
         if (item.type === "heading") {
           const h2 = document.createElement("h2");
           h2.textContent = title;
@@ -602,15 +683,30 @@
           continue;
         }
 
-        // Normal category
         const tokens = parseCategoryText(item.text);
+        const shinyOn = isCategoryShinyOn(item.id);
 
         const catWrap = document.createElement("div");
         catWrap.className = "category";
 
+        const head = document.createElement("div");
+        head.className = "category-head";
+
         const h3 = document.createElement("h3");
         h3.textContent = title;
-        catWrap.appendChild(h3);
+
+        const toggleBtn = document.createElement("button");
+        toggleBtn.type = "button";
+        toggleBtn.className = "shiny-toggle" + (shinyOn ? " is-active" : "");
+        toggleBtn.textContent = shinyOn ? "Shiny On" : "Shiny Off";
+        toggleBtn.title = "Toggle shiny view for this section";
+        toggleBtn.addEventListener("click", () => {
+          toggleCategoryShiny(item.id);
+        });
+
+        head.appendChild(h3);
+        head.appendChild(toggleBtn);
+        catWrap.appendChild(head);
 
         function makeRow() {
           const r = document.createElement("div");
@@ -637,32 +733,34 @@
         } else {
           for (const t of tokens) {
             if (t.type === "subheading") {
-              // Put the heading between entry groups
               flushRow();
-              
+
               const h4 = document.createElement("h4");
               const h4span = document.createElement("span");
               h4span.textContent = t.text;
               h4.appendChild(h4span);
               catWrap.appendChild(h4);
-
               continue;
             }
 
-            // Entry token
             hasAnyEntries = true;
+
+            const activePokemon = shinyOn ? t.shiny : t.regular;
 
             const card = document.createElement("div");
             card.className = "poke-card";
+            if (activePokemon.isTopFav) {
+              card.classList.add("top_fav");
+            }
 
             const icon = document.createElement("div");
             icon.className = "poke-icon";
-            icon.dataset.shiny = t.isShiny ? "yes" : "no";
+            icon.dataset.shiny = shinyOn ? "yes" : "no";
 
             const img = document.createElement("img");
             img.loading = "lazy";
-            img.alt = t.displayName;
-            img.src = iconPath(t.pokemonSlug, t.isShiny);
+            img.alt = activePokemon.displayName;
+            img.src = iconPath(activePokemon.pokemonSlug, shinyOn);
 
             img.onerror = () => {
               img.onerror = null;
@@ -680,7 +778,7 @@
 
             const name = document.createElement("div");
             name.className = "poke-name";
-            name.textContent = t.displayName;
+            name.textContent = activePokemon.displayName;
 
             meta.appendChild(criteria);
             meta.appendChild(name);
@@ -691,21 +789,18 @@
             row.appendChild(card);
           }
 
-          // Flush final row
           flushRow();
 
-          // If the user only typed headings and no valid entries
           if (!hasAnyEntries) {
             const empty = document.createElement("div");
             empty.style.color = "#666";
             empty.style.fontSize = "13px";
-            empty.textContent = "No valid entries yet – add lines like: criteria | pokemon";
+            empty.textContent = "No valid entries yet – add lines like: criteria | regular pokemon | shiny pokemon";
             catWrap.appendChild(empty);
           }
         }
 
         viewEl.appendChild(catWrap);
-
       }
     }
 
@@ -739,7 +834,6 @@
         titleWrap.appendChild(titleLabel);
         titleWrap.appendChild(titleInput);
 
-        // Reorder buttons (between title and remove)
         const reorder = document.createElement("div");
         reorder.className = "reorder";
 
@@ -772,6 +866,7 @@
         delBtn.title = item.type === "heading" ? "Remove this heading" : "Remove this category";
         delBtn.addEventListener("click", () => {
           state.categories.splice(index, 1);
+          delete state.shinyByCategoryId[item.id];
           renderAll();
         });
 
@@ -781,7 +876,6 @@
 
         wrap.appendChild(top);
 
-        // Only categories get an Entries textarea
         if (item.type !== "heading") {
           const textWrap = document.createElement("div");
 
@@ -791,9 +885,11 @@
           const textarea = document.createElement("textarea");
           textarea.value = item.text || "";
           textarea.placeholder = [
-            "criteria | pokemon",
-            "Favourite Grass | chesnaught-s",
-            "Favourite Electric | jolteon"
+            "criteria | regular pokemon | shiny pokemon",
+            "Favourite Grass | chesnaught* | chesnaught",
+            "Favourite Electric | jolteon | jolteon*",
+            "--- Starters ---",
+            "1st Evo | cyndaquil | totodile"
           ].join("\n");
 
           textarea.addEventListener("input", () => {
@@ -814,11 +910,9 @@
     function renderAll() {
       renderView();
       renderEditor();
+      updateDisplayPadding();
     }
 
-    /* -----------------------------
-       Buttons
-    ------------------------------ */
     document.getElementById("btn-add-category").addEventListener("click", () => {
       state.categories.push({
         id: uid(),
@@ -839,15 +933,9 @@
       renderAll();
     });
 
-
-    // Save button now triggers a download prompt (and also stores latest in local storage).
     document.getElementById("btn-save").addEventListener("click", () => {
-
-
-      // Trigger file download
       downloadTextFile("favourite.js", exportAsFavouriteJS(state.categories));
 
-      // Small UI hint without popups
       const btn = document.getElementById("btn-save");
       const prev = btn.textContent;
       btn.textContent = "Saved";
@@ -858,11 +946,7 @@
       resetData();
     });
 
-    /* -----------------------------
-       Init
-    ------------------------------ */
     renderAll();
-
   </script>
 </body>
 

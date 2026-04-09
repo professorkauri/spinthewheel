@@ -10,31 +10,25 @@ window.FAVOURITE_POKEMON_DATA = [
     "id": "555fadbfa6335819c5393d97b",
     "type": "category",
     "title": "Overall Starter Favourites",
-    "text": "1st Evo | Cyndaquil\n2nd Evo | Dartrix\n3rd Evo | Decidueye"
+    "text": "1st Evo | Cyndaquil* | Cyndaquil\n2nd Evo | Dartrix | Dartrix*\n3rd Evo | Decidueye"
   },
   {
     "id": "688be4c457314819c53e534e6",
     "type": "category",
     "title": "Pokemon Groups",
-    "text": "Legendary | Koraidon\nMythical | Shaymin land\nHitmons | hitmonchan\nEeveelution | Leafeon\nFossil Pokemon | Anorith\nPikaclones | plusle\nElemental Monkeys | Simisage\nArtificial Pokemon | Trubbish\nObject Pokemon | vanillite\nBaby pokemon | Munchlax\nExtra-terrestrial | cosmog\npsuedo-legendary | Dragapult\n--- Shiny ---\nLegendary | giratina-altered-s\nMythical | meloetta pirouette-s\nHitmons | tyrogue-s\nEeveelution | Vaporeon-s\nFossil | armaldo-s\nPikaclones | pachirisu-s\nElemental Monkeys | panpour-s\nArtificial Pokemon | revavroom-s\nObject Pokemon | vanillite-s\nBaby pokemon | munchlax-s\nExtra-terrestrial | staryu-s\nPsuedo-legendary | Dragapult-s"
+    "text": "Legendary | Koraidon | giratina-altered\nMythical | Shaymin land | meloetta pirouette\nHitmons | hitmonchan | tyrogue\nEeveelution | Leafeon | Vaporeon\nFossil Pokemon | Anorith | armaldo\nPikaclones | plusle | pachirisu\nElemental Monkeys | Simisage | panpour\nArtificial Pokemon | Trubbish | revavroom\nObject Pokemon | vanillite | vanillite\nBaby pokemon | Munchlax | munchlax\nExtra-terrestrial | cosmog | staryu\npsuedo-legendary | Dragapult | Dragapult"
   },
   {
     "id": "80f746dc7e9fd19c53d2381e",
     "type": "category",
     "title": "Types",
-    "text": "Normal | Wyrdeer\nFire | litwick\nWater | golisopod\nGrass | eldegoss\nElectric | galvantula\nIce | piloswine\nFighting | breloom\nPoison | nidoran m\nGround | sandslash\nFlying | pidgeotto\nPsychic | morelull\nBug | spewpa\nRock | rockruff\nGhost | phantump\nDragon | hydrapple\nDark | crawdaunt\nSteel | honedge\nFairy | tinkaton"
-  },
-  {
-    "id": "80f746dc7e9fd19c53d2381e",
-    "type": "category",
-    "title": "Shiny Types",
-    "text": "Normal | zoroark hisui-s\nFire | ponyta-s\nWater | golisopod-s\nGrass | eldegoss-s\nElectric | luxray-s\nIce | vanillite-s\nFighting | falinks-s\nPoison | skorupi-s\nGround | sandygast-s\nFlying | rookidee-s\nPsychic | ralts-s\nBug | wurmple-s\nRock | relicanth-s\nGhost | sinistea-s\nDragon | hydrapple-s\nDark | nickit-s\nSteel | honedge-s\nFairy | florges-s"
+    "text": "Normal | Wyrdeer | zoroark hisui\nFire | litwick | ponyta\nWater | golisopod | golisopod\nGrass | eldegoss | eldegoss\nElectric | galvantula | luxray\nIce | piloswine | vanillite\nFighting | breloom | falinks\nPoison | nidoran m | skorupi\nGround | sandslash | sandygast\nFlying | pidgeotto | rookidee\nPsychic | morelull | ralts\nBug | spewpa | wurmple\nRock | rockruff | relicanth\nGhost | phantump | sinistea\nDragon | hydrapple | hydrapple\nDark | crawdaunt | nickit\nSteel | honedge | honedge\nFairy | tinkaton | florges"
   },
   {
     "id": "555fadbfa6335819c5393d97b",
     "type": "category",
     "title": "Starters",
-    "text": "--- 1st Evo ---\nGen 1 | Bulbasaur\nGen 2 | Cyndaquil\nGen 3 | Mudkip\nGen 4 | Turtwig\nGen 5 | Oshawott\nGen 6 | Fennekin\nGen 7 | Rowlet\nGen 8 | Scorbunny\nGen 9 | Fuecoco\n--- 2nd Evo ---\nGen 1 | Wartortle\nGen 2 | Bayleef\nGen 3 | Marshtomp\nGen 4 | Monferno\nGen 5 | Dewott\nGen 6 | Braixen\nGen 7 | Dartrix\nGen 8 | Thwackey\nGen 9 | Floragato\n--- 3rd Evo ---\nGen 1 | Blastoise\nGen 2 | Typhlosion\nGen 3 | Swampert\nGen 4 | Torterra\nGen 5 | Emboar\nGen 6 | Delphox\nGen 7 | Decidueye\nGen 8 | Inteleon\nGen 9 | Skeledirge"
+    "text": "--- 1st Evo ---\nGen 1 | Bulbasaur\nGen 2 | Cyndaquil*\nGen 3 | Mudkip\nGen 4 | Turtwig*\nGen 5 | Tepig*\nGen 6 | Fennekin\nGen 7 | Rowlet\nGen 8 | Scorbunny\nGen 9 | Fuecoco\n--- 2nd Evo ---\nGen 1 | Wartortle*\nGen 2 | Bayleef\nGen 3 | Marshtomp\nGen 4 | Monferno\nGen 5 | Dewott\nGen 6 | Braixen*\nGen 7 | Dartrix*\nGen 8 | Thwackey*\nGen 9 | Floragato*\n--- 3rd Evo ---\nGen 1 | Blastoise\nGen 2 | Typhlosion\nGen 3 | Swampert*\nGen 4 | Torterra\nGen 5 | Emboar\nGen 6 | Delphox\nGen 7 | Decidueye\nGen 8 | Inteleon\nGen 9 | Skeledirge"
   },
   {
     "id": "68b57c0ce789219c68bef7f3",
@@ -190,7 +184,7 @@ window.FAVOURITE_POKEMON_DATA = [
     "id": "bff6edaf1bd0819c54350b6a",
     "type": "category",
     "title": "Convergent Species",
-    "text": "Tentacool/Toedscool | Tentacool\nTentacruel/Toedscruel | Tentacruel\nDiglett/Wiglett | Wiglett\nDugtrio/Wugtrio | Wugtrio\nSinistea/Poltchageist | Poltchageist\nPolteageist/Sinistcha | Polteageist\n--- shiny ---\nTentacool/Toedscool | Tentacool-s\nTentacruel/Toedscruel | Tentacruel-s\nDiglett/Wiglett | diglett-s\nDugtrio/Wugtrio | dugtrio-s\nSinistea/Poltchageist | sinistea-s\nPolteageist/Sinistcha | Polteageist-s"
+    "text": "Tentacool/ Toedscool | Tentacool\nTentacruel/ Toedscruel | Tentacruel\nDiglett/ Wiglett | Wiglett\nDugtrio/ Wugtrio | Wugtrio\nSinistea/ Poltchageist | Poltchageist\nPolteageist/ Sinistcha | Polteageist\n--- shiny ---\nTentacool/ Toedscool | Tentacool-s\nTentacruel/ Toedscruel | Tentacruel-s\nDiglett/ Wiglett | diglett-s\nDugtrio/ Wugtrio | dugtrio-s\nSinistea/ Poltchageist | sinistea-s\nPolteageist/ Sinistcha | Polteageist-s"
   },
   {
     "id": "bff6edaf1bd0819c54350b6a",
