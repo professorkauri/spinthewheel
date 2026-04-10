@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- 
-Pokemon Home Sprites
-https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
--->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -181,22 +177,8 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
     .choice-category-head {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       margin: 0 0 12px 0;
-    }
-
-    .choice-category>summary {
-      list-style: none;
-      cursor: pointer;
-      position: sticky;
-      top: 68px;
-      padding: 10px;
-      background-color: #fff;
-      z-index: 2;
-    }
-
-    .choice-category>summary::-webkit-details-marker {
-      display: none;
     }
 
     h3 {
@@ -263,15 +245,6 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       color: var(--kauri-blue);
     }
 
-    .preview-criteria,
-    .choice-criteria {
-      display: inline-block;
-      padding: 5px;
-      border: 1px solid var(--kauri-bluelight);
-      border-radius: 5px;
-      margin: 0 10px 10px 0;
-    }
-
     .variant-label {
       margin: 10px 0 6px 0;
       font-size: 10px;
@@ -290,7 +263,8 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       flex-wrap: wrap;
     }
 
-    .poke-card {
+    .poke-card,
+    .select-card {
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -304,21 +278,9 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       transition: border-color 250ms ease, box-shadow 250ms ease, transform 120ms ease;
     }
 
-    .preview-criteria .poke-card,
     .select-card {
       cursor: pointer;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      align-items: center;
-      width: 60px;
-      padding: 0 0 5px 0;
-      border-radius: 10px;
-      background: var(--kauri-grey);
-      border: 1px solid #ececec;
-      overflow: hidden;
-      transition: border-color 250ms ease, box-shadow 250ms ease, transform 120ms ease;
     }
 
     .poke-card:hover,
@@ -394,17 +356,8 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       display: block;
     }
 
-    .preview-criteria .poke-icon img,
-    .choice-criteria .select-card-icon img,
-    .choice-top-criteria .select-card-icon img {
-      position: relative;
-      width: 50px;
-      height: 50px;
-      image-rendering: auto;
-      display: block;
-    }
-
-    .poke-meta {
+    .poke-meta,
+    .select-card-meta-wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -413,16 +366,8 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       padding: 0 10px;
     }
 
-    .select-card-meta-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0px;
-      min-width: 0;
-      padding: 0 10px;
-    }
-
-    .criteria {
+    .criteria,
+    .select-card-meta {
       font-size: 9px;
       font-weight: 600;
       color: #111;
@@ -433,31 +378,9 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       text-align: center;
     }
 
-    .preview-criteria .criteria,
-    .select-card-meta {
-      font-size: 6px;
-      font-weight: 600;
-      color: #111;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: center;
-    }
-
-    .poke-name {
-      font-size: 12px;
-      color: var(--kauri-blue);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-transform: capitalize;
-      text-align: center;
-    }
-
-    .preview-criteria .poke-name,
+    .poke-name,
     .select-card-name {
-      font-size: 10px;
-      font-weight: normal;
+      font-size: 12px;
       color: var(--kauri-blue);
       overflow: hidden;
       text-overflow: ellipsis;
@@ -495,16 +418,6 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
 
     details.cat-editor[open] {
       border-color: #dfe6f6;
-    }
-
-    details.cat-editor.heading-cat {
-      box-shadow: none;
-      border: none;
-      background: transparent;
-    }
-
-    details.cat-editor.heading-cat summary {
-      background: transparent;
     }
 
     .cat-editor summary {
@@ -662,20 +575,13 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       gap: 14px;
     }
 
-    .choice-subgroup {
+    .choice-subgroup,
+    .choice-top-criteria,
+    .preview-criteria {
       border: 1px solid #edf0f7;
       border-radius: 12px;
       padding: 12px;
       background: #fafbfd;
-    }
-
-    .choice-top-criteria {
-      border: 1px solid #f1e3b0;
-      border-radius: 12px;
-      padding: 5px;
-      background: transparent;
-      display: inline-block;
-      margin: 0 5px 5px 0;
     }
 
     .choice-top-block {
@@ -745,7 +651,6 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
     }
   </style>
 </head>
-
 <body>
   <header class="app-header">
     <h1 class="app-title">My Favourite Pokemon</h1>
@@ -773,8 +678,7 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       <div class="choices-wrap">
         <div class="toolbar">
           <button id="btn-save-choices" class="ghost" type="button" title="Downloads a favourite.js file">Save</button>
-          <button id="btn-reset-choices" class="danger" type="button"
-            title="Resets to favourite.js defaults">Reset</button>
+          <button id="btn-reset-choices" class="danger" type="button" title="Resets to favourite.js defaults">Reset</button>
         </div>
         <div id="choices-render"></div>
       </div>
@@ -785,10 +689,8 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
         <div class="toolbar">
           <button id="btn-add-category" type="button">Add Category</button>
           <button id="btn-add-heading" type="button">Add Heading</button>
-          <button id="btn-save-categories" class="ghost" type="button"
-            title="Downloads a favourite.js file">Save</button>
-          <button id="btn-reset-categories" class="danger" type="button"
-            title="Resets to favourite.js defaults">Reset</button>
+          <button id="btn-save-categories" class="ghost" type="button" title="Downloads a favourite.js file">Save</button>
+          <button id="btn-reset-categories" class="danger" type="button" title="Resets to favourite.js defaults">Reset</button>
         </div>
         <div id="categories-editor" class="categories-editor"></div>
       </div>
@@ -853,95 +755,6 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
 
     function makeEntryKey(subgroupTitle, criteria) {
       return `${String(subgroupTitle || "").trim()}__${String(criteria || "").trim()}`;
-    }
-
-    function makePokemonSignature(list) {
-      return uniquePokemonList(list)
-        .map(item => item.pokemonSlug)
-        .sort()
-        .join("|");
-    }
-
-    function makeEntryMatchKey(entry) {
-      return `${String(entry.criteria || "").trim()}__${makePokemonSignature(entry.pokemon || [])}`;
-    }
-
-    function reconcileCategorySelections(categoryId, previousText, nextText) {
-      const previousSections = parseCategoryStructure(previousText);
-      const nextSections = parseCategoryStructure(nextText);
-
-      const previousEntries = previousSections.flatMap(section => section.entries);
-      const nextEntries = nextSections.flatMap(section => section.entries);
-
-      const selectionBucket = state.selections[categoryId];
-      if (!selectionBucket || typeof selectionBucket !== "object") return;
-
-      const previousByMatchKey = new Map();
-
-      previousEntries.forEach(entry => {
-        const matchKey = makeEntryMatchKey(entry);
-        if (!previousByMatchKey.has(matchKey)) {
-          previousByMatchKey.set(matchKey, []);
-        }
-        previousByMatchKey.get(matchKey).push(entry);
-      });
-
-      const nextBucket = {};
-      const usedPreviousKeys = new Set();
-
-      nextEntries.forEach(entry => {
-        let matchedPreviousKey = "";
-
-        if (selectionBucket[entry.key]) {
-          matchedPreviousKey = entry.key;
-        } else {
-          const matchKey = makeEntryMatchKey(entry);
-          const candidates = previousByMatchKey.get(matchKey) || [];
-          const match = candidates.find(candidate =>
-            !usedPreviousKeys.has(candidate.key) && selectionBucket[candidate.key]
-          );
-
-          if (match) {
-            matchedPreviousKey = match.key;
-          }
-        }
-
-        if (!matchedPreviousKey) return;
-
-        usedPreviousKeys.add(matchedPreviousKey);
-
-        const savedSelection = selectionBucket[matchedPreviousKey];
-        if (!savedSelection || typeof savedSelection !== "object") return;
-
-        const validSlugs = new Set(entry.pokemon.map(pokemon => pokemon.pokemonSlug));
-
-        nextBucket[entry.key] = {
-          regular: validSlugs.has(savedSelection.regular) ? savedSelection.regular || "" : "",
-          shiny: validSlugs.has(savedSelection.shiny) ? savedSelection.shiny || "" : ""
-        };
-      });
-
-      state.selections[categoryId] = nextBucket;
-    }
-
-    function ensureHeaderFavouritesToggle() {
-      let toggleButton = document.getElementById("btn-header-favourites-toggle");
-
-      if (!toggleButton) {
-        toggleButton = document.createElement("button");
-        toggleButton.id = "btn-header-favourites-toggle";
-        toggleButton.type = "button";
-
-        toggleButton.addEventListener("click", () => {
-          const nextVariant = state.favouritesVariant === "regular" ? "shiny" : "regular";
-          setFavouritesVariant(nextVariant);
-        });
-      }
-
-      toggleButton.textContent = state.favouritesVariant === "regular" ? "Regular" : "Shiny";
-      toggleButton.classList.add("is-active");
-
-      return toggleButton;
     }
 
     function parseCategoryStructure(text) {
@@ -1013,53 +826,17 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       }
 
       const items = Array.isArray(source && source.items) ? source.items : [];
-      const rawTopSelections = source && typeof source.topSelections === "object" && source.topSelections
-        ? structuredCloneFallback(source.topSelections)
-        : {};
-
-      const normalisedTopSelections = {};
-      Object.keys(rawTopSelections).forEach(categoryId => {
-        const bucket = rawTopSelections[categoryId];
-        if (!bucket || typeof bucket !== "object") return;
-
-        const looksLegacy =
-          !bucket.criteria &&
-          !bucket.subgroup &&
-          Object.values(bucket).some(value => value && typeof value === "object" && ("regular" in value || "shiny" in value));
-
-        if (looksLegacy) {
-          normalisedTopSelections[categoryId] = {
-            criteria: structuredCloneFallback(bucket),
-            subgroup: {}
-          };
-        } else {
-          normalisedTopSelections[categoryId] = {
-            criteria: bucket.criteria && typeof bucket.criteria === "object" ? structuredCloneFallback(bucket.criteria) : {},
-            subgroup: bucket.subgroup && typeof bucket.subgroup === "object" ? structuredCloneFallback(bucket.subgroup) : {}
-          };
-        }
-      });
-
       return {
         version: 2,
-        items: items.map(item => {
-          const rawMode = String(item.topFavourite || "No").trim();
-          const validModes = ["No", "Criteria", "Sub-Group", "Both", "Yes"];
-          const fallbackMode = validModes.includes(rawMode) ? rawMode : "No";
-          return {
-            id: String(item.id || uid()),
-            type: item.type === "heading" ? "heading" : "category",
-            title: String(item.title || "").trim(),
-            text: String(item.text || ""),
-            topFavourite: item.type === "heading"
-              ? "No"
-              : (fallbackMode === "Yes" ? "Criteria" : fallbackMode)
-          };
-        }),
-        selections: source && typeof source.selections === "object" && source.selections
-          ? structuredCloneFallback(source.selections)
-          : {},
-        topSelections: normalisedTopSelections
+        items: items.map(item => ({
+          id: String(item.id || uid()),
+          type: item.type === "heading" ? "heading" : "category",
+          title: String(item.title || "").trim(),
+          text: String(item.text || ""),
+          topFavourite: item.type === "heading" ? "No" : (String(item.topFavourite || "No") === "Yes" ? "Yes" : "No")
+        })),
+        selections: source && typeof source.selections === "object" && source.selections ? structuredCloneFallback(source.selections) : {},
+        topSelections: source && typeof source.topSelections === "object" && source.topSelections ? structuredCloneFallback(source.topSelections) : {}
       };
     }
 
@@ -1149,77 +926,6 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       return state.items.filter(item => item.type === "category");
     }
 
-    function getCategoryTopMode(category) {
-      const mode = String(category && category.topFavourite || "No").trim();
-      if (mode === "Yes") return "Criteria";
-      if (mode === "Criteria" || mode === "Sub-Group" || mode === "Both") return mode;
-      return "No";
-    }
-
-    function getCriteriaTopFavouriteGroups(category) {
-      const sections = parseCategoryStructure(category.text);
-      const criteriaMap = new Map();
-
-      for (const section of sections) {
-        for (const entry of section.entries) {
-          const regularSlug = getSelectedSlug(category.id, entry.key, "regular");
-          const shinySlug = getSelectedSlug(category.id, entry.key, "shiny");
-          const regularPokemon = getPokemonBySlug(entry.pokemon, regularSlug);
-          const shinyPokemon = getPokemonBySlug(entry.pokemon, shinySlug);
-
-          if (!criteriaMap.has(entry.criteria)) {
-            criteriaMap.set(entry.criteria, {
-              key: entry.criteria,
-              label: entry.criteria,
-              regular: [],
-              shiny: []
-            });
-          }
-
-          const group = criteriaMap.get(entry.criteria);
-          if (regularPokemon) group.regular.push(regularPokemon);
-          if (shinyPokemon) group.shiny.push(shinyPokemon);
-        }
-      }
-
-      return Array.from(criteriaMap.values())
-        .map(group => ({
-          key: group.key,
-          label: group.label,
-          regular: uniquePokemonList(group.regular),
-          shiny: uniquePokemonList(group.shiny)
-        }))
-        .filter(group => group.regular.length > 1 || group.shiny.length > 1);
-    }
-
-    function getSubgroupTopFavouriteGroups(category) {
-      const sections = parseCategoryStructure(category.text);
-
-      return sections
-        .map(section => {
-          const regular = [];
-          const shiny = [];
-
-          for (const entry of section.entries) {
-            const regularSlug = getSelectedSlug(category.id, entry.key, "regular");
-            const shinySlug = getSelectedSlug(category.id, entry.key, "shiny");
-            const regularPokemon = getPokemonBySlug(entry.pokemon, regularSlug);
-            const shinyPokemon = getPokemonBySlug(entry.pokemon, shinySlug);
-
-            if (regularPokemon) regular.push(regularPokemon);
-            if (shinyPokemon) shiny.push(shinyPokemon);
-          }
-
-          return {
-            key: String(section.title || "").trim(),
-            label: String(section.title || "").trim() || "Ungrouped",
-            regular: uniquePokemonList(regular),
-            shiny: uniquePokemonList(shiny)
-          };
-        })
-        .filter(group => group.regular.length > 1 || group.shiny.length > 1);
-    }
-
     function getSelectionBucket(categoryId) {
       if (!state.selections[categoryId] || typeof state.selections[categoryId] !== "object") {
         state.selections[categoryId] = {};
@@ -1227,21 +933,11 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       return state.selections[categoryId];
     }
 
-    function getTopSelectionBucket(categoryId, scope) {
+    function getTopSelectionBucket(categoryId) {
       if (!state.topSelections[categoryId] || typeof state.topSelections[categoryId] !== "object") {
-        state.topSelections[categoryId] = { criteria: {}, subgroup: {} };
+        state.topSelections[categoryId] = {};
       }
-
-      if (!state.topSelections[categoryId].criteria || typeof state.topSelections[categoryId].criteria !== "object") {
-        state.topSelections[categoryId].criteria = {};
-      }
-
-      if (!state.topSelections[categoryId].subgroup || typeof state.topSelections[categoryId].subgroup !== "object") {
-        state.topSelections[categoryId].subgroup = {};
-      }
-
-      const key = scope === "subgroup" ? "subgroup" : "criteria";
-      return state.topSelections[categoryId][key];
+      return state.topSelections[categoryId];
     }
 
     function getSelectedSlug(categoryId, entryKey, variant) {
@@ -1258,104 +954,46 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       pruneTopSelectionsForCategory(categoryId);
     }
 
-    function getTopSelectedSlug(categoryId, scope, groupKey, variant) {
+    function getTopSelectedSlug(categoryId, criteria, variant) {
       const bucket = state.topSelections[categoryId];
-      const scopeKey = scope === "subgroup" ? "subgroup" : "criteria";
-      return bucket && bucket[scopeKey] && bucket[scopeKey][groupKey]
-        ? bucket[scopeKey][groupKey][variant] || ""
-        : "";
+      return bucket && bucket[criteria] ? bucket[criteria][variant] || "" : "";
     }
 
-    function setTopSelectedSlug(categoryId, scope, groupKey, variant, pokemonSlug) {
-      const bucket = getTopSelectionBucket(categoryId, scope);
-      if (!bucket[groupKey] || typeof bucket[groupKey] !== "object") {
-        bucket[groupKey] = { regular: "", shiny: "" };
+    function setTopSelectedSlug(categoryId, criteria, variant, pokemonSlug) {
+      const bucket = getTopSelectionBucket(categoryId);
+      if (!bucket[criteria] || typeof bucket[criteria] !== "object") {
+        bucket[criteria] = { regular: "", shiny: "" };
       }
-      bucket[groupKey][variant] = pokemonSlug;
+      bucket[criteria][variant] = pokemonSlug;
     }
 
     function pruneTopSelectionsForCategory(categoryId) {
       const category = state.items.find(item => item.id === categoryId && item.type === "category");
       if (!category) return;
-
-      const mode = getCategoryTopMode(category);
-      if (mode === "No") {
+      if (category.topFavourite !== "Yes") {
         delete state.topSelections[categoryId];
         return;
       }
 
-      const criteriaGroups = getCriteriaTopFavouriteGroups(category);
-      const subgroupGroups = getSubgroupTopFavouriteGroups(category);
+      const topGroups = getTopFavouriteGroups(category);
+      const validCriteria = new Set(topGroups.map(group => group.criteria));
+      const bucket = state.topSelections[categoryId];
+      if (!bucket) return;
 
-      const criteriaValidMap = new Map(
-        criteriaGroups.map(group => [
-          group.key,
-          {
-            regular: new Set(group.regular.map(p => p.pokemonSlug)),
-            shiny: new Set(group.shiny.map(p => p.pokemonSlug))
-          }
-        ])
-      );
-
-      const subgroupValidMap = new Map(
-        subgroupGroups.map(group => [
-          group.key,
-          {
-            regular: new Set(group.regular.map(p => p.pokemonSlug)),
-            shiny: new Set(group.shiny.map(p => p.pokemonSlug))
-          }
-        ])
-      );
-
-      const root = getTopSelectionBucket(categoryId, "criteria");
-      const categoryRoot = state.topSelections[categoryId];
-
-      Object.keys(categoryRoot.criteria).forEach(groupKey => {
-        if (mode !== "Criteria" && mode !== "Both") {
-          delete categoryRoot.criteria[groupKey];
+      Object.keys(bucket).forEach(criteria => {
+        if (!validCriteria.has(criteria)) {
+          delete bucket[criteria];
           return;
         }
-
-        const valid = criteriaValidMap.get(groupKey);
-        if (!valid) {
-          delete categoryRoot.criteria[groupKey];
-          return;
-        }
-
+        const group = topGroups.find(item => item.criteria === criteria);
+        if (!group) return;
         ["regular", "shiny"].forEach(variant => {
-          if (!valid[variant].has(categoryRoot.criteria[groupKey][variant])) {
-            categoryRoot.criteria[groupKey][variant] = "";
+          const validSlugs = new Set(group[variant].map(p => p.pokemonSlug));
+          if (!validSlugs.has(bucket[criteria][variant])) {
+            bucket[criteria][variant] = "";
           }
         });
       });
-
-      Object.keys(categoryRoot.subgroup).forEach(groupKey => {
-        if (mode !== "Sub-Group" && mode !== "Both") {
-          delete categoryRoot.subgroup[groupKey];
-          return;
-        }
-
-        const valid = subgroupValidMap.get(groupKey);
-        if (!valid) {
-          delete categoryRoot.subgroup[groupKey];
-          return;
-        }
-
-        ["regular", "shiny"].forEach(variant => {
-          if (!valid[variant].has(categoryRoot.subgroup[groupKey][variant])) {
-            categoryRoot.subgroup[groupKey][variant] = "";
-          }
-        });
-      });
-
-      if (
-        !Object.keys(categoryRoot.criteria).length &&
-        !Object.keys(categoryRoot.subgroup).length
-      ) {
-        delete state.topSelections[categoryId];
-      }
-
-      void root;
     }
 
     function getPokemonBySlug(list, slug) {
@@ -1394,59 +1032,18 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
 
     function setView(viewName) {
       state.currentView = viewName;
-
-      const isFavourites = viewName === "favourites";
-
-      favouritesViewEl.classList.toggle("is-active", isFavourites);
+      favouritesViewEl.classList.toggle("is-active", viewName === "favourites");
       choicesViewEl.classList.toggle("is-active", viewName === "choices");
       categoriesViewEl.classList.toggle("is-active", viewName === "categories");
-
-      btnViewFavourites.classList.toggle("is-active", isFavourites);
+      btnViewFavourites.classList.toggle("is-active", viewName === "favourites");
       btnViewChoices.classList.toggle("is-active", viewName === "choices");
       btnViewCategories.classList.toggle("is-active", viewName === "categories");
-
-      const oldToolbar = btnFavouritesRegular && btnFavouritesRegular.closest(".toolbar");
-      if (oldToolbar) oldToolbar.style.display = "none";
-
-      const headerToggle = ensureHeaderFavouritesToggle();
-      const headerActions = document.querySelector(".header-actions");
-      if (!headerActions) return;
-
-      const currentFirstButton = headerActions.firstElementChild;
-
-      if (isFavourites) {
-        if (currentFirstButton !== headerToggle) {
-          headerActions.insertBefore(headerToggle, currentFirstButton || null);
-        }
-        if (btnViewFavourites.parentNode === headerActions) {
-          btnViewFavourites.remove();
-        }
-      } else {
-        if (currentFirstButton !== btnViewFavourites) {
-          headerActions.insertBefore(btnViewFavourites, currentFirstButton || null);
-        }
-        if (headerToggle.parentNode === headerActions) {
-          headerToggle.remove();
-        }
-      }
     }
 
     function setFavouritesVariant(variant) {
       state.favouritesVariant = variant === "shiny" ? "shiny" : "regular";
-
-      if (btnFavouritesRegular) {
-        btnFavouritesRegular.classList.toggle("is-active", state.favouritesVariant === "regular");
-      }
-
-      if (btnFavouritesShiny) {
-        btnFavouritesShiny.classList.toggle("is-active", state.favouritesVariant === "shiny");
-      }
-
-      const headerToggle = ensureHeaderFavouritesToggle();
-      if (headerToggle) {
-        headerToggle.textContent = state.favouritesVariant === "regular" ? "Regular" : "Shiny";
-      }
-
+      btnFavouritesRegular.classList.toggle("is-active", state.favouritesVariant === "regular");
+      btnFavouritesShiny.classList.toggle("is-active", state.favouritesVariant === "shiny");
       renderFavouritesView();
     }
 
@@ -1532,25 +1129,15 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       return row;
     }
 
-    function appendSubgroupHeading(targetEl, text, background, extraClass = "") {
-      if (!text) return null;
-
+    function appendSubgroupHeading(targetEl, text, background) {
+      if (!text) return;
       const heading = document.createElement("div");
-      heading.className = `subgroup-title${extraClass ? ` ${extraClass}` : ""}`;
-
+      heading.className = "subgroup-title";
       const span = document.createElement("span");
       span.textContent = text;
-
       if (background) span.style.background = background;
-
-      if (extraClass.includes("top_fav")) {
-        heading.style.color = "#7a5d11";
-        span.style.color = "#7a5d11";
-      }
-
       heading.appendChild(span);
       targetEl.appendChild(heading);
-      return heading;
     }
 
     function renderPreviewStructure(targetEl, sections) {
@@ -1589,9 +1176,6 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       state.items.forEach((item, index) => {
         const details = document.createElement("details");
         details.className = "cat-editor";
-        if (item.type === "heading") {
-          details.classList.add("heading-cat");
-        }
 
         const summary = document.createElement("summary");
         const summaryLeft = document.createElement("div");
@@ -1691,21 +1275,18 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
           topLabel.textContent = "Top Favourite";
           const topSelect = document.createElement("select");
           topSelect.className = "editor-select";
-
-          ["No", "Criteria", "Sub-Group", "Both"].forEach(value => {
+          ["No", "Yes"].forEach(value => {
             const option = document.createElement("option");
             option.value = value;
             option.textContent = value;
-            option.selected = getCategoryTopMode(item) === value;
+            option.selected = (item.topFavourite || "No") === value;
             topSelect.appendChild(option);
           });
-
           topSelect.addEventListener("change", () => {
-            item.topFavourite = topSelect.value;
+            item.topFavourite = topSelect.value === "Yes" ? "Yes" : "No";
             pruneTopSelectionsForCategory(item.id);
             renderAll();
           });
-
           topWrap.appendChild(topLabel);
           topWrap.appendChild(topSelect);
           top.appendChild(topWrap);
@@ -1753,12 +1334,7 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
           }
 
           textarea.addEventListener("input", () => {
-            const previousText = item.text || "";
-            const nextText = textarea.value;
-
-            reconcileCategorySelections(item.id, previousText, nextText);
-
-            item.text = nextText;
+            item.text = textarea.value;
             pruneTopSelectionsForCategory(item.id);
             refreshPreview();
             renderChoicesView();
@@ -1789,7 +1365,7 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
         }
 
         const sections = parseCategoryStructure(item.text);
-        const topMode = getCategoryTopMode(item);
+        const topGroups = getTopFavouriteGroups(item);
 
         const categoryEl = document.createElement("div");
         categoryEl.className = "category";
@@ -1804,18 +1380,7 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
         let categoryHasCards = false;
 
         for (const section of sections) {
-          const subgroupTopSlug = getTopSelectedSlug(item.id, "subgroup", String(section.title || "").trim(), activeVariant);
-          const hasSubgroupTop = !!subgroupTopSlug;
-
-          if (section.title) {
-            appendSubgroupHeading(
-              categoryEl,
-              section.title,
-              "#fff",
-              hasSubgroupTop ? "top_fav" : ""
-            );
-          }
-
+          if (section.title) appendSubgroupHeading(categoryEl, section.title, "#fff");
           const row = makeRow();
 
           for (const entry of section.entries) {
@@ -1823,54 +1388,14 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
             const selectedPokemon = getPokemonBySlug(entry.pokemon, selectedSlug);
             if (!selectedPokemon) continue;
 
-            const isTopFav = subgroupTopSlug && subgroupTopSlug === selectedPokemon.pokemonSlug;
-
-            row.appendChild(
-              createFavouriteCard(
-                entry.criteria,
-                selectedPokemon,
-                activeVariant === "shiny",
-                isTopFav
-              )
-            );
-
+            const topSelectedSlug = getTopSelectedSlug(item.id, entry.criteria, activeVariant);
+            const isTopFav = topSelectedSlug && topSelectedSlug === selectedPokemon.pokemonSlug;
+            row.appendChild(createFavouriteCard(entry.criteria, selectedPokemon, activeVariant === "shiny", isTopFav));
             categoryHasCards = true;
             hasAnyContent = true;
           }
 
           if (row.childElementCount > 0) categoryEl.appendChild(row);
-        }
-
-        if (topMode === "Criteria" || topMode === "Both") {
-          const criteriaGroups = getCriteriaTopFavouriteGroups(item);
-          const criteriaCards = [];
-
-          criteriaGroups.forEach(group => {
-            const selectedSlug = getTopSelectedSlug(item.id, "criteria", group.key, activeVariant);
-            const selectedPokemon = getPokemonBySlug(
-              activeVariant === "shiny" ? group.shiny : group.regular,
-              selectedSlug
-            );
-            if (!selectedPokemon) return;
-
-            criteriaCards.push(
-              createFavouriteCard(
-                group.label,
-                selectedPokemon,
-                activeVariant === "shiny",
-                true
-              )
-            );
-          });
-
-          if (criteriaCards.length) {
-            appendSubgroupHeading(categoryEl, `${title} Top Favourites`, "#fff", "top_fav");
-            const row = makeRow();
-            criteriaCards.forEach(card => row.appendChild(card));
-            categoryEl.appendChild(row);
-            categoryHasCards = true;
-            hasAnyContent = true;
-          }
         }
 
         if (!categoryHasCards) {
@@ -1909,8 +1434,6 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
           selectedSlug === pokemon.pokemonSlug,
           entry.criteria,
           () => {
-            state._choiceOpenState = state._choiceOpenState || {};
-            state._choiceOpenState[category.id] = true;
             setSelectedSlug(category.id, entry.key, variant, pokemon.pokemonSlug);
             renderChoicesView();
             renderFavouritesView();
@@ -1922,9 +1445,8 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       return wrapper;
     }
 
-    function renderTopChoiceVariantRow(category, scope, groupKey, labelText, variant, pokemonList) {
+    function renderTopChoiceVariantRow(category, criteria, variant, pokemonList) {
       const wrapper = document.createElement("div");
-
       const variantLabel = document.createElement("div");
       variantLabel.className = "variant-label";
       variantLabel.textContent = variant === "regular" ? "Regular" : "Shiny";
@@ -1933,44 +1455,31 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       if (pokemonList.length < 2) {
         const note = document.createElement("div");
         note.className = "empty-note";
-        note.textContent = `Pick more ${variant} favourites in this ${scope === "criteria" ? "criteria" : "sub-group"} to unlock top favourite selection.`;
+        note.textContent = `Pick more ${variant} favourites in this criteria to unlock top favourite selection.`;
         wrapper.appendChild(note);
         return wrapper;
       }
 
       const row = makeRow();
-      const selectedSlug = getTopSelectedSlug(category.id, scope, groupKey, variant);
-
+      const selectedSlug = getTopSelectedSlug(category.id, criteria, variant);
       pokemonList.forEach(pokemon => {
         row.appendChild(createSelectCard(
           pokemon,
           variant,
           selectedSlug === pokemon.pokemonSlug,
-          labelText,
+          criteria,
           () => {
-            state._choiceOpenState = state._choiceOpenState || {};
-            state._choiceOpenState[category.id] = true;
-            setTopSelectedSlug(category.id, scope, groupKey, variant, pokemon.pokemonSlug);
+            setTopSelectedSlug(category.id, criteria, variant, pokemon.pokemonSlug);
             renderChoicesView();
             renderFavouritesView();
           }
         ));
       });
-
       wrapper.appendChild(row);
       return wrapper;
     }
 
     function renderChoicesView() {
-      const openState = {};
-      choicesRenderEl.querySelectorAll(".choice-category[data-category-id]").forEach(details => {
-        openState[details.dataset.categoryId] = details.open;
-      });
-
-      if (state._choiceOpenState) {
-        Object.assign(openState, state._choiceOpenState);
-      }
-
       choicesRenderEl.innerHTML = "";
 
       for (const item of state.items) {
@@ -1983,28 +1492,23 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
           continue;
         }
 
-        const details = document.createElement("details");
-        details.className = "choice-category";
-        details.dataset.categoryId = item.id;
-        details.open = !!openState[item.id];
-        details.addEventListener("toggle", () => {
-          state._choiceOpenState = state._choiceOpenState || {};
-          state._choiceOpenState[item.id] = details.open;
-        });
+        const categoryEl = document.createElement("div");
+        categoryEl.className = "choice-category";
 
-        const summary = document.createElement("summary");
-        summary.className = "choice-category-head";
-
+        const head = document.createElement("div");
+        head.className = "choice-category-head";
         const h3 = document.createElement("h3");
         h3.textContent = title;
-        summary.appendChild(h3);
+        head.appendChild(h3);
+        categoryEl.appendChild(head);
 
+        const metaRow = document.createElement("div");
+        metaRow.className = "choice-meta-row";
         const pill = document.createElement("div");
         pill.className = "status-pill";
-        pill.textContent = `Top Favourite: ${getCategoryTopMode(item)}`;
-        summary.appendChild(pill);
-
-        details.appendChild(summary);
+        pill.textContent = `Top Favourite: ${item.topFavourite || "No"}`;
+        metaRow.appendChild(pill);
+        categoryEl.appendChild(metaRow);
 
         const body = document.createElement("div");
         body.className = "choice-category-body";
@@ -2014,7 +1518,7 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
           const empty = document.createElement("div");
           empty.className = "empty-note";
           empty.textContent = "No valid category entries yet.";
-          body.appendChild(empty);
+          categoryEl.appendChild(empty);
         } else {
           for (const section of sections) {
             const sectionEl = document.createElement("div");
@@ -2039,77 +1543,38 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
           }
         }
 
-        const topMode = getCategoryTopMode(item);
+        categoryEl.appendChild(body);
+        choicesRenderEl.appendChild(categoryEl);
 
-        if (topMode === "Criteria" || topMode === "Both") {
-          const criteriaGroups = getCriteriaTopFavouriteGroups(item);
-          if (criteriaGroups.length) {
+        if ((item.topFavourite || "No") === "Yes") {
+          const topGroups = getTopFavouriteGroups(item);
+          if (topGroups.length) {
             const topBlock = document.createElement("div");
             topBlock.className = "choice-top-block";
 
-            appendSubgroupHeading(topBlock, `${title} Criteria Top Favourites`, "#fffdf7");
+            appendSubgroupHeading(topBlock, `${title} Top Favourites`, "#fffdf7");
 
             const topLabel = document.createElement("div");
             topLabel.className = "top-fav-label";
             topLabel.textContent = "Choose the top favourite from your selected favourites with matching criteria.";
             topBlock.appendChild(topLabel);
 
-            criteriaGroups.forEach(group => {
+            topGroups.forEach(group => {
               const groupEl = document.createElement("div");
               groupEl.className = "choice-top-criteria";
-
               const heading = document.createElement("div");
               heading.className = "choice-top-heading";
-              heading.textContent = group.label;
+              heading.textContent = group.criteria;
               groupEl.appendChild(heading);
-
-              groupEl.appendChild(renderTopChoiceVariantRow(item, "criteria", group.key, group.label, "regular", group.regular));
-              groupEl.appendChild(renderTopChoiceVariantRow(item, "criteria", group.key, group.label, "shiny", group.shiny));
-
+              groupEl.appendChild(renderTopChoiceVariantRow(item, group.criteria, "regular", group.regular));
+              groupEl.appendChild(renderTopChoiceVariantRow(item, group.criteria, "shiny", group.shiny));
               topBlock.appendChild(groupEl);
             });
 
-            body.appendChild(topBlock);
+            choicesRenderEl.appendChild(topBlock);
           }
         }
-
-        if (topMode === "Sub-Group" || topMode === "Both") {
-          const subgroupGroups = getSubgroupTopFavouriteGroups(item);
-          if (subgroupGroups.length) {
-            const topBlock = document.createElement("div");
-            topBlock.className = "choice-top-block";
-
-            appendSubgroupHeading(topBlock, `${title} Sub-Group Top Favourites`, "#fffdf7");
-
-            const topLabel = document.createElement("div");
-            topLabel.className = "top-fav-label";
-            topLabel.textContent = "Choose the absolute favourite from all chosen favourites within each sub-group.";
-            topBlock.appendChild(topLabel);
-
-            subgroupGroups.forEach(group => {
-              const groupEl = document.createElement("div");
-              groupEl.className = "choice-top-criteria";
-
-              const heading = document.createElement("div");
-              heading.className = "choice-top-heading";
-              heading.textContent = group.label;
-              groupEl.appendChild(heading);
-
-              groupEl.appendChild(renderTopChoiceVariantRow(item, "subgroup", group.key, group.label, "regular", group.regular));
-              groupEl.appendChild(renderTopChoiceVariantRow(item, "subgroup", group.key, group.label, "shiny", group.shiny));
-
-              topBlock.appendChild(groupEl);
-            });
-
-            body.appendChild(topBlock);
-          }
-        }
-
-        details.appendChild(body);
-        choicesRenderEl.appendChild(details);
       }
-
-      state._choiceOpenState = openState;
     }
 
     function flashSaveButtons() {
@@ -2159,7 +1624,6 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       renderCategoriesView();
       renderChoicesView();
       renderFavouritesView();
-      ensureHeaderFavouritesToggle();
       setView(state.currentView);
       setFavouritesVariant(state.favouritesVariant);
     }
@@ -2167,5 +1631,4 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
     renderAll();
   </script>
 </body>
-
 </html>
