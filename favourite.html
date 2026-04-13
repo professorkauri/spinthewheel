@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>My Favourite Pokemon</title>
+  <title>Categories</title>
   <style>
     :root {
       --kauri-blue: #5476c2;
@@ -57,6 +57,7 @@
       white-space: nowrap;
     }
 
+    .header-left,
     .header-actions,
     .toolbar,
     .segmented {
@@ -64,6 +65,27 @@
       flex-wrap: wrap;
       gap: 10px;
       align-items: center;
+    }
+
+    .header-left {
+      flex: 1 1 0;
+      justify-content: flex-start;
+      min-width: 0;
+    }
+
+    .header-actions {
+      flex: 1 1 0;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .header-right {
+      flex: 1 1 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
     }
 
     button,
@@ -111,11 +133,87 @@
       border-color: var(--danger);
     }
 
-    button.is-active,
-    .select-card.is-selected {
+    button.is-active {
       background: var(--kauri-blue);
       color: #fff;
       box-shadow: 0 8px 24px rgba(84, 118, 194, 0.18);
+    }
+
+    .select-card.is-selected {
+      background: #fff;
+      color: var(--shiny-gold);
+      outline: 1px solid var(--shiny-gold);
+      box-shadow: 0 4px 14px color-mix(in srgb, var(--shiny-gold) 100%, #fff 100%);
+    }
+
+    .header-save-reset {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .apple-toggle {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+
+    .apple-toggle input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .apple-toggle-track {
+      position: relative;
+      width: 54px;
+      height: 32px;
+      border-radius: 999px;
+      background: #d8d8dd;
+      transition: background 220ms ease, box-shadow 220ms ease;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .apple-toggle-track::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18), 0 1px 8px rgba(0, 0, 0, 0.08);
+      transition: transform 220ms ease;
+    }
+
+    .apple-toggle input:checked+.apple-toggle-track {
+      background: var(--shiny-gold);
+    }
+
+    .apple-toggle input:checked+.apple-toggle-track::after {
+      transform: translateX(22px);
+    }
+
+    .apple-toggle-labels {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--kauri-blue);
+      white-space: nowrap;
+    }
+
+    .apple-toggle-labels .is-on {
+      color: #7a5d11;
     }
 
     #main {
@@ -141,7 +239,7 @@
     }
 
     h2 {
-      margin: 2em 0 1em 0;
+      margin: 0 0 1em 0;
       font-size: 16px;
       font-style: italic;
       font-weight: 400;
@@ -169,12 +267,116 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
     }
 
+    .choice-card {
+      padding: 0;
+      overflow: visible;
+    }
+
+    .choice-card-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0.75em;
+      position: sticky;
+      top: var(--header-height);
+      z-index: 3;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #edf0f7;
+      border-radius: 12px;
+    }
+
+    details[open]>.choice-card-summary {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .choice-card-summary h2 {
+      margin: 0;
+      text-align: left;
+    }
+
+    .choice-card-summary .choice-meta-row {
+      margin: 0;
+      justify-content: flex-end;
+    }
+
+    .choice-card-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .choice-card-summary::marker {
+      display: none;
+    }
+
+    .choice-card-summary:hover {
+      background: var(--kauri-bluefaint);
+    }
+
+    .choice-card-body {
+      padding: 0 12px 12px 12px;
+    }
+
+    .choice-card .choice-meta-row {
+      margin-bottom: 0;
+    }
+
+    .favourites-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .favourites-card-summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 12px;
+    }
+
+    .favourites-card-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .favourites-card-summary::marker {
+      display: none;
+    }
+
+    .favourites-card-summary:hover {
+      background: var(--kauri-bluefaint);
+    }
+
+    .favourites-card-summary-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .favourites-card-summary h2 {
+      margin: 0;
+      text-align: left;
+    }
+
+    .favourites-summary-top-block {
+      margin-top: 12px;
+    }
+
+    .favourites-card-body {
+      padding: 0 12px 12px 12px;
+    }
+
     .subgroup-block {
       border: 1px solid #edf0f7;
       border-radius: 12px;
       padding: 12px;
       background: #fafbfd;
       margin-bottom: 12px;
+      text-align:center;
+    }
+
+    .subgroup-block.fav_block {
+      border-color: var(--shiny-gold);
+      background: color-mix(in srgb, var(--shiny-gold) 10%, #fff 100%);
     }
 
     .subgroup-title {
@@ -189,12 +391,21 @@
       opacity: 0.75;
     }
 
+    .choice-entry+.subgroup-title,
+    .row-grid+.subgroup-title {
+      margin-top: 3em;
+    }
+
     .subgroup-title span {
       display: inline-block;
       position: relative;
       padding: 0 10px;
       background: #fafbfd;
       z-index: 2;
+    }
+
+    .fav_block .subgroup-title span {
+      background: color-mix(in srgb, var(--shiny-gold) 10%, #fff 100%);
     }
 
     .subgroup-title:before {
@@ -207,6 +418,10 @@
       margin: 0.8em 0 0 0;
       transform: translateY(-2px);
       z-index: 0;
+    }
+
+    .fav_block .subgroup-title:before {
+      background: var(--shiny-gold);
     }
 
     .criteria-label {
@@ -452,9 +667,12 @@
       min-width: 210px;
     }
 
-    .th-inner,
+    .th-inner {
+      padding: 8px;
+    }
+
     .td-inner {
-      padding: 10px;
+      padding: 0px;
     }
 
     .header-block {
@@ -484,6 +702,11 @@
       margin-bottom: 4px;
     }
 
+    *::placeholder {
+      color: var(--kauri-bluelight);
+      opacity: 1;
+    }
+
     .cell-input,
     .header-input,
     .header-select {
@@ -495,9 +718,30 @@
       background: #fff;
     }
 
+    input.cell-input {
+      border-radius: 0;
+      border-color: transparent;
+    }
+
     .cell-input:focus,
     .header-input:focus,
     .header-select:focus {
+      outline: none;
+      border-color: var(--kauri-blue);
+      box-shadow: 0 0 0 2px var(--kauri-bluelight);
+    }
+
+    .toolbar-search {
+      min-width: 220px;
+      width: min(320px, 100%);
+      border: 1px solid var(--kauri-darkgrey);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .toolbar-search:focus {
       outline: none;
       border-color: var(--kauri-blue);
       box-shadow: 0 0 0 2px var(--kauri-bluelight);
@@ -516,8 +760,8 @@
     }
 
     .sprite-thumb {
-      width: 56px;
-      height: 56px;
+      width: 36px;
+      height: 36px;
       border-radius: 10px;
       background: var(--kauri-grey);
       border: 1px solid #ececec;
@@ -528,8 +772,8 @@
     }
 
     .sprite-thumb img {
-      width: 52px;
-      height: 52px;
+      width: 36px;
+      height: 36px;
       display: block;
     }
 
@@ -606,7 +850,9 @@
         white-space: normal;
       }
 
+      .header-left,
       .header-actions,
+      .header-right,
       .toolbar {
         justify-content: center;
       }
@@ -616,34 +862,41 @@
 
 <body>
   <header class="app-header">
-    <h1 class="app-title">My Favourite Pokemon</h1>
+    <div class="header-left">
+      <label class="apple-toggle" for="header-shiny-toggle">
+        <span class="apple-toggle-labels">
+          <span id="toggle-label-regular">Regular</span>
+          <span id="toggle-label-shiny">Shiny</span>
+        </span>
+        <input id="header-shiny-toggle" type="checkbox" />
+        <span class="apple-toggle-track" aria-hidden="true"></span>
+      </label>
+    </div>
+
     <div class="header-actions">
       <button id="btn-view-favourites" class="is-active" type="button">Favourites</button>
       <button id="btn-view-choices" type="button">Choices</button>
       <button id="btn-view-categories" type="button">Categories</button>
+    </div>
+
+    <div class="header-right">
+      <div class="header-save-reset">
+        <button id="btn-save-header" class="ghost" type="button" title="Downloads a favourite.js file">Save</button>
+        <button id="btn-reset-header" class="danger" type="button"
+          title="Resets to favourite.js defaults">Reset</button>
+      </div>
     </div>
   </header>
 
   <main id="main">
     <section id="favourites-view" class="view is-active">
       <div class="page-wrap">
-        <div class="toolbar">
-          <div class="segmented" aria-label="Favourites variant">
-            <button id="btn-favourites-regular" class="is-active" type="button">Regular</button>
-            <button id="btn-favourites-shiny" type="button">Shiny</button>
-          </div>
-        </div>
         <div id="favourites-render"></div>
       </div>
     </section>
 
     <section id="choices-view" class="view">
       <div class="page-wrap">
-        <div class="toolbar">
-          <button id="btn-save-choices" class="ghost" type="button" title="Downloads a favourite.js file">Save</button>
-          <button id="btn-reset-choices" class="danger" type="button"
-            title="Resets to favourite.js defaults">Reset</button>
-        </div>
         <div id="choices-render"></div>
       </div>
     </section>
@@ -654,10 +907,7 @@
           <button id="btn-add-row" type="button">Add Row</button>
           <button id="btn-add-column" type="button">Add Category</button>
           <button id="btn-sort-rows" type="button">Sort Rows</button>
-          <button id="btn-save-categories" class="ghost" type="button"
-            title="Downloads a favourite.js file">Save</button>
-          <button id="btn-reset-categories" class="danger" type="button"
-            title="Resets to favourite.js defaults">Reset</button>
+          <input id="categories-search" class="toolbar-search" type="search" placeholder="Search rows..." />
         </div>
         <div class="table-shell">
           <div class="table-scroll">
@@ -800,7 +1050,9 @@
       selections: deepClone(DEFAULT_DATA.selections || {}),
       topSelections: deepClone(DEFAULT_DATA.topSelections || {}),
       currentView: 'favourites',
-      favouritesVariant: 'regular'
+      favouritesVariant: 'regular',
+      openChoiceCards: {},
+      categoriesSearch: ''
     };
 
     const favouritesViewEl = document.getElementById('favourites-view');
@@ -811,12 +1063,16 @@
     const choicesRenderEl = document.getElementById('choices-render');
     const categoriesHeadEl = document.getElementById('categories-head');
     const categoriesBodyEl = document.getElementById('categories-body');
+    const categoriesSearchInput = document.getElementById('categories-search');
 
     const btnViewFavourites = document.getElementById('btn-view-favourites');
     const btnViewChoices = document.getElementById('btn-view-choices');
     const btnViewCategories = document.getElementById('btn-view-categories');
-    const btnFavouritesRegular = document.getElementById('btn-favourites-regular');
-    const btnFavouritesShiny = document.getElementById('btn-favourites-shiny');
+    const btnSaveHeader = document.getElementById('btn-save-header');
+    const btnResetHeader = document.getElementById('btn-reset-header');
+    const headerShinyToggle = document.getElementById('header-shiny-toggle');
+    const toggleLabelRegular = document.getElementById('toggle-label-regular');
+    const toggleLabelShiny = document.getElementById('toggle-label-shiny');
 
     function exportAsFavouriteJS() {
       const payload = {
@@ -861,19 +1117,40 @@
     }
 
     function setView(viewName) {
+      const previousView = state.currentView;
       state.currentView = viewName;
+
+      if (viewName === 'choices' && previousView !== 'choices') {
+        state.openChoiceCards = {};
+      }
+
       favouritesViewEl.classList.toggle('is-active', viewName === 'favourites');
       choicesViewEl.classList.toggle('is-active', viewName === 'choices');
       categoriesViewEl.classList.toggle('is-active', viewName === 'categories');
       btnViewFavourites.classList.toggle('is-active', viewName === 'favourites');
       btnViewChoices.classList.toggle('is-active', viewName === 'choices');
       btnViewCategories.classList.toggle('is-active', viewName === 'categories');
+
+      if (viewName === 'choices') {
+        renderChoices();
+      }
     }
 
     function setFavouritesVariant(variant) {
       state.favouritesVariant = variant === 'shiny' ? 'shiny' : 'regular';
-      btnFavouritesRegular.classList.toggle('is-active', state.favouritesVariant === 'regular');
-      btnFavouritesShiny.classList.toggle('is-active', state.favouritesVariant === 'shiny');
+
+      if (headerShinyToggle) {
+        headerShinyToggle.checked = state.favouritesVariant === 'shiny';
+      }
+
+      if (toggleLabelRegular) {
+        toggleLabelRegular.classList.toggle('is-on', state.favouritesVariant === 'regular');
+      }
+
+      if (toggleLabelShiny) {
+        toggleLabelShiny.classList.toggle('is-on', state.favouritesVariant === 'shiny');
+      }
+
       renderFavourites();
     }
 
@@ -933,6 +1210,25 @@
 
     function getRowSlug(row) {
       return slugifyPokemon(row.name);
+    }
+
+    function getRowSearchText(row) {
+      const parts = [
+        row.dex || '',
+        row.name || '',
+        ...state.columns.map(column => row.cells[column.id] || '')
+      ];
+
+      return parts
+        .join(' ')
+        .toLowerCase()
+        .trim();
+    }
+
+    function getFilteredRows() {
+      const needle = cleanCellValue(state.categoriesSearch).toLowerCase();
+      if (!needle) return state.rows;
+      return state.rows.filter(row => getRowSearchText(row).includes(needle));
     }
 
     function getSelectionBucket(columnId) {
@@ -1031,6 +1327,12 @@
       return `${makeVariantKey(subgroup)}__${makeVariantKey(criteria)}`;
     }
 
+    function makeDisplayEntryKey(subgroup, criteria, variant) {
+      const subgroupText = cleanCellValue(getVariantText(subgroup, variant));
+      const criteriaText = cleanCellValue(getVariantText(criteria, variant) || subgroupText);
+      return `${subgroupText}__${criteriaText}`;
+    }
+
     function buildColumnGroups(columnId) {
       const subgroupMap = new Map();
 
@@ -1091,8 +1393,11 @@
           const shinyItems = [];
 
           group.entries.forEach(entry => {
-            const regularSlug = getSelectedSlug(columnId, entry.key, 'regular');
-            const shinySlug = getSelectedSlug(columnId, entry.key, 'shiny');
+            const regularSelectionKey = makeDisplayEntryKey(group.subgroup, entry.criteria, 'regular');
+            const shinySelectionKey = makeDisplayEntryKey(group.subgroup, entry.criteria, 'shiny');
+
+            const regularSlug = getSelectedSlug(columnId, regularSelectionKey, 'regular');
+            const shinySlug = getSelectedSlug(columnId, shinySelectionKey, 'shiny');
 
             const regularRow = entry.rows.find(row => getRowSlug(row) === regularSlug);
             const shinyRow = entry.rows.find(row => getRowSlug(row) === shinySlug);
@@ -1168,8 +1473,11 @@
           const regularGroup = ensureGroup(regularCriteria);
           const shinyGroup = ensureGroup(shinyCriteria);
 
-          const regularSlug = getSelectedSlug(columnId, entry.key, 'regular');
-          const shinySlug = getSelectedSlug(columnId, entry.key, 'shiny');
+          const regularSelectionKey = makeDisplayEntryKey(group.subgroup, entry.criteria, 'regular');
+          const shinySelectionKey = makeDisplayEntryKey(group.subgroup, entry.criteria, 'shiny');
+
+          const regularSlug = getSelectedSlug(columnId, regularSelectionKey, 'regular');
+          const shinySlug = getSelectedSlug(columnId, shinySelectionKey, 'shiny');
 
           const regularRow = entry.rows.find(row => getRowSlug(row) === regularSlug);
           const shinyRow = entry.rows.find(row => getRowSlug(row) === shinySlug);
@@ -1278,12 +1586,20 @@
           return;
         }
 
-        const validEntryKeys = new Set(buildColumnGroups(columnId).flatMap(group => group.entries.map(entry => entry.key)));
+        const validEntryKeys = new Set();
+
+        buildChoiceDisplayGroups(columnId).forEach(group => {
+          group.entries.forEach(entry => {
+            validEntryKeys.add(entry.key);
+          });
+        });
+
         Object.keys(state.selections[columnId] || {}).forEach(entryKey => {
           if (!validEntryKeys.has(entryKey)) {
             delete state.selections[columnId][entryKey];
             return;
           }
+
           const bucket = state.selections[columnId][entryKey];
           if (bucket.regular && !validRowSlugs.has(bucket.regular)) bucket.regular = '';
           if (bucket.shiny && !validRowSlugs.has(bucket.shiny)) bucket.shiny = '';
@@ -1469,19 +1785,27 @@
       }
 
       columnsWithContent.forEach(column => {
-        const columnCard = document.createElement('section');
-        columnCard.className = 'card';
+        const details = document.createElement('details');
+        details.className = 'card favourites-card';
+
+        const summary = document.createElement('summary');
+        summary.className = 'favourites-card-summary';
+
+        const summaryHead = document.createElement('div');
+        summaryHead.className = 'favourites-card-summary-head';
 
         const title = document.createElement('h2');
         title.textContent = column.name || 'Untitled Category';
-        columnCard.appendChild(title);
+        summaryHead.appendChild(title);
+
+        summary.appendChild(summaryHead);
+
+        const body = document.createElement('div');
+        body.className = 'favourites-card-body';
 
         const groups = buildColumnGroups(column.id);
         const topMode = getColumnTopMode(column);
 
-        // Sub-Group top favourites:
-        // grouped by subgroup, choose among criteria,
-        // highlight the chosen card in its original row
         const subgroupTopLookup = new Set();
         if (topMode === 'Sub-Group' || topMode === 'Both') {
           const subgroupGroups = getCriteriaTopFavouriteGroups(column.id);
@@ -1493,48 +1817,6 @@
           });
         }
 
-        groups.forEach(group => {
-          const subgroupCards = [];
-
-          group.entries.forEach(entry => {
-            const slug = getSelectedSlug(column.id, entry.key, variant);
-            const row = entry.rows.find(item => getRowSlug(item) === slug);
-            if (!row) return;
-
-            const rowSlug = getRowSlug(row);
-            const isSubgroupTopFav = subgroupTopLookup.has(`${group.key}__${rowSlug}`);
-
-            subgroupCards.push(
-              createPokemonCard(
-                row,
-                variant,
-                getVariantText(entry.criteria, variant),
-                isSubgroupTopFav
-              )
-            );
-          });
-
-          if (subgroupCards.length) {
-            const subgroupBlock = document.createElement('div');
-            subgroupBlock.className = 'subgroup-block';
-
-            const subgroupTitle = document.createElement('div');
-            subgroupTitle.className = 'subgroup-title';
-            subgroupTitle.innerHTML = `<span>${getVariantText(group.subgroup, variant)}</span>`;
-            subgroupBlock.appendChild(subgroupTitle);
-
-            const grid = document.createElement('div');
-            grid.className = 'row-grid';
-            subgroupCards.forEach(card => grid.appendChild(card));
-
-            subgroupBlock.appendChild(grid);
-            columnCard.appendChild(subgroupBlock);
-          }
-        });
-
-        // Criteria top favourites:
-        // grouped by criteria, choose among subgroups,
-        // render a single summary row
         if (topMode === 'Criteria' || topMode === 'Both') {
           const criteriaGroups = getSubgroupTopFavouriteGroups(column.id);
           const chosenCriteriaRows = [];
@@ -1552,11 +1834,11 @@
 
           if (chosenCriteriaRows.length) {
             const topBlock = document.createElement('div');
-            topBlock.className = 'subgroup-block';
+            topBlock.className = 'subgroup-block fav_block favourites-summary-top-block';
 
             const topTitle = document.createElement('div');
             topTitle.className = 'subgroup-title';
-            topTitle.innerHTML = '<span>Criteria Top Favourites</span>';
+            topTitle.innerHTML = '<span>Top Favourites</span>';
             topBlock.appendChild(topTitle);
 
             const grid = document.createElement('div');
@@ -1567,11 +1849,55 @@
             });
 
             topBlock.appendChild(grid);
-            columnCard.appendChild(topBlock);
+            summary.appendChild(topBlock);
           }
         }
 
-        favouritesRenderEl.appendChild(columnCard);
+        const allSubgroupsBlock = document.createElement('div');
+        allSubgroupsBlock.className = 'subgroup-block';
+
+        groups.forEach(group => {
+          const subgroupCards = [];
+
+          group.entries.forEach(entry => {
+            const selectionKey = makeDisplayEntryKey(group.subgroup, entry.criteria, variant);
+            const slug = getSelectedSlug(column.id, selectionKey, variant);
+            const row = entry.rows.find(item => getRowSlug(item) === slug);
+            if (!row) return;
+
+            const rowSlug = getRowSlug(row);
+            const isSubgroupTopFav = subgroupTopLookup.has(`${group.key}__${rowSlug}`);
+
+            subgroupCards.push(
+              createPokemonCard(
+                row,
+                variant,
+                getVariantText(entry.criteria, variant),
+                isSubgroupTopFav
+              )
+            );
+          });
+
+          if (subgroupCards.length) {
+            const subgroupTitle = document.createElement('div');
+            subgroupTitle.className = 'subgroup-title';
+            subgroupTitle.innerHTML = `<span>${getVariantText(group.subgroup, variant)}</span>`;
+            allSubgroupsBlock.appendChild(subgroupTitle);
+
+            const grid = document.createElement('div');
+            grid.className = 'row-grid';
+            subgroupCards.forEach(card => grid.appendChild(card));
+            allSubgroupsBlock.appendChild(grid);
+          }
+        });
+
+        if (allSubgroupsBlock.childElementCount) {
+          body.appendChild(allSubgroupsBlock);
+        }
+
+        details.appendChild(summary);
+        details.appendChild(body);
+        favouritesRenderEl.appendChild(details);
       });
     }
 
@@ -1592,13 +1918,14 @@
         return subgroupMap.get(safeLabel);
       }
 
-      function ensureEntry(group, criteriaLabel) {
+      function ensureEntry(group, criteriaLabel, entryKey) {
         const safeCriteria = cleanCellValue(criteriaLabel) || group.subgroup;
+        const safeKey = cleanCellValue(entryKey) || `${group.key}__${safeCriteria}`;
 
-        let entry = group.entries.find(item => item.criteria === safeCriteria);
+        let entry = group.entries.find(item => item.key === safeKey);
         if (!entry) {
           entry = {
-            key: `${group.key}__${safeCriteria}`,
+            key: safeKey,
             criteria: safeCriteria,
             regularItems: [],
             shinyItems: []
@@ -1614,7 +1941,6 @@
         if (!value) return;
 
         const parsed = splitCellValue(value);
-        const selectionKey = makeEntryKey(parsed.subgroup, parsed.criteria);
 
         const regularSubgroup = getVariantText(parsed.subgroup, 'regular') || 'Ungrouped';
         const shinySubgroup = getVariantText(parsed.subgroup, 'shiny') || 'Ungrouped';
@@ -1622,19 +1948,22 @@
         const regularCriteria = getVariantText(parsed.criteria, 'regular') || regularSubgroup;
         const shinyCriteria = getVariantText(parsed.criteria, 'shiny') || shinySubgroup;
 
+        const regularSelectionKey = makeDisplayEntryKey(parsed.subgroup, parsed.criteria, 'regular');
+        const shinySelectionKey = makeDisplayEntryKey(parsed.subgroup, parsed.criteria, 'shiny');
+
         const regularGroup = ensureGroup(regularSubgroup);
-        const regularEntry = ensureEntry(regularGroup, regularCriteria);
+        const regularEntry = ensureEntry(regularGroup, regularCriteria, regularSelectionKey);
         regularEntry.regularItems.push({
           row,
-          selectionKey,
+          selectionKey: regularSelectionKey,
           criteria: regularCriteria
         });
 
         const shinyGroup = ensureGroup(shinySubgroup);
-        const shinyEntry = ensureEntry(shinyGroup, shinyCriteria);
+        const shinyEntry = ensureEntry(shinyGroup, shinyCriteria, shinySelectionKey);
         shinyEntry.shinyItems.push({
           row,
-          selectionKey,
+          selectionKey: shinySelectionKey,
           criteria: shinyCriteria
         });
       });
@@ -1664,7 +1993,6 @@
             return true;
           });
 
-          sortRows(entry.regularItems.map(item => item.row));
           entry.regularItems.sort((a, b) => {
             const left = pokemonSortValue(a.row);
             const right = pokemonSortValue(b.row);
@@ -1672,7 +2000,6 @@
             return left.name.localeCompare(right.name);
           });
 
-          sortRows(entry.shinyItems.map(item => item.row));
           entry.shinyItems.sort((a, b) => {
             const left = pokemonSortValue(a.row);
             const right = pokemonSortValue(b.row);
@@ -1699,105 +2026,118 @@
       }
 
       columnsWithContent.forEach(column => {
-        const section = document.createElement('section');
-        section.className = 'card';
+        const details = document.createElement('details');
+        details.className = 'card choice-card';
+        details.open = !!state.openChoiceCards[column.id];
+
+        details.addEventListener('toggle', () => {
+          state.openChoiceCards[column.id] = details.open;
+        });
+
+        const summary = document.createElement('summary');
+        summary.className = 'choice-card-summary';
 
         const title = document.createElement('h2');
         title.textContent = column.name || 'Untitled Category';
-        section.appendChild(title);
+        summary.appendChild(title);
 
         const meta = document.createElement('div');
         meta.className = 'choice-meta-row';
         meta.innerHTML = `<span class="status-pill">Top Favourites: ${getColumnTopMode(column)}</span>`;
-        section.appendChild(meta);
+        summary.appendChild(meta);
+
+        details.appendChild(summary);
+
+        const body = document.createElement('div');
+        body.className = 'choice-card-body';
 
         const groups = buildChoiceDisplayGroups(column.id);
         const topMode = getColumnTopMode(column);
 
-        groups.forEach(group => {
-          const subgroupBlock = document.createElement('div');
-          subgroupBlock.className = 'subgroup-block';
+        if (groups.length) {
+          const allSubgroupsBlock = document.createElement('div');
+          allSubgroupsBlock.className = 'subgroup-block';
 
-          const subgroupTitle = document.createElement('div');
-          subgroupTitle.className = 'subgroup-title';
-          subgroupTitle.innerHTML = `<span>${group.subgroup}</span>`;
-          subgroupBlock.appendChild(subgroupTitle);
+          groups.forEach(group => {
+            const subgroupTitle = document.createElement('div');
+            subgroupTitle.className = 'subgroup-title';
+            subgroupTitle.innerHTML = `<span>${group.subgroup}</span>`;
+            allSubgroupsBlock.appendChild(subgroupTitle);
 
-          group.entries.forEach(entry => {
-            const entryWrap = document.createElement('div');
-            entryWrap.className = 'choice-entry';
+            group.entries.forEach(entry => {
+              const entryWrap = document.createElement('div');
+              entryWrap.className = 'choice-entry';
 
-            const label = document.createElement('div');
-            label.className = 'criteria-label';
-            label.textContent = entry.criteria;
-            entryWrap.appendChild(label);
+              const label = document.createElement('div');
+              label.className = 'criteria-label';
+              label.textContent = entry.criteria;
+              entryWrap.appendChild(label);
 
-            if (entry.regularItems.length) {
-              const regularHeader = document.createElement('div');
-              regularHeader.className = 'form-header';
-              regularHeader.textContent = 'Regular';
-              entryWrap.appendChild(regularHeader);
+              if (entry.regularItems.length) {
+                const regularHeader = document.createElement('div');
+                regularHeader.className = 'form-header';
+                regularHeader.textContent = 'Regular';
+                entryWrap.appendChild(regularHeader);
 
-              const regularGrid = document.createElement('div');
-              regularGrid.className = 'row-grid';
+                const regularGrid = document.createElement('div');
+                regularGrid.className = 'row-grid';
 
-              entry.regularItems.forEach(item => {
-                const slug = getRowSlug(item.row);
-                regularGrid.appendChild(createSelectableCard(
-                  item.row,
-                  'regular',
-                  item.criteria,
-                  getSelectedSlug(column.id, item.selectionKey, 'regular') === slug,
-                  () => {
-                    setSelectedSlug(column.id, item.selectionKey, 'regular', slug);
-                    renderAll();
-                  }
-                ));
-              });
+                entry.regularItems.forEach(item => {
+                  const slug = getRowSlug(item.row);
+                  regularGrid.appendChild(createSelectableCard(
+                    item.row,
+                    'regular',
+                    item.criteria,
+                    getSelectedSlug(column.id, item.selectionKey, 'regular') === slug,
+                    () => {
+                      setSelectedSlug(column.id, item.selectionKey, 'regular', slug);
+                      renderAll();
+                    }
+                  ));
+                });
 
-              entryWrap.appendChild(regularGrid);
-            }
+                entryWrap.appendChild(regularGrid);
+              }
 
-            if (entry.shinyItems.length) {
-              const shinyHeader = document.createElement('div');
-              shinyHeader.className = 'form-header';
-              shinyHeader.textContent = 'Shiny';
-              entryWrap.appendChild(shinyHeader);
+              if (entry.shinyItems.length) {
+                const shinyHeader = document.createElement('div');
+                shinyHeader.className = 'form-header';
+                shinyHeader.textContent = 'Shiny';
+                entryWrap.appendChild(shinyHeader);
 
-              const shinyGrid = document.createElement('div');
-              shinyGrid.className = 'row-grid';
+                const shinyGrid = document.createElement('div');
+                shinyGrid.className = 'row-grid';
 
-              entry.shinyItems.forEach(item => {
-                const slug = getRowSlug(item.row);
-                shinyGrid.appendChild(createSelectableCard(
-                  item.row,
-                  'shiny',
-                  item.criteria,
-                  getSelectedSlug(column.id, item.selectionKey, 'shiny') === slug,
-                  () => {
-                    setSelectedSlug(column.id, item.selectionKey, 'shiny', slug);
-                    renderAll();
-                  }
-                ));
-              });
+                entry.shinyItems.forEach(item => {
+                  const slug = getRowSlug(item.row);
+                  shinyGrid.appendChild(createSelectableCard(
+                    item.row,
+                    'shiny',
+                    item.criteria,
+                    getSelectedSlug(column.id, item.selectionKey, 'shiny') === slug,
+                    () => {
+                      setSelectedSlug(column.id, item.selectionKey, 'shiny', slug);
+                      renderAll();
+                    }
+                  ));
+                });
 
-              entryWrap.appendChild(shinyGrid);
-            }
+                entryWrap.appendChild(shinyGrid);
+              }
 
-            subgroupBlock.appendChild(entryWrap);
+              allSubgroupsBlock.appendChild(entryWrap);
+            });
           });
 
-          section.appendChild(subgroupBlock);
-        });
+          body.appendChild(allSubgroupsBlock);
+        }
 
-        // Sub-Group top favourites:
-        // grouped by subgroup, choose among criteria
         if (topMode === 'Sub-Group' || topMode === 'Both') {
           const subgroupGroups = getCriteriaTopFavouriteGroups(column.id);
 
           if (subgroupGroups.length) {
             const topBlock = document.createElement('div');
-            topBlock.className = 'subgroup-block';
+            topBlock.className = 'subgroup-block fav_block';
 
             const topTitle = document.createElement('div');
             topTitle.className = 'subgroup-title';
@@ -1868,18 +2208,16 @@
               topBlock.appendChild(entryWrap);
             });
 
-            section.appendChild(topBlock);
+            body.appendChild(topBlock);
           }
         }
 
-        // Criteria top favourites:
-        // grouped by criteria, choose among subgroups
         if (topMode === 'Criteria' || topMode === 'Both') {
           const criteriaGroups = getSubgroupTopFavouriteGroups(column.id);
 
           if (criteriaGroups.length) {
             const topBlock = document.createElement('div');
-            topBlock.className = 'subgroup-block';
+            topBlock.className = 'subgroup-block fav_block';
 
             const topTitle = document.createElement('div');
             topTitle.className = 'subgroup-title';
@@ -1950,11 +2288,12 @@
               topBlock.appendChild(entryWrap);
             });
 
-            section.appendChild(topBlock);
+            body.appendChild(topBlock);
           }
         }
 
-        choicesRenderEl.appendChild(section);
+        details.appendChild(body);
+        choicesRenderEl.appendChild(details);
       });
     }
 
@@ -2017,7 +2356,9 @@
       headRow.appendChild(actionsHead);
       categoriesHeadEl.appendChild(headRow);
 
-      state.rows.forEach((row, index) => {
+      const visibleRows = getFilteredRows();
+
+      visibleRows.forEach((row, index) => {
         const tr = document.createElement('tr');
 
         const spriteTd = document.createElement('td');
@@ -2168,25 +2509,34 @@
     btnViewFavourites.addEventListener('click', () => setView('favourites'));
     btnViewChoices.addEventListener('click', () => setView('choices'));
     btnViewCategories.addEventListener('click', () => setView('categories'));
-    btnFavouritesRegular.addEventListener('click', () => setFavouritesVariant('regular'));
-    btnFavouritesShiny.addEventListener('click', () => setFavouritesVariant('shiny'));
+
+    headerShinyToggle.addEventListener('change', event => {
+      setFavouritesVariant(event.target.checked ? 'shiny' : 'regular');
+    });
+
+    categoriesSearchInput.addEventListener('input', event => {
+      state.categoriesSearch = event.target.value;
+      renderCategoriesTable();
+      bindCategoriesTableEvents();
+    });
 
     document.getElementById('btn-add-row').addEventListener('click', addRow);
     document.getElementById('btn-add-column').addEventListener('click', addColumn);
 
-    document.getElementById('btn-save-categories').addEventListener('click', event => {
+    btnSaveHeader.addEventListener('click', event => {
       downloadTextFile('favourite.js', exportAsFavouriteJS());
       flashButton(event.currentTarget);
     });
-    document.getElementById('btn-save-choices').addEventListener('click', event => {
-      downloadTextFile('favourite.js', exportAsFavouriteJS());
-      flashButton(event.currentTarget);
-    });
-    document.getElementById('btn-reset-categories').addEventListener('click', resetData);
-    document.getElementById('btn-reset-choices').addEventListener('click', resetData);
+
+    btnResetHeader.addEventListener('click', resetData);
     document.getElementById('btn-sort-rows').addEventListener('click', sortAllRows);
 
     renderAll();
+
+    if (categoriesSearchInput) {
+      categoriesSearchInput.value = state.categoriesSearch;
+    }
+
     setView('favourites');
     setFavouritesVariant('regular');
   </script>

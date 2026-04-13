@@ -11771,112 +11771,112 @@ window.FAVOURITE_POKEMON_DATA = {
   ],
   "selections": {
     "col_colour": {
-      "Kanto__Orange|||Black": {
-        "regular": "charizard",
-        "shiny": "charizard"
-      },
-      "Kanto__Blue|||Purple": {
-        "regular": "omanyte",
-        "shiny": "lapras"
-      },
       "Kanto__Blue": {
-        "regular": "",
-        "shiny": "squirtle"
-      },
-      "Kanto__Brown|||Yellow": {
-        "regular": "pidgeotto",
-        "shiny": ""
-      },
-      "Kanto__Green|||Yellow": {
-        "regular": "caterpie",
-        "shiny": "caterpie"
+        "regular": "horsea",
+        "shiny": "poliwag"
       },
       "Kanto__Green": {
-        "regular": "",
-        "shiny": "bulbasaur"
-      },
-      "Kanto__Green|||Orange": {
-        "regular": "",
-        "shiny": "metapod"
-      },
-      "Kanto__Purple|||Pink": {
-        "regular": "butterfree",
-        "shiny": "butterfree"
-      },
-      "Kanto__Red|||Yellow": {
-        "regular": "magikarp",
-        "shiny": ""
-      },
-      "Kanto__Yellow|||Green": {
-        "regular": "kakuna",
-        "shiny": ""
-      },
-      "Alola__Black|||Red": {
-        "regular": "rattata-alola",
-        "shiny": "rattata-alola"
+        "regular": "ivysaur",
+        "shiny": "muk"
       },
       "Alola__Blue": {
         "regular": "sandshrew-alola",
         "shiny": "sandslash-alola"
       },
-      "Alola__Orange|||Brown": {
-        "regular": "raichu-alola",
-        "shiny": "raichu-alola"
-      },
-      "Kanto__Purple|||Brown": {
-        "regular": "",
-        "shiny": "arbok"
-      },
-      "Kanto__Purple|||Grey": {
-        "regular": "",
-        "shiny": "rattata"
-      },
-      "Kanto__Black|||Purple": {
+      "Kanto__Black": {
         "regular": "gastly",
-        "shiny": ""
+        "shiny": "charizard"
       },
-      "Kanto__Purple|||Blue": {
-        "regular": "nidoran-m",
-        "shiny": "koffing"
+      "Kanto__Brown": {
+        "regular": "raticate",
+        "shiny": "dugtrio"
       },
-      "Kanto__Grey|||Brown": {
-        "regular": "rhyhorn",
-        "shiny": "rhyhorn"
+      "Kanto__Grey": {
+        "regular": "golem",
+        "shiny": "meowth"
       },
-      "Kanto__Brown|||Green": {
-        "regular": "",
-        "shiny": "dodrio"
+      "Kanto__Orange": {
+        "regular": "growlithe",
+        "shiny": "exeggcute"
       },
-      "Kanto__Orange|||Yellow": {
-        "regular": "krabby",
-        "shiny": ""
+      "Kanto__Pink": {
+        "regular": "exeggcute",
+        "shiny": "slowbro-galar"
       },
-      "Kanto__Purple|||Orange": {
-        "regular": "",
-        "shiny": "shellder"
+      "Kanto__Purple": {
+        "regular": "nidorino",
+        "shiny": "tentacool"
       },
-      "Kanto__Pink|||Purple": {
-        "regular": "porygon",
-        "shiny": ""
-      },
-      "Kanto__Blue|||Pink": {
-        "regular": "",
-        "shiny": "dragonair"
-      },
-      "Kanto__Brown|||Red": {
-        "regular": "",
+      "Kanto__Red": {
+        "regular": "hitmonchan",
         "shiny": "sandslash"
       },
-      "Kanto__White|||Green": {
-        "regular": "mankey",
+      "Kanto__White": {
+        "regular": "dewgong",
+        "shiny": "magneton"
+      },
+      "Kanto__Yellow": {
+        "regular": "psyduck",
+        "shiny": "seel"
+      },
+      "Alola__Black": {
+        "regular": "rattata-alola",
         "shiny": ""
       },
-      "Kanto__Brown|||White": {
-        "regular": "",
-        "shiny": "staryu"
+      "Alola__Brown": {
+        "regular": "diglett-alola",
+        "shiny": "raichu-alola"
       },
-      "Kanto__Yellow|||Orange": {
-        "regular": "raichu",
+      "Alola__Green": {
+        "regular": "grimer-alola",
+        "shiny": ""
+      },
+      "Alola__Grey": {
+        "regular": "geodude-alola",
+        "shiny": ""
+      },
+      "Alola__Orange": {
+        "regular": "raichu-alola",
+        "shiny": "geodude-alola"
+      },
+      "Alola__Purple": {
+        "regular": "",
+        "shiny": "vulpix-alola"
+      },
+      "Alola__Red": {
+        "regular": "",
+        "shiny": "rattata-alola"
+      },
+      "Galar__Black": {
+        "regular": "moltres-galar",
+        "shiny": ""
+      },
+      "Galar__White": {
+        "regular": "",
+        "shiny": "ponyta-galar"
+      },
+      "Galar__Yellow": {
+        "regular": "",
+        "shiny": "zapdos-galar"
+      },
+      "Galar__Blue": {
+        "regular": "",
+        "shiny": "articuno-galar"
+      },
+      "Galar__Brown": {
+        "regular": "meowth-galar",
+        "shiny": ""
+      },
+      "Galar__Orange": {
+        "regular": "zapdos-galar",
+        "shiny": ""
+      },
+      "Galar__Pink": {
+        "regular": "ponyta-galar",
+        "shiny": ""
+      },
+      "Galar__Purple": {
+        "regular": "articuno-galar",
         "shiny": ""
       }
     },
@@ -11909,60 +11909,90 @@ window.FAVOURITE_POKEMON_DATA = {
   },
   "topSelections": {
     "col_20c7f019228c5819d84a42642": {
-      "criteria": {},
-      "subgroup": {}
+      "criteria": {
+        "Gen 1": {
+          "regular": "wartortle",
+          "shiny": "ivysaur"
+        },
+        "Gen 2": {
+          "regular": "cyndaquil",
+          "shiny": "cyndaquil"
+        }
+      },
+      "subgroup": {
+        "1st Evo": {
+          "regular": "cyndaquil",
+          "shiny": "cyndaquil"
+        },
+        "2nd Evo": {
+          "regular": "wartortle",
+          "shiny": "croconaw"
+        },
+        "3rd Evo": {
+          "regular": "typhlosion",
+          "shiny": "typhlosion"
+        }
+      }
     },
     "col_colour": {
       "criteria": {
         "Blue": {
-          "regular": "",
-          "shiny": "koffing"
-        },
-        "Black": {
-          "regular": "rattata-alola",
-          "shiny": "charizard"
-        },
-        "Red": {
-          "regular": "",
-          "shiny": "rattata-alola"
-        },
-        "Orange": {
-          "regular": "charizard",
-          "shiny": "metapod"
-        },
-        "Brown": {
-          "regular": "pidgeotto",
-          "shiny": "arbok"
+          "regular": "horsea",
+          "shiny": "poliwag"
         },
         "Green": {
-          "regular": "",
-          "shiny": "bulbasaur"
+          "regular": "ivysaur",
+          "shiny": "muk"
+        },
+        "Black": {
+          "regular": "gastly",
+          "shiny": "charizard"
         },
         "Purple": {
-          "regular": "butterfree",
-          "shiny": ""
+          "regular": "articuno-galar",
+          "shiny": "vulpix-alola"
         },
-        "Yellow": {
-          "regular": "kakuna",
-          "shiny": "caterpie"
+        "Red": {
+          "regular": "hitmonchan",
+          "shiny": "sandslash"
         },
-        "Grey": {
-          "regular": "",
-          "shiny": "rattata"
+        "Brown": {
+          "regular": "raticate",
+          "shiny": "dugtrio"
+        },
+        "White": {
+          "regular": "dewgong",
+          "shiny": "ponyta-galar"
         },
         "Pink": {
-          "regular": "",
-          "shiny": "butterfree"
+          "regular": "ponyta-galar",
+          "shiny": "slowbro-galar"
+        },
+        "Yellow": {
+          "regular": "psyduck",
+          "shiny": "seel"
+        },
+        "Orange": {
+          "regular": "growlithe",
+          "shiny": "exeggcute"
+        },
+        "Grey": {
+          "regular": "golem",
+          "shiny": "meowth"
         }
       },
       "subgroup": {
-        "Alola": {
-          "regular": "rattata-alola",
-          "shiny": "raichu-alola"
-        },
         "Kanto": {
-          "regular": "omanyte",
-          "shiny": "koffing"
+          "regular": "horsea",
+          "shiny": "charizard"
+        },
+        "Alola": {
+          "regular": "sandshrew-alola",
+          "shiny": "rattata-alola"
+        },
+        "Galar": {
+          "regular": "ponyta-galar",
+          "shiny": ""
         }
       }
     }
