@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- 
-Pokemon Home Sprites
-https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
--->
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -19,6 +16,7 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       --header-height: 68px;
       --success-bg: #eef6ed;
       --success-border: #bfd8b9;
+      --danger: #b00020;
     }
 
     * {
@@ -36,7 +34,7 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
     .app-header {
       position: sticky;
       top: 0;
-      z-index: 30;
+      z-index: 40;
       min-height: var(--header-height);
       display: flex;
       align-items: center;
@@ -56,19 +54,22 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       color: var(--kauri-blue);
       letter-spacing: 0.02em;
       opacity: 0.7;
-      text-align: left;
       white-space: nowrap;
     }
 
-    .header-actions {
+    .header-actions,
+    .toolbar,
+    .segmented {
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-end;
       gap: 10px;
+      align-items: center;
     }
 
     button,
-    select {
+    select,
+    input,
+    textarea {
       font: inherit;
     }
 
@@ -100,18 +101,17 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
 
     button.danger {
       background: #fff;
-      color: #b00020;
+      color: var(--danger);
       border-color: #f0c0c0;
     }
 
     button.danger:hover {
-      background: #b00020;
+      background: var(--danger);
       color: #fff;
-      border-color: #b00020;
+      border-color: var(--danger);
     }
 
-    .header-actions button.is-active,
-    .segmented button.is-active,
+    button.is-active,
     .select-card.is-selected {
       background: var(--kauri-blue);
       color: #fff;
@@ -130,41 +130,14 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       display: block;
     }
 
-    .toolbar {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-
-    .segmented {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .favourites-wrap,
-    .categories-wrap,
-    .choices-wrap {
-      max-width: 1220px;
+    .page-wrap {
+      max-width: 1440px;
       margin: 0 auto;
     }
 
-    .category,
-    .choice-category,
-    .choice-top-block {
-      width: 100%;
-      max-width: 1350px;
-      margin: 0 auto 14px auto;
-      border: 1px solid #e8e8e8;
-      border-radius: 12px;
-      padding: 16px 10px 10px 10px;
-      background: #fff;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    .toolbar {
+      justify-content: center;
+      margin-bottom: 14px;
     }
 
     h2 {
@@ -177,28 +150,6 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       color: var(--kauri-blue);
     }
 
-    .category-head,
-    .choice-category-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 0 0 12px 0;
-    }
-
-    .choice-category>summary {
-      list-style: none;
-      cursor: pointer;
-      position: sticky;
-      top: 68px;
-      padding: 10px;
-      background-color: #fff;
-      z-index: 2;
-    }
-
-    .choice-category>summary::-webkit-details-marker {
-      display: none;
-    }
-
     h3 {
       margin: 0;
       font-size: 12px;
@@ -208,10 +159,27 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       color: var(--kauri-blue);
     }
 
-    h4,
+    .card {
+      width: 100%;
+      margin: 0 auto 14px auto;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      padding: 16px 12px 12px 12px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .subgroup-block {
+      border: 1px solid #edf0f7;
+      border-radius: 12px;
+      padding: 12px;
+      background: #fafbfd;
+      margin-bottom: 12px;
+    }
+
     .subgroup-title {
       position: relative;
-      margin: 14px 0 10px 0;
+      margin: 8px 0 12px 0;
       font-size: 14px;
       font-weight: 700;
       text-transform: uppercase;
@@ -221,16 +189,14 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       opacity: 0.75;
     }
 
-    h4 span,
     .subgroup-title span {
       display: inline-block;
       position: relative;
       padding: 0 10px;
-      background: #fff;
+      background: #fafbfd;
       z-index: 2;
     }
 
-    h4:before,
     .subgroup-title:before {
       display: block;
       position: absolute;
@@ -243,17 +209,7 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       z-index: 0;
     }
 
-    .criteria-stack,
-    .choice-criteria,
-    .choice-top-criteria,
-    .preview-criteria {
-      margin-bottom: 14px;
-    }
-
-    .criteria-heading,
-    .choice-criteria-heading,
-    .choice-top-heading,
-    .preview-criteria-heading {
+    .criteria-label {
       margin: 0 0 8px 0;
       font-size: 11px;
       font-weight: 700;
@@ -263,37 +219,18 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       color: var(--kauri-blue);
     }
 
-    .preview-criteria,
-    .choice-criteria {
-      display: inline-block;
-      padding: 5px;
-      border: 1px solid var(--kauri-bluelight);
-      border-radius: 5px;
-      margin: 0 10px 10px 0;
-    }
-
-    .variant-label {
-      margin: 10px 0 6px 0;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      text-align: center;
-      color: #666;
-    }
-
-    .pokemon-row {
+    .row-grid {
       display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 0.5rem;
       flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
     }
 
-    .poke-card {
+    .poke-card,
+    .select-card {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 5px;
       align-items: center;
       width: 82px;
       padding: 0 0 10px 0;
@@ -304,21 +241,10 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       transition: border-color 250ms ease, box-shadow 250ms ease, transform 120ms ease;
     }
 
-    .preview-criteria .poke-card,
     .select-card {
       cursor: pointer;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      align-items: center;
-      width: 60px;
-      padding: 0 0 5px 0;
-      border-radius: 10px;
-      background: var(--kauri-grey);
-      border: 1px solid #ececec;
-      overflow: hidden;
-      transition: border-color 250ms ease, box-shadow 250ms ease, transform 120ms ease;
+      width: 68px;
+      padding-bottom: 6px;
     }
 
     .poke-card:hover,
@@ -333,18 +259,9 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       background: linear-gradient(to bottom, #faf8ef, var(--kauri-grey));
     }
 
-    .poke-card.top_fav .criteria,
-    .poke-card.top_fav .poke-name {
+    .poke-card.top_fav .poke-name,
+    .poke-card.top_fav .criteria-text {
       color: #7a5d11;
-    }
-
-    .select-card.is-selected {
-      border-color: var(--kauri-blue);
-    }
-
-    .select-card.is-selected .select-card-name,
-    .select-card.is-selected .select-card-meta {
-      color: #fff;
     }
 
     .poke-icon,
@@ -355,6 +272,11 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       place-items: center;
       overflow: hidden;
       width: 100%;
+      min-height: 80px;
+    }
+
+    .select-card-icon {
+      min-height: 60px;
     }
 
     .poke-icon[data-shiny="yes"]:before,
@@ -387,304 +309,55 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
 
     .poke-icon img,
     .select-card-icon img {
-      position: relative;
       width: 80px;
       height: 80px;
       image-rendering: auto;
       display: block;
     }
 
-    .preview-criteria .poke-icon img,
-    .choice-criteria .select-card-icon img,
-    .choice-top-criteria .select-card-icon img {
-      position: relative;
-      width: 50px;
-      height: 50px;
-      image-rendering: auto;
-      display: block;
+    .select-card-icon img {
+      width: 52px;
+      height: 52px;
     }
 
-    .poke-meta {
+    .poke-meta,
+    .select-card-meta {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 2px;
       min-width: 0;
-      padding: 0 10px;
+      padding: 0 8px;
     }
 
-    .select-card-meta-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0px;
-      min-width: 0;
-      padding: 0 10px;
-    }
-
-    .criteria {
+    .criteria-text {
       font-size: 9px;
       font-weight: 600;
-      color: #111;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      overflow: hidden;
-      text-overflow: ellipsis;
       text-align: center;
     }
 
-    .preview-criteria .criteria,
-    .select-card-meta {
-      font-size: 6px;
-      font-weight: 600;
-      color: #111;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: center;
+    .select-card-meta .criteria-text {
+      font-size: 7px;
     }
 
     .poke-name {
       font-size: 12px;
-      color: var(--kauri-blue);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-transform: capitalize;
       text-align: center;
+      text-transform: capitalize;
     }
 
-    .preview-criteria .poke-name,
-    .select-card-name {
+    .select-card .poke-name {
       font-size: 10px;
-      font-weight: normal;
-      color: var(--kauri-blue);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-transform: capitalize;
-      text-align: center;
     }
 
-    .empty-note,
-    .helper-note {
+    .helper-note,
+    .empty-note {
       color: #666;
       font-size: 13px;
       text-align: center;
       padding: 10px;
-    }
-
-    .helper-note {
-      padding-top: 2px;
-      padding-bottom: 14px;
-    }
-
-    .categories-editor {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    details.cat-editor {
-      border: 1px solid #e8e8e8;
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-    }
-
-    details.cat-editor[open] {
-      border-color: #dfe6f6;
-    }
-
-    details.cat-editor.heading-cat {
-      box-shadow: none;
-      border: none;
-      background: transparent;
-    }
-
-    details.cat-editor.heading-cat summary {
-      background: transparent;
-    }
-
-    .cat-editor summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      background: var(--kauri-bluefaint);
-      user-select: none;
-    }
-
-    .cat-editor summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .summary-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .summary-type {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--kauri-blue);
-      border: 1px solid #cfdaf4;
-      background: #fff;
-      border-radius: 999px;
-      padding: 4px 8px;
-      flex: 0 0 auto;
-    }
-
-    .summary-title {
-      font-size: 14px;
-      color: #1d2f63;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .summary-actions {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .summary-actions button {
-      padding: 6px 8px;
-      font-size: 12px;
-      min-width: 32px;
-      line-height: 1;
-    }
-
-    .cat-editor-body {
-      padding: 14px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .cat-editor-top {
-      display: flex;
-      gap: 10px;
-      align-items: flex-end;
-      flex-wrap: wrap;
-    }
-
-    .field-grow {
-      flex: 1;
-      min-width: 260px;
-    }
-
-    .field-short {
-      width: 180px;
-      flex: 0 0 auto;
-    }
-
-    label {
-      display: block;
-      position: relative;
-      margin-bottom: -5px;
-      font-size: 0.6em;
-      color: var(--kauri-blue);
-      z-index: 1;
-      background-color: #fff;
-      width: fit-content;
-      padding: 0 6px 0 0;
-      text-transform: uppercase;
-      font-weight: normal;
-      letter-spacing: 0.08em;
-    }
-
-    input,
-    textarea,
-    select.editor-select {
-      border: 1px solid var(--kauri-darkgrey);
-      border-radius: 10px;
-      padding: 10px;
-      font-size: 15px;
-      width: 100%;
-      background: #fff;
-    }
-
-    textarea {
-      height: 320px;
-      resize: vertical;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 13px;
-      line-height: 1.3;
-    }
-
-    input:focus,
-    textarea:focus,
-    select.editor-select:focus {
-      outline: none;
-      border-color: var(--kauri-blue);
-      box-shadow: 0 0 0 2px var(--kauri-bluelight);
-    }
-
-    .preview-area {
-      display: grid;
-      gap: 14px;
-      padding-top: 2px;
-    }
-
-    .preview-block {
-      border: 1px solid #ececec;
-      border-radius: 12px;
-      background: #fafbfd;
-      padding: 12px;
-    }
-
-    .preview-label,
-    .top-fav-label {
-      margin: 0 0 10px 0;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--kauri-blue);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      text-align: center;
-    }
-
-    .preview-block .subgroup-title span {
-      background: #fafbfd;
-    }
-
-    .choice-category-body {
-      display: grid;
-      gap: 14px;
-    }
-
-    .choice-subgroup {
-      border: 1px solid #edf0f7;
-      border-radius: 12px;
-      padding: 12px;
-      background: #fafbfd;
-    }
-
-    .choice-top-criteria {
-      border: 1px solid #f1e3b0;
-      border-radius: 12px;
-      padding: 5px;
-      background: transparent;
-      display: inline-block;
-      margin: 0 5px 5px 0;
-    }
-
-    .choice-top-block {
-      background: #fffdf7;
-      border-color: #f1e3b0;
-    }
-
-    .choice-top-block .subgroup-title span {
-      background: #fffdf7;
     }
 
     .status-pill {
@@ -708,16 +381,224 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       margin: 0 0 12px 0;
     }
 
+    .table-shell {
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .table-scroll {
+      overflow: auto;
+      max-height: calc(100vh - 180px);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1200px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #edf0f7;
+      border-right: 1px solid #edf0f7;
+      vertical-align: top;
+      background: #fff;
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: none;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: #f9fbff;
+    }
+
+    .fixed-col {
+      position: sticky;
+      left: 0;
+      z-index: 6;
+      background: #fff;
+    }
+
+    thead .fixed-col {
+      background: #f9fbff;
+      z-index: 7;
+    }
+
+    .image-col {
+      width: 160px;
+      min-width: 160px;
+    }
+
+    .name-col {
+      width: 180px;
+      min-width: 180px;
+    }
+
+    .dex-col {
+      width: 110px;
+      min-width: 110px;
+    }
+
+    .category-col {
+      width: 210px;
+      min-width: 210px;
+    }
+
+    .th-inner,
+    .td-inner {
+      padding: 10px;
+    }
+
+    .header-block {
+      display: grid;
+      gap: 8px;
+    }
+
+    .header-actions-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .mini-btn {
+      padding: 6px 8px;
+      min-width: 32px;
+      line-height: 1;
+      font-size: 12px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 10px;
+      color: var(--kauri-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .cell-input,
+    .header-input,
+    .header-select {
+      width: 100%;
+      border: 1px solid var(--kauri-darkgrey);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .cell-input:focus,
+    .header-input:focus,
+    .header-select:focus {
+      outline: none;
+      border-color: var(--kauri-blue);
+      box-shadow: 0 0 0 2px var(--kauri-bluelight);
+    }
+
+    .sprite-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sprite-pair {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .sprite-thumb {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      background: var(--kauri-grey);
+      border: 1px solid #ececec;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sprite-thumb img {
+      width: 52px;
+      height: 52px;
+      display: block;
+    }
+
+    .sprite-thumb[data-shiny="yes"]:before {
+      display: block;
+      position: absolute;
+      content: " ";
+      width: 16px;
+      height: 16px;
+      background-image: url(images/shiny_icon.png);
+      background-size: contain;
+      top: 4px;
+      left: 4px;
+      opacity: 0.2;
+    }
+
+    .row-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
     .save-flash {
       background: var(--success-bg) !important;
       border-color: var(--success-border) !important;
       color: #234d20 !important;
     }
 
-    @media (max-width: 760px) {
+    .choice-entry {
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 10px 12px 0;
+      padding: 10px;
+      border: 1px solid #edf0f7;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .choice-entry .criteria-label {
+      margin-top: 0;
+    }
+
+    .choice-entry .row-grid {
+      min-width: 160px;
+      margin-bottom: 8px;
+    }
+
+    .choice-entry .row-grid:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-header {
+      margin: 6px 0 6px 0;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-align: center;
+      color: #666;
+    }
+
+    .choice-entry .form-header:first-of-type {
+      margin-top: 0;
+    }
+
+    @media (max-width: 860px) {
       .app-header {
-        align-items: stretch;
         flex-direction: column;
+        align-items: stretch;
       }
 
       .app-title {
@@ -728,19 +609,6 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       .header-actions,
       .toolbar {
         justify-content: center;
-      }
-
-      .cat-editor summary {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .cat-editor-top {
-        align-items: stretch;
-      }
-
-      .field-short {
-        width: 100%;
       }
     }
   </style>
@@ -758,7 +626,7 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
 
   <main id="main">
     <section id="favourites-view" class="view is-active">
-      <div class="favourites-wrap">
+      <div class="page-wrap">
         <div class="toolbar">
           <div class="segmented" aria-label="Favourites variant">
             <button id="btn-favourites-regular" class="is-active" type="button">Regular</button>
@@ -770,7 +638,7 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
     </section>
 
     <section id="choices-view" class="view">
-      <div class="choices-wrap">
+      <div class="page-wrap">
         <div class="toolbar">
           <button id="btn-save-choices" class="ghost" type="button" title="Downloads a favourite.js file">Save</button>
           <button id="btn-reset-choices" class="danger" type="button"
@@ -781,319 +649,188 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
     </section>
 
     <section id="categories-view" class="view">
-      <div class="categories-wrap">
+      <div class="page-wrap">
         <div class="toolbar">
-          <button id="btn-add-category" type="button">Add Category</button>
-          <button id="btn-add-heading" type="button">Add Heading</button>
+          <button id="btn-add-row" type="button">Add Row</button>
+          <button id="btn-add-column" type="button">Add Category</button>
+          <button id="btn-sort-rows" type="button">Sort Rows</button>
           <button id="btn-save-categories" class="ghost" type="button"
             title="Downloads a favourite.js file">Save</button>
           <button id="btn-reset-categories" class="danger" type="button"
             title="Resets to favourite.js defaults">Reset</button>
         </div>
-        <div id="categories-editor" class="categories-editor"></div>
+        <div class="table-shell">
+          <div class="table-scroll">
+            <table>
+              <thead id="categories-head"></thead>
+              <tbody id="categories-body"></tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <script src="favourite.js"></script>
   <script>
-    function uid() {
-      return Math.random().toString(16).slice(2) + Date.now().toString(16);
+    function uid(prefix = "id") {
+      return `${prefix}_${Math.random().toString(16).slice(2)}${Date.now().toString(16)}`;
     }
 
-    function structuredCloneFallback(value) {
-      if (typeof structuredClone === "function") return structuredClone(value);
+    function deepClone(value) {
+      if (typeof structuredClone === 'function') return structuredClone(value);
       return JSON.parse(JSON.stringify(value));
     }
 
-    function slugifyPokemon(pokemonRaw) {
-      return String(pokemonRaw || "")
+    function slugifyPokemon(raw) {
+      return String(raw || '')
         .trim()
         .toLowerCase()
-        .replace(/[|'’]/g, "")
-        .replace(/\s+/g, "-");
+        .replace(/[|'’]/g, '')
+        .replace(/[.]/g, '-')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
     }
 
-    function cleanPokemonName(rawValue) {
-      return String(rawValue || "")
-        .trim()
-        .replace(/\*+$/g, "")
-        .replace(/-s$/i, "")
-        .trim();
+    function iconPath(slug, isShiny) {
+      return `images/pokemon/${slug}/${isShiny ? 'shiny.png' : 'regular.png'}`;
     }
 
-    function normalisePokemon(rawValue) {
-      const displayName = cleanPokemonName(rawValue);
-      if (!displayName) return null;
-      return {
-        displayName,
-        pokemonSlug: slugifyPokemon(displayName)
-      };
+    function cleanCellValue(value) {
+      return String(value || '').trim();
     }
 
-    function uniquePokemonList(list) {
-      const seen = new Set();
-      const output = [];
-      for (const item of list) {
-        if (!item || !item.pokemonSlug) continue;
-        if (seen.has(item.pokemonSlug)) continue;
-        seen.add(item.pokemonSlug);
-        output.push(item);
-      }
-      return output;
+    function pokemonSortValue(row) {
+      const dexNumber = Number.parseInt(String(row.dex || '').trim(), 10);
+      const dex = Number.isFinite(dexNumber) ? dexNumber : Number.MAX_SAFE_INTEGER;
+      const name = String(row.name || '').trim().toLowerCase();
+      return { dex, name };
     }
 
-    function parsePokemonCsv(value) {
-      return uniquePokemonList(
-        String(value || "")
-          .split(",")
-          .map(part => normalisePokemon(part))
-      );
-    }
-
-    function makeEntryKey(subgroupTitle, criteria) {
-      return `${String(subgroupTitle || "").trim()}__${String(criteria || "").trim()}`;
-    }
-
-    function makePokemonSignature(list) {
-      return uniquePokemonList(list)
-        .map(item => item.pokemonSlug)
-        .sort()
-        .join("|");
-    }
-
-    function makeEntryMatchKey(entry) {
-      return `${String(entry.criteria || "").trim()}__${makePokemonSignature(entry.pokemon || [])}`;
-    }
-
-    function reconcileCategorySelections(categoryId, previousText, nextText) {
-      const previousSections = parseCategoryStructure(previousText);
-      const nextSections = parseCategoryStructure(nextText);
-
-      const previousEntries = previousSections.flatMap(section => section.entries);
-      const nextEntries = nextSections.flatMap(section => section.entries);
-
-      const selectionBucket = state.selections[categoryId];
-      if (!selectionBucket || typeof selectionBucket !== "object") return;
-
-      const previousByMatchKey = new Map();
-
-      previousEntries.forEach(entry => {
-        const matchKey = makeEntryMatchKey(entry);
-        if (!previousByMatchKey.has(matchKey)) {
-          previousByMatchKey.set(matchKey, []);
-        }
-        previousByMatchKey.get(matchKey).push(entry);
+    function sortRows(rows) {
+      rows.sort((a, b) => {
+        const left = pokemonSortValue(a);
+        const right = pokemonSortValue(b);
+        if (left.dex !== right.dex) return left.dex - right.dex;
+        return left.name.localeCompare(right.name);
       });
-
-      const nextBucket = {};
-      const usedPreviousKeys = new Set();
-
-      nextEntries.forEach(entry => {
-        let matchedPreviousKey = "";
-
-        if (selectionBucket[entry.key]) {
-          matchedPreviousKey = entry.key;
-        } else {
-          const matchKey = makeEntryMatchKey(entry);
-          const candidates = previousByMatchKey.get(matchKey) || [];
-          const match = candidates.find(candidate =>
-            !usedPreviousKeys.has(candidate.key) && selectionBucket[candidate.key]
-          );
-
-          if (match) {
-            matchedPreviousKey = match.key;
-          }
-        }
-
-        if (!matchedPreviousKey) return;
-
-        usedPreviousKeys.add(matchedPreviousKey);
-
-        const savedSelection = selectionBucket[matchedPreviousKey];
-        if (!savedSelection || typeof savedSelection !== "object") return;
-
-        const validSlugs = new Set(entry.pokemon.map(pokemon => pokemon.pokemonSlug));
-
-        nextBucket[entry.key] = {
-          regular: validSlugs.has(savedSelection.regular) ? savedSelection.regular || "" : "",
-          shiny: validSlugs.has(savedSelection.shiny) ? savedSelection.shiny || "" : ""
-        };
-      });
-
-      state.selections[categoryId] = nextBucket;
     }
 
-    function ensureHeaderFavouritesToggle() {
-      let toggleButton = document.getElementById("btn-header-favourites-toggle");
-
-      if (!toggleButton) {
-        toggleButton = document.createElement("button");
-        toggleButton.id = "btn-header-favourites-toggle";
-        toggleButton.type = "button";
-
-        toggleButton.addEventListener("click", () => {
-          const nextVariant = state.favouritesVariant === "regular" ? "shiny" : "regular";
-          setFavouritesVariant(nextVariant);
-        });
-      }
-
-      toggleButton.textContent = state.favouritesVariant === "regular" ? "Regular" : "Shiny";
-      toggleButton.classList.add("is-active");
-
-      return toggleButton;
+    function getColumnTopMode(column) {
+      const mode = String(column && column.topFavourites || 'No').trim();
+      if (mode === 'Yes') return 'Criteria';
+      if (mode === 'Criteria' || mode === 'Sub-Group' || mode === 'Both') return mode;
+      return 'No';
     }
 
-    function parseCategoryStructure(text) {
-      const lines = String(text || "")
-        .split("\n")
-        .map(line => line.trim())
-        .filter(Boolean);
+    function normaliseData(source) {
+      const columns = Array.isArray(source && source.columns) ? source.columns : [];
+      const rows = Array.isArray(source && source.rows) ? source.rows : [];
 
-      const sections = [];
-      let currentSection = { title: "", entries: [] };
+      const normalisedColumns = columns.map((column, index) => {
+        const rawMode = String(column.topFavourites || 'No').trim();
+        const validModes = ['No', 'Criteria', 'Sub-Group', 'Both', 'Yes'];
+        const fallbackMode = validModes.includes(rawMode) ? rawMode : 'No';
 
-      function pushCurrentSectionIfNeeded() {
-        if (currentSection.entries.length || currentSection.title) {
-          sections.push(currentSection);
-        }
-      }
-
-      for (const line of lines) {
-        const headingMatch = line.match(/^---\s*(.+?)\s*---$/);
-        if (headingMatch) {
-          pushCurrentSectionIfNeeded();
-          currentSection = { title: (headingMatch[1] || "").trim(), entries: [] };
-          continue;
-        }
-
-        const parts = line.split("|").map(part => part.trim());
-        if (parts.length < 2) continue;
-
-        const criteria = parts[0];
-        if (!criteria) continue;
-
-        let pokemonList = [];
-        if (parts.length >= 3) {
-          pokemonList = uniquePokemonList([
-            normalisePokemon(parts[1]),
-            normalisePokemon(parts[2])
-          ]);
-        } else {
-          pokemonList = parsePokemonCsv(parts[1]);
-        }
-
-        if (!pokemonList.length) continue;
-
-        currentSection.entries.push({
-          criteria,
-          key: makeEntryKey(currentSection.title, criteria),
-          pokemon: pokemonList
-        });
-      }
-
-      pushCurrentSectionIfNeeded();
-      return sections;
-    }
-
-    function normaliseLoadedData(source) {
-      if (Array.isArray(source)) {
         return {
-          version: 2,
-          items: source.map(item => ({
-            id: String(item.id || uid()),
-            type: item.type === "heading" ? "heading" : "category",
-            title: String(item.title || "").trim(),
-            text: String(item.text || ""),
-            topFavourite: "No"
-          })),
-          selections: {},
-          topSelections: {}
+          id: String(column.id || uid('col')),
+          name: String(column.name || `Category ${index + 1}`).trim(),
+          topFavourites: fallbackMode === 'Yes' ? 'Criteria' : fallbackMode
         };
-      }
+      });
 
-      const items = Array.isArray(source && source.items) ? source.items : [];
-      const rawTopSelections = source && typeof source.topSelections === "object" && source.topSelections
-        ? structuredCloneFallback(source.topSelections)
+      const normalisedRows = rows.map((row, index) => {
+        const cells = {};
+        const rawCells = row && typeof row.cells === 'object' && row.cells ? row.cells : {};
+        normalisedColumns.forEach(column => {
+          cells[column.id] = cleanCellValue(rawCells[column.id] || '');
+        });
+
+        return {
+          id: String(row.id || uid('row')),
+          dex: String(row.dex || '').trim(),
+          name: String(row.name || `Pokemon ${index + 1}`).trim(),
+          cells
+        };
+      });
+
+      const rawTopSelections = source && typeof source.topSelections === 'object' && source.topSelections
+        ? deepClone(source.topSelections)
         : {};
 
       const normalisedTopSelections = {};
-      Object.keys(rawTopSelections).forEach(categoryId => {
-        const bucket = rawTopSelections[categoryId];
-        if (!bucket || typeof bucket !== "object") return;
+      Object.keys(rawTopSelections).forEach(columnId => {
+        const bucket = rawTopSelections[columnId];
+        if (!bucket || typeof bucket !== 'object') return;
 
         const looksLegacy =
           !bucket.criteria &&
           !bucket.subgroup &&
-          Object.values(bucket).some(value => value && typeof value === "object" && ("regular" in value || "shiny" in value));
+          Object.values(bucket).some(value => value && typeof value === 'object' && ('regular' in value || 'shiny' in value));
 
         if (looksLegacy) {
-          normalisedTopSelections[categoryId] = {
-            criteria: structuredCloneFallback(bucket),
+          normalisedTopSelections[columnId] = {
+            criteria: deepClone(bucket),
             subgroup: {}
           };
         } else {
-          normalisedTopSelections[categoryId] = {
-            criteria: bucket.criteria && typeof bucket.criteria === "object" ? structuredCloneFallback(bucket.criteria) : {},
-            subgroup: bucket.subgroup && typeof bucket.subgroup === "object" ? structuredCloneFallback(bucket.subgroup) : {}
+          normalisedTopSelections[columnId] = {
+            criteria: bucket.criteria && typeof bucket.criteria === 'object' ? deepClone(bucket.criteria) : {},
+            subgroup: bucket.subgroup && typeof bucket.subgroup === 'object' ? deepClone(bucket.subgroup) : {}
           };
         }
       });
 
       return {
-        version: 2,
-        items: items.map(item => {
-          const rawMode = String(item.topFavourite || "No").trim();
-          const validModes = ["No", "Criteria", "Sub-Group", "Both", "Yes"];
-          const fallbackMode = validModes.includes(rawMode) ? rawMode : "No";
-          return {
-            id: String(item.id || uid()),
-            type: item.type === "heading" ? "heading" : "category",
-            title: String(item.title || "").trim(),
-            text: String(item.text || ""),
-            topFavourite: item.type === "heading"
-              ? "No"
-              : (fallbackMode === "Yes" ? "Criteria" : fallbackMode)
-          };
-        }),
-        selections: source && typeof source.selections === "object" && source.selections
-          ? structuredCloneFallback(source.selections)
-          : {},
+        version: 3,
+        columns: normalisedColumns,
+        rows: normalisedRows,
+        selections: source && typeof source.selections === 'object' && source.selections ? deepClone(source.selections) : {},
         topSelections: normalisedTopSelections
       };
     }
 
-    const LOADED_DATA = normaliseLoadedData(window.FAVOURITE_POKEMON_DATA);
+    const LOADED_DATA = normaliseData(window.FAVOURITE_POKEMON_DATA || {});
+    const DEFAULT_DATA = deepClone(LOADED_DATA);
 
-    const DEFAULT_DATA = {
-      version: 2,
-      items: LOADED_DATA.items.length ? LOADED_DATA.items : [
-        {
-          id: uid(),
-          type: "category",
-          title: "Starters",
-          topFavourite: "Yes",
-          text: [
-            "--- Kanto ---",
-            "1st Evo | Bulbasaur, Charmander, Squirtle",
-            "--- Johto ---",
-            "1st Evo | Chikorita, Cyndaquil, Totodile"
-          ].join("\n")
-        }
-      ],
-      selections: LOADED_DATA.selections,
-      topSelections: LOADED_DATA.topSelections
+    const state = {
+      columns: deepClone(DEFAULT_DATA.columns),
+      rows: deepClone(DEFAULT_DATA.rows),
+      selections: deepClone(DEFAULT_DATA.selections || {}),
+      topSelections: deepClone(DEFAULT_DATA.topSelections || {}),
+      currentView: 'favourites',
+      favouritesVariant: 'regular'
     };
 
-    function exportAsFavouriteJS(state) {
+    const favouritesViewEl = document.getElementById('favourites-view');
+    const choicesViewEl = document.getElementById('choices-view');
+    const categoriesViewEl = document.getElementById('categories-view');
+
+    const favouritesRenderEl = document.getElementById('favourites-render');
+    const choicesRenderEl = document.getElementById('choices-render');
+    const categoriesHeadEl = document.getElementById('categories-head');
+    const categoriesBodyEl = document.getElementById('categories-body');
+
+    const btnViewFavourites = document.getElementById('btn-view-favourites');
+    const btnViewChoices = document.getElementById('btn-view-choices');
+    const btnViewCategories = document.getElementById('btn-view-categories');
+    const btnFavouritesRegular = document.getElementById('btn-favourites-regular');
+    const btnFavouritesShiny = document.getElementById('btn-favourites-shiny');
+
+    function exportAsFavouriteJS() {
       const payload = {
-        version: 2,
-        items: state.items.map(item => ({
-          id: item.id,
-          type: item.type,
-          title: item.title,
-          text: item.text,
-          ...(item.type === "category" ? { topFavourite: item.topFavourite || "No" } : {})
+        version: 3,
+        columns: state.columns.map(column => ({
+          id: column.id,
+          name: column.name,
+          topFavourites: column.topFavourites || 'No'
+        })),
+        rows: state.rows.map(row => ({
+          id: row.id,
+          dex: row.dex,
+          name: row.name,
+          cells: row.cells
         })),
         selections: state.selections,
         topSelections: state.topSelections
@@ -1102,9 +839,9 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
     }
 
     function downloadTextFile(filename, text) {
-      const blob = new Blob([text], { type: "text/javascript;charset=utf-8" });
+      const blob = new Blob([text], { type: 'text/javascript;charset=utf-8' });
       const url = URL.createObjectURL(blob);
-      const anchor = document.createElement("a");
+      const anchor = document.createElement('a');
       anchor.href = url;
       anchor.download = filename;
       document.body.appendChild(anchor);
@@ -1113,1058 +850,1345 @@ https://projectpokemon.org/home/docs/spriteindex_148/home-sprites-gen-4-r131/
       URL.revokeObjectURL(url);
     }
 
+    function flashButton(button) {
+      button.classList.add('save-flash');
+      setTimeout(() => button.classList.remove('save-flash'), 900);
+    }
+
     function resetData() {
-      const base = location.href.split("?")[0];
-      location.href = base + "?v=" + Date.now();
+      const base = location.href.split('?')[0];
+      location.href = base + '?v=' + Date.now();
     }
 
-    function iconPath(pokemonSlug, isShiny) {
-      const file = isShiny ? "shiny.png" : "regular.png";
-      return `images/pokemon/${pokemonSlug}/${file}`;
+    function setView(viewName) {
+      state.currentView = viewName;
+      favouritesViewEl.classList.toggle('is-active', viewName === 'favourites');
+      choicesViewEl.classList.toggle('is-active', viewName === 'choices');
+      categoriesViewEl.classList.toggle('is-active', viewName === 'categories');
+      btnViewFavourites.classList.toggle('is-active', viewName === 'favourites');
+      btnViewChoices.classList.toggle('is-active', viewName === 'choices');
+      btnViewCategories.classList.toggle('is-active', viewName === 'categories');
     }
 
-    const state = {
-      items: structuredCloneFallback(DEFAULT_DATA.items),
-      selections: structuredCloneFallback(DEFAULT_DATA.selections || {}),
-      topSelections: structuredCloneFallback(DEFAULT_DATA.topSelections || {}),
-      currentView: "favourites",
-      favouritesVariant: "regular"
-    };
-
-    const favouritesViewEl = document.getElementById("favourites-view");
-    const choicesViewEl = document.getElementById("choices-view");
-    const categoriesViewEl = document.getElementById("categories-view");
-
-    const favouritesRenderEl = document.getElementById("favourites-render");
-    const choicesRenderEl = document.getElementById("choices-render");
-    const categoriesEditorEl = document.getElementById("categories-editor");
-
-    const btnViewFavourites = document.getElementById("btn-view-favourites");
-    const btnViewChoices = document.getElementById("btn-view-choices");
-    const btnViewCategories = document.getElementById("btn-view-categories");
-    const btnFavouritesRegular = document.getElementById("btn-favourites-regular");
-    const btnFavouritesShiny = document.getElementById("btn-favourites-shiny");
-
-    function getCategoryItems() {
-      return state.items.filter(item => item.type === "category");
+    function setFavouritesVariant(variant) {
+      state.favouritesVariant = variant === 'shiny' ? 'shiny' : 'regular';
+      btnFavouritesRegular.classList.toggle('is-active', state.favouritesVariant === 'regular');
+      btnFavouritesShiny.classList.toggle('is-active', state.favouritesVariant === 'shiny');
+      renderFavourites();
     }
 
-    function getCategoryTopMode(category) {
-      const mode = String(category && category.topFavourite || "No").trim();
-      if (mode === "Yes") return "Criteria";
-      if (mode === "Criteria" || mode === "Sub-Group" || mode === "Both") return mode;
-      return "No";
+    function moveColumn(columnId, direction) {
+      const index = state.columns.findIndex(column => column.id === columnId);
+      if (index < 0) return;
+      const nextIndex = index + direction;
+      if (nextIndex < 0 || nextIndex >= state.columns.length) return;
+      const [column] = state.columns.splice(index, 1);
+      state.columns.splice(nextIndex, 0, column);
+      renderAll();
     }
 
-    function getCriteriaTopFavouriteGroups(category) {
-      const sections = parseCategoryStructure(category.text);
-      const criteriaMap = new Map();
+    function moveRow(rowId, direction) {
+      const index = state.rows.findIndex(row => row.id === rowId);
+      if (index < 0) return;
+      const nextIndex = index + direction;
+      if (nextIndex < 0 || nextIndex >= state.rows.length) return;
+      const [row] = state.rows.splice(index, 1);
+      state.rows.splice(nextIndex, 0, row);
+      renderCategoriesTable();
+    }
 
-      for (const section of sections) {
-        for (const entry of section.entries) {
-          const regularSlug = getSelectedSlug(category.id, entry.key, "regular");
-          const shinySlug = getSelectedSlug(category.id, entry.key, "shiny");
-          const regularPokemon = getPokemonBySlug(entry.pokemon, regularSlug);
-          const shinyPokemon = getPokemonBySlug(entry.pokemon, shinySlug);
+    function addColumn() {
+      const column = { id: uid('col'), name: 'New Category', topFavourites: 'No' };
+      state.columns.push(column);
+      state.rows.forEach(row => { row.cells[column.id] = ''; });
+      renderAll();
+    }
 
-          if (!criteriaMap.has(entry.criteria)) {
-            criteriaMap.set(entry.criteria, {
-              key: entry.criteria,
-              label: entry.criteria,
-              regular: [],
-              shiny: []
-            });
-          }
+    function removeColumn(columnId) {
+      state.columns = state.columns.filter(column => column.id !== columnId);
+      state.rows.forEach(row => { delete row.cells[columnId]; });
+      delete state.selections[columnId];
+      delete state.topSelections[columnId];
+      renderAll();
+    }
 
-          const group = criteriaMap.get(entry.criteria);
-          if (regularPokemon) group.regular.push(regularPokemon);
-          if (shinyPokemon) group.shiny.push(shinyPokemon);
-        }
+    function addRow() {
+      const cells = {};
+      state.columns.forEach(column => { cells[column.id] = ''; });
+      state.rows.push({ id: uid('row'), dex: '', name: '', cells });
+      renderCategoriesTable();
+      bindCategoriesTableEvents();
+    }
+
+    function removeRow(rowId) {
+      state.rows = state.rows.filter(row => row.id !== rowId);
+      pruneSelections();
+      renderAll();
+    }
+
+    function sortAllRows() {
+      sortRows(state.rows);
+      renderAll();
+    }
+
+    function getRowSlug(row) {
+      return slugifyPokemon(row.name);
+    }
+
+    function getSelectionBucket(columnId) {
+      if (!state.selections[columnId] || typeof state.selections[columnId] !== 'object') {
+        state.selections[columnId] = {};
+      }
+      return state.selections[columnId];
+    }
+
+    function getTopSelectionBucket(columnId, scope) {
+      if (!state.topSelections[columnId] || typeof state.topSelections[columnId] !== 'object') {
+        state.topSelections[columnId] = { criteria: {}, subgroup: {} };
       }
 
-      return Array.from(criteriaMap.values())
-        .map(group => ({
-          key: group.key,
-          label: group.label,
-          regular: uniquePokemonList(group.regular),
-          shiny: uniquePokemonList(group.shiny)
-        }))
-        .filter(group => group.regular.length > 1 || group.shiny.length > 1);
+      if (!state.topSelections[columnId].criteria || typeof state.topSelections[columnId].criteria !== 'object') {
+        state.topSelections[columnId].criteria = {};
+      }
+
+      if (!state.topSelections[columnId].subgroup || typeof state.topSelections[columnId].subgroup !== 'object') {
+        state.topSelections[columnId].subgroup = {};
+      }
+
+      return scope === 'subgroup'
+        ? state.topSelections[columnId].subgroup
+        : state.topSelections[columnId].criteria;
     }
 
-    function getSubgroupTopFavouriteGroups(category) {
-      const sections = parseCategoryStructure(category.text);
+    function splitVariantValue(value, fallback = '') {
+      const clean = cleanCellValue(value);
+      const fallbackClean = cleanCellValue(fallback);
 
-      return sections
-        .map(section => {
-          const regular = [];
-          const shiny = [];
+      if (!clean) {
+        return {
+          regular: fallbackClean,
+          shiny: fallbackClean
+        };
+      }
 
-          for (const entry of section.entries) {
-            const regularSlug = getSelectedSlug(category.id, entry.key, "regular");
-            const shinySlug = getSelectedSlug(category.id, entry.key, "shiny");
-            const regularPokemon = getPokemonBySlug(entry.pokemon, regularSlug);
-            const shinyPokemon = getPokemonBySlug(entry.pokemon, shinySlug);
+      const parts = clean.split('/');
+      if (parts.length === 1) {
+        const single = parts[0].trim();
+        return {
+          regular: single,
+          shiny: single
+        };
+      }
 
-            if (regularPokemon) regular.push(regularPokemon);
-            if (shinyPokemon) shiny.push(shinyPokemon);
-          }
+      const regular = (parts.shift() || '').trim();
+      const shiny = parts.join('/').trim();
+
+      return {
+        regular: regular || shiny || fallbackClean,
+        shiny: shiny || regular || fallbackClean
+      };
+    }
+
+    function getVariantText(value, variant) {
+      if (!value || typeof value !== 'object') return String(value || '').trim();
+      return String(value[variant] || value.regular || value.shiny || '').trim();
+    }
+
+    function formatVariantPair(value) {
+      const regular = getVariantText(value, 'regular');
+      const shiny = getVariantText(value, 'shiny');
+      return regular === shiny ? regular : `${regular} / ${shiny}`;
+    }
+
+    function makeVariantKey(value) {
+      const regular = getVariantText(value, 'regular');
+      const shiny = getVariantText(value, 'shiny');
+      return regular === shiny ? regular : `${regular}|||${shiny}`;
+    }
+
+    function splitCellValue(value) {
+      const clean = cleanCellValue(value);
+      if (!clean) {
+        return {
+          subgroup: { regular: '', shiny: '' },
+          criteria: { regular: '', shiny: '' }
+        };
+      }
+
+      const parts = clean.split(',');
+      const subgroupPart = (parts.shift() || '').trim();
+      const criteriaPart = parts.join(',').trim();
+
+      const subgroup = splitVariantValue(subgroupPart);
+      const criteria = criteriaPart
+        ? splitVariantValue(criteriaPart)
+        : { ...subgroup };
+
+      return { subgroup, criteria };
+    }
+
+    function makeEntryKey(subgroup, criteria) {
+      return `${makeVariantKey(subgroup)}__${makeVariantKey(criteria)}`;
+    }
+
+    function buildColumnGroups(columnId) {
+      const subgroupMap = new Map();
+
+      state.rows.forEach(row => {
+        const value = cleanCellValue(row.cells[columnId]);
+        if (!value) return;
+
+        const parsed = splitCellValue(value);
+        const subgroupKey = makeVariantKey(parsed.subgroup);
+        const entryKey = makeEntryKey(parsed.subgroup, parsed.criteria);
+
+        if (!subgroupMap.has(subgroupKey)) {
+          subgroupMap.set(subgroupKey, {
+            key: subgroupKey,
+            subgroup: parsed.subgroup,
+            entries: []
+          });
+        }
+
+        let entry = subgroupMap.get(subgroupKey).entries.find(item => item.key === entryKey);
+        if (!entry) {
+          entry = {
+            key: entryKey,
+            criteria: parsed.criteria,
+            rows: []
+          };
+          subgroupMap.get(subgroupKey).entries.push(entry);
+        }
+
+        entry.rows.push(row);
+      });
+
+      const groups = Array.from(subgroupMap.values());
+
+      groups.forEach(group => {
+        group.entries.sort((a, b) => {
+          const left = formatVariantPair(a.criteria).toLowerCase();
+          const right = formatVariantPair(b.criteria).toLowerCase();
+          return left.localeCompare(right, undefined, { sensitivity: 'base' });
+        });
+
+        group.entries.forEach(entry => sortRows(entry.rows));
+      });
+
+      groups.sort((a, b) => {
+        const left = formatVariantPair(a.subgroup).toLowerCase();
+        const right = formatVariantPair(b.subgroup).toLowerCase();
+        return left.localeCompare(right, undefined, { sensitivity: 'base' });
+      });
+
+      return groups;
+    }
+
+    function getCriteriaTopFavouriteGroups(columnId) {
+      return buildColumnGroups(columnId)
+        .map(group => {
+          const regularItems = [];
+          const shinyItems = [];
+
+          group.entries.forEach(entry => {
+            const regularSlug = getSelectedSlug(columnId, entry.key, 'regular');
+            const shinySlug = getSelectedSlug(columnId, entry.key, 'shiny');
+
+            const regularRow = entry.rows.find(row => getRowSlug(row) === regularSlug);
+            const shinyRow = entry.rows.find(row => getRowSlug(row) === shinySlug);
+
+            if (regularRow) {
+              regularItems.push({
+                row: regularRow,
+                criteria: entry.criteria
+              });
+            }
+
+            if (shinyRow) {
+              shinyItems.push({
+                row: shinyRow,
+                criteria: entry.criteria
+              });
+            }
+          });
+
+          const seenRegular = new Set();
+          const seenShiny = new Set();
+
+          const filteredRegularItems = regularItems.filter(item => {
+            const slug = getRowSlug(item.row);
+            if (!slug || seenRegular.has(slug)) return false;
+            seenRegular.add(slug);
+            return true;
+          });
+
+          const filteredShinyItems = shinyItems.filter(item => {
+            const slug = getRowSlug(item.row);
+            if (!slug || seenShiny.has(slug)) return false;
+            seenShiny.add(slug);
+            return true;
+          });
 
           return {
-            key: String(section.title || "").trim(),
-            label: String(section.title || "").trim() || "Ungrouped",
-            regular: uniquePokemonList(regular),
-            shiny: uniquePokemonList(shiny)
+            key: group.key,
+            subgroup: group.subgroup,
+            label: formatVariantPair(group.subgroup),
+            regular: filteredRegularItems.map(item => item.row),
+            shiny: filteredShinyItems.map(item => item.row),
+            regularItems: filteredRegularItems,
+            shinyItems: filteredShinyItems
           };
         })
         .filter(group => group.regular.length > 1 || group.shiny.length > 1);
     }
 
-    function getSelectionBucket(categoryId) {
-      if (!state.selections[categoryId] || typeof state.selections[categoryId] !== "object") {
-        state.selections[categoryId] = {};
-      }
-      return state.selections[categoryId];
-    }
-
-    function getTopSelectionBucket(categoryId, scope) {
-      if (!state.topSelections[categoryId] || typeof state.topSelections[categoryId] !== "object") {
-        state.topSelections[categoryId] = { criteria: {}, subgroup: {} };
-      }
-
-      if (!state.topSelections[categoryId].criteria || typeof state.topSelections[categoryId].criteria !== "object") {
-        state.topSelections[categoryId].criteria = {};
-      }
-
-      if (!state.topSelections[categoryId].subgroup || typeof state.topSelections[categoryId].subgroup !== "object") {
-        state.topSelections[categoryId].subgroup = {};
-      }
-
-      const key = scope === "subgroup" ? "subgroup" : "criteria";
-      return state.topSelections[categoryId][key];
-    }
-
-    function getSelectedSlug(categoryId, entryKey, variant) {
-      const bucket = state.selections[categoryId];
-      return bucket && bucket[entryKey] ? bucket[entryKey][variant] || "" : "";
-    }
-
-    function setSelectedSlug(categoryId, entryKey, variant, pokemonSlug) {
-      const bucket = getSelectionBucket(categoryId);
-      if (!bucket[entryKey] || typeof bucket[entryKey] !== "object") {
-        bucket[entryKey] = { regular: "", shiny: "" };
-      }
-      bucket[entryKey][variant] = pokemonSlug;
-      pruneTopSelectionsForCategory(categoryId);
-    }
-
-    function getTopSelectedSlug(categoryId, scope, groupKey, variant) {
-      const bucket = state.topSelections[categoryId];
-      const scopeKey = scope === "subgroup" ? "subgroup" : "criteria";
-      return bucket && bucket[scopeKey] && bucket[scopeKey][groupKey]
-        ? bucket[scopeKey][groupKey][variant] || ""
-        : "";
-    }
-
-    function setTopSelectedSlug(categoryId, scope, groupKey, variant, pokemonSlug) {
-      const bucket = getTopSelectionBucket(categoryId, scope);
-      if (!bucket[groupKey] || typeof bucket[groupKey] !== "object") {
-        bucket[groupKey] = { regular: "", shiny: "" };
-      }
-      bucket[groupKey][variant] = pokemonSlug;
-    }
-
-    function pruneTopSelectionsForCategory(categoryId) {
-      const category = state.items.find(item => item.id === categoryId && item.type === "category");
-      if (!category) return;
-
-      const mode = getCategoryTopMode(category);
-      if (mode === "No") {
-        delete state.topSelections[categoryId];
-        return;
-      }
-
-      const criteriaGroups = getCriteriaTopFavouriteGroups(category);
-      const subgroupGroups = getSubgroupTopFavouriteGroups(category);
-
-      const criteriaValidMap = new Map(
-        criteriaGroups.map(group => [
-          group.key,
-          {
-            regular: new Set(group.regular.map(p => p.pokemonSlug)),
-            shiny: new Set(group.shiny.map(p => p.pokemonSlug))
-          }
-        ])
-      );
-
-      const subgroupValidMap = new Map(
-        subgroupGroups.map(group => [
-          group.key,
-          {
-            regular: new Set(group.regular.map(p => p.pokemonSlug)),
-            shiny: new Set(group.shiny.map(p => p.pokemonSlug))
-          }
-        ])
-      );
-
-      const root = getTopSelectionBucket(categoryId, "criteria");
-      const categoryRoot = state.topSelections[categoryId];
-
-      Object.keys(categoryRoot.criteria).forEach(groupKey => {
-        if (mode !== "Criteria" && mode !== "Both") {
-          delete categoryRoot.criteria[groupKey];
-          return;
-        }
-
-        const valid = criteriaValidMap.get(groupKey);
-        if (!valid) {
-          delete categoryRoot.criteria[groupKey];
-          return;
-        }
-
-        ["regular", "shiny"].forEach(variant => {
-          if (!valid[variant].has(categoryRoot.criteria[groupKey][variant])) {
-            categoryRoot.criteria[groupKey][variant] = "";
-          }
-        });
-      });
-
-      Object.keys(categoryRoot.subgroup).forEach(groupKey => {
-        if (mode !== "Sub-Group" && mode !== "Both") {
-          delete categoryRoot.subgroup[groupKey];
-          return;
-        }
-
-        const valid = subgroupValidMap.get(groupKey);
-        if (!valid) {
-          delete categoryRoot.subgroup[groupKey];
-          return;
-        }
-
-        ["regular", "shiny"].forEach(variant => {
-          if (!valid[variant].has(categoryRoot.subgroup[groupKey][variant])) {
-            categoryRoot.subgroup[groupKey][variant] = "";
-          }
-        });
-      });
-
-      if (
-        !Object.keys(categoryRoot.criteria).length &&
-        !Object.keys(categoryRoot.subgroup).length
-      ) {
-        delete state.topSelections[categoryId];
-      }
-
-      void root;
-    }
-
-    function getPokemonBySlug(list, slug) {
-      return list.find(item => item.pokemonSlug === slug) || null;
-    }
-
-    function getTopFavouriteGroups(category) {
-      const sections = parseCategoryStructure(category.text);
+    function getSubgroupTopFavouriteGroups(columnId) {
       const criteriaMap = new Map();
 
-      for (const section of sections) {
-        for (const entry of section.entries) {
-          const regularSlug = getSelectedSlug(category.id, entry.key, "regular");
-          const shinySlug = getSelectedSlug(category.id, entry.key, "shiny");
-          const regularPokemon = getPokemonBySlug(entry.pokemon, regularSlug);
-          const shinyPokemon = getPokemonBySlug(entry.pokemon, shinySlug);
+      function ensureGroup(criteriaLabel) {
+        const safeLabel = cleanCellValue(criteriaLabel) || 'Unknown';
 
-          if (!criteriaMap.has(entry.criteria)) {
-            criteriaMap.set(entry.criteria, { criteria: entry.criteria, regular: [], shiny: [] });
+        if (!criteriaMap.has(safeLabel)) {
+          criteriaMap.set(safeLabel, {
+            key: safeLabel,
+            criteria: safeLabel,
+            regularItems: [],
+            shinyItems: []
+          });
+        }
+
+        return criteriaMap.get(safeLabel);
+      }
+
+      buildColumnGroups(columnId).forEach(group => {
+        group.entries.forEach(entry => {
+          const regularCriteria = getVariantText(entry.criteria, 'regular') || getVariantText(group.subgroup, 'regular');
+          const shinyCriteria = getVariantText(entry.criteria, 'shiny') || getVariantText(group.subgroup, 'shiny');
+
+          const regularGroup = ensureGroup(regularCriteria);
+          const shinyGroup = ensureGroup(shinyCriteria);
+
+          const regularSlug = getSelectedSlug(columnId, entry.key, 'regular');
+          const shinySlug = getSelectedSlug(columnId, entry.key, 'shiny');
+
+          const regularRow = entry.rows.find(row => getRowSlug(row) === regularSlug);
+          const shinyRow = entry.rows.find(row => getRowSlug(row) === shinySlug);
+
+          if (regularRow) {
+            regularGroup.regularItems.push({
+              row: regularRow,
+              subgroup: group.subgroup,
+              criteria: entry.criteria
+            });
           }
 
-          const group = criteriaMap.get(entry.criteria);
-          if (regularPokemon) group.regular.push(regularPokemon);
-          if (shinyPokemon) group.shiny.push(shinyPokemon);
-        }
-      }
+          if (shinyRow) {
+            shinyGroup.shinyItems.push({
+              row: shinyRow,
+              subgroup: group.subgroup,
+              criteria: entry.criteria
+            });
+          }
+        });
+      });
 
       return Array.from(criteriaMap.values())
-        .map(group => ({
-          criteria: group.criteria,
-          regular: uniquePokemonList(group.regular),
-          shiny: uniquePokemonList(group.shiny)
-        }))
-        .filter(group => group.regular.length > 1 || group.shiny.length > 1);
+        .map(group => {
+          const seenRegular = new Set();
+          const seenShiny = new Set();
+
+          const filteredRegularItems = group.regularItems.filter(item => {
+            const slug = getRowSlug(item.row);
+            if (!slug || seenRegular.has(slug)) return false;
+            seenRegular.add(slug);
+            return true;
+          });
+
+          const filteredShinyItems = group.shinyItems.filter(item => {
+            const slug = getRowSlug(item.row);
+            if (!slug || seenShiny.has(slug)) return false;
+            seenShiny.add(slug);
+            return true;
+          });
+
+          filteredRegularItems.sort((a, b) => {
+            const left = pokemonSortValue(a.row);
+            const right = pokemonSortValue(b.row);
+            if (left.dex !== right.dex) return left.dex - right.dex;
+            return left.name.localeCompare(right.name);
+          });
+
+          filteredShinyItems.sort((a, b) => {
+            const left = pokemonSortValue(a.row);
+            const right = pokemonSortValue(b.row);
+            if (left.dex !== right.dex) return left.dex - right.dex;
+            return left.name.localeCompare(right.name);
+          });
+
+          return {
+            key: group.criteria,
+            criteria: group.criteria,
+            label: group.criteria,
+            regular: filteredRegularItems.map(item => item.row),
+            shiny: filteredShinyItems.map(item => item.row),
+            regularItems: filteredRegularItems,
+            shinyItems: filteredShinyItems
+          };
+        })
+        .filter(group => group.regular.length || group.shiny.length);
     }
 
-    function setView(viewName) {
-      state.currentView = viewName;
-
-      const isFavourites = viewName === "favourites";
-
-      favouritesViewEl.classList.toggle("is-active", isFavourites);
-      choicesViewEl.classList.toggle("is-active", viewName === "choices");
-      categoriesViewEl.classList.toggle("is-active", viewName === "categories");
-
-      btnViewFavourites.classList.toggle("is-active", isFavourites);
-      btnViewChoices.classList.toggle("is-active", viewName === "choices");
-      btnViewCategories.classList.toggle("is-active", viewName === "categories");
-
-      const oldToolbar = btnFavouritesRegular && btnFavouritesRegular.closest(".toolbar");
-      if (oldToolbar) oldToolbar.style.display = "none";
-
-      const headerToggle = ensureHeaderFavouritesToggle();
-      const headerActions = document.querySelector(".header-actions");
-      if (!headerActions) return;
-
-      const currentFirstButton = headerActions.firstElementChild;
-
-      if (isFavourites) {
-        if (currentFirstButton !== headerToggle) {
-          headerActions.insertBefore(headerToggle, currentFirstButton || null);
-        }
-        if (btnViewFavourites.parentNode === headerActions) {
-          btnViewFavourites.remove();
-        }
-      } else {
-        if (currentFirstButton !== btnViewFavourites) {
-          headerActions.insertBefore(btnViewFavourites, currentFirstButton || null);
-        }
-        if (headerToggle.parentNode === headerActions) {
-          headerToggle.remove();
-        }
+    function setSelectedSlug(columnId, entryKey, variant, slug) {
+      const bucket = getSelectionBucket(columnId);
+      if (!bucket[entryKey] || typeof bucket[entryKey] !== 'object') {
+        bucket[entryKey] = { regular: '', shiny: '' };
       }
+      bucket[entryKey][variant] = slug;
+      pruneTopSelections();
     }
 
-    function setFavouritesVariant(variant) {
-      state.favouritesVariant = variant === "shiny" ? "shiny" : "regular";
-
-      if (btnFavouritesRegular) {
-        btnFavouritesRegular.classList.toggle("is-active", state.favouritesVariant === "regular");
-      }
-
-      if (btnFavouritesShiny) {
-        btnFavouritesShiny.classList.toggle("is-active", state.favouritesVariant === "shiny");
-      }
-
-      const headerToggle = ensureHeaderFavouritesToggle();
-      if (headerToggle) {
-        headerToggle.textContent = state.favouritesVariant === "regular" ? "Regular" : "Shiny";
-      }
-
-      renderFavouritesView();
+    function getSelectedSlug(columnId, entryKey, variant) {
+      const bucket = state.selections[columnId];
+      return bucket && bucket[entryKey] ? bucket[entryKey][variant] || '' : '';
     }
 
-    btnViewFavourites.addEventListener("click", () => setView("favourites"));
-    btnViewChoices.addEventListener("click", () => setView("choices"));
-    btnViewCategories.addEventListener("click", () => setView("categories"));
-    btnFavouritesRegular.addEventListener("click", () => setFavouritesVariant("regular"));
-    btnFavouritesShiny.addEventListener("click", () => setFavouritesVariant("shiny"));
-
-    function createImageElement(pokemonSlug, isShiny, altText) {
-      const img = document.createElement("img");
-      img.loading = "lazy";
-      img.alt = altText;
-      img.src = iconPath(pokemonSlug, isShiny);
-      img.onerror = () => {
-        img.onerror = null;
-        img.src = "images/pokemon/---/regular.png";
-      };
-      return img;
+    function setTopSelectedSlug(columnId, scope, groupKey, variant, slug) {
+      const bucket = getTopSelectionBucket(columnId, scope);
+      if (!bucket[groupKey] || typeof bucket[groupKey] !== 'object') {
+        bucket[groupKey] = { regular: '', shiny: '' };
+      }
+      bucket[groupKey][variant] = slug;
     }
 
-    function createFavouriteCard(criteriaText, pokemonData, isShiny, isTopFav) {
-      const card = document.createElement("div");
-      card.className = "poke-card";
-      if (isTopFav) card.classList.add("top_fav");
+    function getTopSelectedSlug(columnId, scope, groupKey, variant) {
+      const root = state.topSelections[columnId];
+      const scopeKey = scope === 'subgroup' ? 'subgroup' : 'criteria';
+      return root && root[scopeKey] && root[scopeKey][groupKey]
+        ? root[scopeKey][groupKey][variant] || ''
+        : '';
+    }
 
-      const icon = document.createElement("div");
-      icon.className = "poke-icon";
-      icon.dataset.shiny = isShiny ? "yes" : "no";
-      icon.appendChild(createImageElement(pokemonData.pokemonSlug, isShiny, pokemonData.displayName));
+    function pruneSelections() {
+      const validColumns = new Set(state.columns.map(column => column.id));
+      const validRowSlugs = new Set(state.rows.map(getRowSlug).filter(Boolean));
 
-      const meta = document.createElement("div");
-      meta.className = "poke-meta";
+      Object.keys(state.selections).forEach(columnId => {
+        if (!validColumns.has(columnId)) {
+          delete state.selections[columnId];
+          return;
+        }
 
-      const criteria = document.createElement("div");
-      criteria.className = "criteria";
-      criteria.textContent = criteriaText;
+        const validEntryKeys = new Set(buildColumnGroups(columnId).flatMap(group => group.entries.map(entry => entry.key)));
+        Object.keys(state.selections[columnId] || {}).forEach(entryKey => {
+          if (!validEntryKeys.has(entryKey)) {
+            delete state.selections[columnId][entryKey];
+            return;
+          }
+          const bucket = state.selections[columnId][entryKey];
+          if (bucket.regular && !validRowSlugs.has(bucket.regular)) bucket.regular = '';
+          if (bucket.shiny && !validRowSlugs.has(bucket.shiny)) bucket.shiny = '';
+        });
+      });
 
-      const name = document.createElement("div");
-      name.className = "poke-name";
-      name.textContent = pokemonData.displayName;
+      pruneTopSelections();
+    }
 
-      meta.appendChild(criteria);
-      meta.appendChild(name);
-      card.appendChild(icon);
-      card.appendChild(meta);
+    function pruneTopSelections() {
+      const validColumns = new Set(state.columns.map(column => column.id));
+
+      Object.keys(state.topSelections).forEach(columnId => {
+        if (!validColumns.has(columnId)) {
+          delete state.topSelections[columnId];
+          return;
+        }
+
+        const column = state.columns.find(item => item.id === columnId);
+        const topMode = getColumnTopMode(column);
+
+        if (topMode === 'No') {
+          delete state.topSelections[columnId];
+          return;
+        }
+
+        // Make sure the full root object exists
+        if (!state.topSelections[columnId] || typeof state.topSelections[columnId] !== 'object') {
+          state.topSelections[columnId] = { criteria: {}, subgroup: {} };
+        }
+        if (!state.topSelections[columnId].criteria || typeof state.topSelections[columnId].criteria !== 'object') {
+          state.topSelections[columnId].criteria = {};
+        }
+        if (!state.topSelections[columnId].subgroup || typeof state.topSelections[columnId].subgroup !== 'object') {
+          state.topSelections[columnId].subgroup = {};
+        }
+
+        // Sub-Group top favourites = grouped by subgroup, choose among criteria
+        const subgroupTopGroups = getCriteriaTopFavouriteGroups(columnId);
+
+        // Criteria top favourites = grouped by criteria, choose among subgroups
+        const criteriaTopGroups = getSubgroupTopFavouriteGroups(columnId);
+
+        const criteriaValidMap = new Map(
+          criteriaTopGroups.map(group => [
+            group.key,
+            {
+              regular: new Set(group.regular.map(row => getRowSlug(row))),
+              shiny: new Set(group.shiny.map(row => getRowSlug(row)))
+            }
+          ])
+        );
+
+        const subgroupValidMap = new Map(
+          subgroupTopGroups.map(group => [
+            group.key,
+            {
+              regular: new Set(group.regular.map(row => getRowSlug(row))),
+              shiny: new Set(group.shiny.map(row => getRowSlug(row)))
+            }
+          ])
+        );
+
+        const columnRoot = state.topSelections[columnId];
+
+        Object.keys(columnRoot.criteria).forEach(groupKey => {
+          if (topMode !== 'Criteria' && topMode !== 'Both') {
+            delete columnRoot.criteria[groupKey];
+            return;
+          }
+
+          const valid = criteriaValidMap.get(groupKey);
+          if (!valid) {
+            delete columnRoot.criteria[groupKey];
+            return;
+          }
+
+          const bucket = columnRoot.criteria[groupKey];
+          if (bucket.regular && !valid.regular.has(bucket.regular)) bucket.regular = '';
+          if (bucket.shiny && !valid.shiny.has(bucket.shiny)) bucket.shiny = '';
+        });
+
+        Object.keys(columnRoot.subgroup).forEach(groupKey => {
+          if (topMode !== 'Sub-Group' && topMode !== 'Both') {
+            delete columnRoot.subgroup[groupKey];
+            return;
+          }
+
+          const valid = subgroupValidMap.get(groupKey);
+          if (!valid) {
+            delete columnRoot.subgroup[groupKey];
+            return;
+          }
+
+          const bucket = columnRoot.subgroup[groupKey];
+          if (bucket.regular && !valid.regular.has(bucket.regular)) bucket.regular = '';
+          if (bucket.shiny && !valid.shiny.has(bucket.shiny)) bucket.shiny = '';
+        });
+      });
+    }
+
+    function renderSpritePair(row) {
+      const slug = getRowSlug(row);
+      const wrapper = document.createElement('div');
+      wrapper.className = 'sprite-stack';
+      wrapper.innerHTML = `
+    <div class="sprite-pair">
+      <div class="sprite-thumb">
+        <img
+          src="${iconPath(slug, false)}"
+          alt="${row.name} regular"
+          onerror="this.onerror=null;this.src='${iconPath('---', false)}';"
+        />
+      </div>
+      <div class="sprite-thumb" data-shiny="yes">
+        <img
+          src="${iconPath(slug, true)}"
+          alt="${row.name} shiny"
+          onerror="this.onerror=null;this.src='${iconPath('---', true)}';"
+        />
+      </div>
+    </div>
+  `;
+      return wrapper;
+    }
+
+    function createPokemonCard(row, variant, criteriaText, isTopFavourite) {
+      const slug = getRowSlug(row);
+      const isShiny = variant === 'shiny';
+      const fallbackSrc = iconPath('---', isShiny);
+
+      const card = document.createElement('div');
+      card.className = `poke-card${isTopFavourite ? ' top_fav' : ''}`;
+      card.innerHTML = `
+    <div class="poke-icon" data-shiny="${isShiny ? 'yes' : 'no'}">
+      <img
+        src="${iconPath(slug, isShiny)}"
+        alt="${row.name} ${variant}"
+        onerror="this.onerror=null;this.src='${fallbackSrc}';"
+      />
+    </div>
+    <div class="poke-meta">
+      <div class="criteria-text">${criteriaText || ''}</div>
+      <div class="poke-name">${row.name}</div>
+    </div>
+  `;
       return card;
     }
 
-    function createSelectCard(pokemonData, variant, isSelected, metaText, onClick) {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "select-card";
-      if (isSelected) button.classList.add("is-selected");
-      button.addEventListener("click", onClick);
+    function createSelectableCard(row, variant, criteriaText, isSelected, onClick) {
+      const slug = getRowSlug(row);
+      const isShiny = variant === 'shiny';
+      const fallbackSrc = iconPath('---', isShiny);
 
-      const icon = document.createElement("div");
-      icon.className = "select-card-icon";
-      icon.dataset.shiny = variant === "shiny" ? "yes" : "no";
-      icon.appendChild(createImageElement(pokemonData.pokemonSlug, variant === "shiny", pokemonData.displayName));
-
-      const metaWrap = document.createElement("div");
-      metaWrap.className = "select-card-meta-wrap";
-
-      const meta = document.createElement("div");
-      meta.className = "select-card-meta";
-      meta.textContent = metaText || "";
-
-      const name = document.createElement("div");
-      name.className = "select-card-name";
-      name.textContent = pokemonData.displayName;
-
-      metaWrap.appendChild(meta);
-      metaWrap.appendChild(name);
-      button.appendChild(icon);
-      button.appendChild(metaWrap);
-      return button;
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = `select-card${isSelected ? ' is-selected' : ''}`;
+      card.innerHTML = `
+    <div class="select-card-icon" data-shiny="${isShiny ? 'yes' : 'no'}">
+      <img
+        src="${iconPath(slug, isShiny)}"
+        alt="${row.name} ${variant}"
+        onerror="this.onerror=null;this.src='${fallbackSrc}';"
+      />
+    </div>
+    <div class="select-card-meta">
+      <div class="criteria-text">${criteriaText || ''}</div>
+      <div class="poke-name">${row.name}</div>
+    </div>
+  `;
+      card.addEventListener('click', onClick);
+      return card;
     }
 
-    function makeRow() {
-      const row = document.createElement("div");
-      row.className = "pokemon-row";
-      return row;
-    }
+    function renderFavourites() {
+      favouritesRenderEl.innerHTML = '';
+      const variant = state.favouritesVariant;
+      const columnsWithContent = state.columns.filter(column => buildColumnGroups(column.id).length);
 
-    function appendSubgroupHeading(targetEl, text, background, extraClass = "") {
-      if (!text) return null;
-
-      const heading = document.createElement("div");
-      heading.className = `subgroup-title${extraClass ? ` ${extraClass}` : ""}`;
-
-      const span = document.createElement("span");
-      span.textContent = text;
-
-      if (background) span.style.background = background;
-
-      if (extraClass.includes("top_fav")) {
-        heading.style.color = "#7a5d11";
-        span.style.color = "#7a5d11";
-      }
-
-      heading.appendChild(span);
-      targetEl.appendChild(heading);
-      return heading;
-    }
-
-    function renderPreviewStructure(targetEl, sections) {
-      if (!sections.length) {
-        const empty = document.createElement("div");
-        empty.className = "empty-note";
-        empty.textContent = "No valid entries yet.";
-        targetEl.appendChild(empty);
+      if (!columnsWithContent.length) {
+        favouritesRenderEl.innerHTML = '<div class="empty-note">No categories to show yet.</div>';
         return;
       }
 
-      for (const section of sections) {
-        if (section.title) appendSubgroupHeading(targetEl, section.title, "#fafbfd");
-        for (const entry of section.entries) {
-          const block = document.createElement("div");
-          block.className = "preview-criteria";
+      columnsWithContent.forEach(column => {
+        const columnCard = document.createElement('section');
+        columnCard.className = 'card';
 
-          const heading = document.createElement("div");
-          heading.className = "preview-criteria-heading";
-          heading.textContent = entry.criteria;
-          block.appendChild(heading);
+        const title = document.createElement('h2');
+        title.textContent = column.name || 'Untitled Category';
+        columnCard.appendChild(title);
 
-          const row = makeRow();
-          entry.pokemon.forEach(pokemon => {
-            row.appendChild(createFavouriteCard(entry.criteria, pokemon, false, false));
+        const groups = buildColumnGroups(column.id);
+        const topMode = getColumnTopMode(column);
+
+        // Sub-Group top favourites:
+        // grouped by subgroup, choose among criteria,
+        // highlight the chosen card in its original row
+        const subgroupTopLookup = new Set();
+        if (topMode === 'Sub-Group' || topMode === 'Both') {
+          const subgroupGroups = getCriteriaTopFavouriteGroups(column.id);
+          subgroupGroups.forEach(group => {
+            const topSlug = getTopSelectedSlug(column.id, 'subgroup', group.key, variant);
+            if (topSlug) {
+              subgroupTopLookup.add(`${group.key}__${topSlug}`);
+            }
           });
-          block.appendChild(row);
-          targetEl.appendChild(block);
-        }
-      }
-    }
-
-    function renderCategoriesView() {
-      categoriesEditorEl.innerHTML = "";
-
-      state.items.forEach((item, index) => {
-        const details = document.createElement("details");
-        details.className = "cat-editor";
-        if (item.type === "heading") {
-          details.classList.add("heading-cat");
         }
 
-        const summary = document.createElement("summary");
-        const summaryLeft = document.createElement("div");
-        summaryLeft.className = "summary-left";
+        groups.forEach(group => {
+          const subgroupCards = [];
 
-        const summaryType = document.createElement("span");
-        summaryType.className = "summary-type";
-        summaryType.textContent = item.type === "heading" ? "Heading" : "Category";
+          group.entries.forEach(entry => {
+            const slug = getSelectedSlug(column.id, entry.key, variant);
+            const row = entry.rows.find(item => getRowSlug(item) === slug);
+            if (!row) return;
 
-        const summaryTitle = document.createElement("span");
-        summaryTitle.className = "summary-title";
-        summaryTitle.textContent = item.title.trim() || (item.type === "heading" ? "Untitled Heading" : "Untitled Category");
+            const rowSlug = getRowSlug(row);
+            const isSubgroupTopFav = subgroupTopLookup.has(`${group.key}__${rowSlug}`);
 
-        summaryLeft.appendChild(summaryType);
-        summaryLeft.appendChild(summaryTitle);
-
-        const summaryActions = document.createElement("div");
-        summaryActions.className = "summary-actions";
-
-        const moveUpButton = document.createElement("button");
-        moveUpButton.type = "button";
-        moveUpButton.textContent = "↑";
-        moveUpButton.disabled = index === 0;
-        moveUpButton.addEventListener("click", event => {
-          event.preventDefault();
-          event.stopPropagation();
-          const targetIndex = index - 1;
-          if (targetIndex < 0) return;
-          [state.items[index], state.items[targetIndex]] = [state.items[targetIndex], state.items[index]];
-          renderAll();
-        });
-
-        const moveDownButton = document.createElement("button");
-        moveDownButton.type = "button";
-        moveDownButton.textContent = "↓";
-        moveDownButton.disabled = index === state.items.length - 1;
-        moveDownButton.addEventListener("click", event => {
-          event.preventDefault();
-          event.stopPropagation();
-          const targetIndex = index + 1;
-          if (targetIndex >= state.items.length) return;
-          [state.items[index], state.items[targetIndex]] = [state.items[targetIndex], state.items[index]];
-          renderAll();
-        });
-
-        const deleteButton = document.createElement("button");
-        deleteButton.type = "button";
-        deleteButton.className = "danger";
-        deleteButton.textContent = "✕";
-        deleteButton.addEventListener("click", event => {
-          event.preventDefault();
-          event.stopPropagation();
-          const removed = state.items.splice(index, 1)[0];
-          if (removed && removed.type === "category") {
-            delete state.selections[removed.id];
-            delete state.topSelections[removed.id];
-          }
-          renderAll();
-        });
-
-        summaryActions.appendChild(moveUpButton);
-        summaryActions.appendChild(moveDownButton);
-        summaryActions.appendChild(deleteButton);
-
-        summary.appendChild(summaryLeft);
-        summary.appendChild(summaryActions);
-        details.appendChild(summary);
-
-        const body = document.createElement("div");
-        body.className = "cat-editor-body";
-
-        const top = document.createElement("div");
-        top.className = "cat-editor-top";
-
-        const titleWrap = document.createElement("div");
-        titleWrap.className = "field-grow";
-        const titleLabel = document.createElement("label");
-        titleLabel.textContent = item.type === "heading" ? "Heading" : "Category Title";
-        const titleInput = document.createElement("input");
-        titleInput.type = "text";
-        titleInput.value = item.title || "";
-        titleInput.placeholder = item.type === "heading" ? "e.g. Overall Favourites" : "e.g. Starters";
-        titleInput.addEventListener("input", () => {
-          item.title = titleInput.value;
-          summaryTitle.textContent = titleInput.value.trim() || (item.type === "heading" ? "Untitled Heading" : "Untitled Category");
-          renderFavouritesView();
-          renderChoicesView();
-        });
-        titleWrap.appendChild(titleLabel);
-        titleWrap.appendChild(titleInput);
-        top.appendChild(titleWrap);
-
-        if (item.type === "category") {
-          const topWrap = document.createElement("div");
-          topWrap.className = "field-short";
-          const topLabel = document.createElement("label");
-          topLabel.textContent = "Top Favourite";
-          const topSelect = document.createElement("select");
-          topSelect.className = "editor-select";
-
-          ["No", "Criteria", "Sub-Group", "Both"].forEach(value => {
-            const option = document.createElement("option");
-            option.value = value;
-            option.textContent = value;
-            option.selected = getCategoryTopMode(item) === value;
-            topSelect.appendChild(option);
-          });
-
-          topSelect.addEventListener("change", () => {
-            item.topFavourite = topSelect.value;
-            pruneTopSelectionsForCategory(item.id);
-            renderAll();
-          });
-
-          topWrap.appendChild(topLabel);
-          topWrap.appendChild(topSelect);
-          top.appendChild(topWrap);
-        }
-
-        body.appendChild(top);
-
-        if (item.type === "category") {
-          const textWrap = document.createElement("div");
-          const textLabel = document.createElement("label");
-          textLabel.textContent = "Entries";
-          const textarea = document.createElement("textarea");
-          textarea.value = item.text || "";
-          textarea.placeholder = [
-            "--- Kanto ---",
-            "1st Evo | Bulbasaur, Charmander, Squirtle",
-            "2nd Evo | Ivysaur, Charmeleon, Wartortle",
-            "--- Johto ---",
-            "1st Evo | Chikorita, Cyndaquil, Totodile"
-          ].join("\n");
-          textWrap.appendChild(textLabel);
-          textWrap.appendChild(textarea);
-          body.appendChild(textWrap);
-
-          const helper = document.createElement("div");
-          helper.className = "helper-note";
-          helper.textContent = "Use subgroup headings like --- Kanto ---. Each entry line should be Criteria | Pokemon 1, Pokemon 2, Pokemon 3.";
-          body.appendChild(helper);
-
-          const previewArea = document.createElement("div");
-          previewArea.className = "preview-area";
-          const previewBlock = document.createElement("div");
-          previewBlock.className = "preview-block";
-          const previewLabel = document.createElement("div");
-          previewLabel.className = "preview-label";
-          previewLabel.textContent = "Preview";
-          previewBlock.appendChild(previewLabel);
-          previewArea.appendChild(previewBlock);
-          body.appendChild(previewArea);
-
-          function refreshPreview() {
-            previewBlock.innerHTML = "";
-            previewBlock.appendChild(previewLabel);
-            renderPreviewStructure(previewBlock, parseCategoryStructure(textarea.value));
-          }
-
-          textarea.addEventListener("input", () => {
-            const previousText = item.text || "";
-            const nextText = textarea.value;
-
-            reconcileCategorySelections(item.id, previousText, nextText);
-
-            item.text = nextText;
-            pruneTopSelectionsForCategory(item.id);
-            refreshPreview();
-            renderChoicesView();
-            renderFavouritesView();
-          });
-
-          refreshPreview();
-        }
-
-        details.appendChild(body);
-        categoriesEditorEl.appendChild(details);
-      });
-    }
-
-    function renderFavouritesView() {
-      favouritesRenderEl.innerHTML = "";
-      const activeVariant = state.favouritesVariant;
-      let hasAnyContent = false;
-
-      for (const item of state.items) {
-        const title = item.title.trim() || (item.type === "heading" ? "Untitled Heading" : "Untitled Category");
-
-        if (item.type === "heading") {
-          const h2 = document.createElement("h2");
-          h2.textContent = title;
-          favouritesRenderEl.appendChild(h2);
-          continue;
-        }
-
-        const sections = parseCategoryStructure(item.text);
-        const topMode = getCategoryTopMode(item);
-
-        const categoryEl = document.createElement("div");
-        categoryEl.className = "category";
-
-        const head = document.createElement("div");
-        head.className = "category-head";
-        const h3 = document.createElement("h3");
-        h3.textContent = title;
-        head.appendChild(h3);
-        categoryEl.appendChild(head);
-
-        let categoryHasCards = false;
-
-        for (const section of sections) {
-          const subgroupTopSlug = getTopSelectedSlug(item.id, "subgroup", String(section.title || "").trim(), activeVariant);
-          const hasSubgroupTop = !!subgroupTopSlug;
-
-          if (section.title) {
-            appendSubgroupHeading(
-              categoryEl,
-              section.title,
-              "#fff",
-              hasSubgroupTop ? "top_fav" : ""
-            );
-          }
-
-          const row = makeRow();
-
-          for (const entry of section.entries) {
-            const selectedSlug = getSelectedSlug(item.id, entry.key, activeVariant);
-            const selectedPokemon = getPokemonBySlug(entry.pokemon, selectedSlug);
-            if (!selectedPokemon) continue;
-
-            const isTopFav = subgroupTopSlug && subgroupTopSlug === selectedPokemon.pokemonSlug;
-
-            row.appendChild(
-              createFavouriteCard(
-                entry.criteria,
-                selectedPokemon,
-                activeVariant === "shiny",
-                isTopFav
+            subgroupCards.push(
+              createPokemonCard(
+                row,
+                variant,
+                getVariantText(entry.criteria, variant),
+                isSubgroupTopFav
               )
             );
+          });
 
-            categoryHasCards = true;
-            hasAnyContent = true;
+          if (subgroupCards.length) {
+            const subgroupBlock = document.createElement('div');
+            subgroupBlock.className = 'subgroup-block';
+
+            const subgroupTitle = document.createElement('div');
+            subgroupTitle.className = 'subgroup-title';
+            subgroupTitle.innerHTML = `<span>${getVariantText(group.subgroup, variant)}</span>`;
+            subgroupBlock.appendChild(subgroupTitle);
+
+            const grid = document.createElement('div');
+            grid.className = 'row-grid';
+            subgroupCards.forEach(card => grid.appendChild(card));
+
+            subgroupBlock.appendChild(grid);
+            columnCard.appendChild(subgroupBlock);
           }
+        });
 
-          if (row.childElementCount > 0) categoryEl.appendChild(row);
-        }
-
-        if (topMode === "Criteria" || topMode === "Both") {
-          const criteriaGroups = getCriteriaTopFavouriteGroups(item);
-          const criteriaCards = [];
+        // Criteria top favourites:
+        // grouped by criteria, choose among subgroups,
+        // render a single summary row
+        if (topMode === 'Criteria' || topMode === 'Both') {
+          const criteriaGroups = getSubgroupTopFavouriteGroups(column.id);
+          const chosenCriteriaRows = [];
 
           criteriaGroups.forEach(group => {
-            const selectedSlug = getTopSelectedSlug(item.id, "criteria", group.key, activeVariant);
-            const selectedPokemon = getPokemonBySlug(
-              activeVariant === "shiny" ? group.shiny : group.regular,
-              selectedSlug
-            );
-            if (!selectedPokemon) return;
-
-            criteriaCards.push(
-              createFavouriteCard(
-                group.label,
-                selectedPokemon,
-                activeVariant === "shiny",
-                true
-              )
-            );
+            const topSlug = getTopSelectedSlug(column.id, 'criteria', group.key, variant);
+            const topRow = group[variant].find(row => getRowSlug(row) === topSlug);
+            if (topRow) {
+              chosenCriteriaRows.push({
+                row: topRow,
+                label: getVariantText(group.criteria, variant)
+              });
+            }
           });
 
-          if (criteriaCards.length) {
-            appendSubgroupHeading(categoryEl, `${title} Top Favourites`, "#fff", "top_fav");
-            const row = makeRow();
-            criteriaCards.forEach(card => row.appendChild(card));
-            categoryEl.appendChild(row);
-            categoryHasCards = true;
-            hasAnyContent = true;
+          if (chosenCriteriaRows.length) {
+            const topBlock = document.createElement('div');
+            topBlock.className = 'subgroup-block';
+
+            const topTitle = document.createElement('div');
+            topTitle.className = 'subgroup-title';
+            topTitle.innerHTML = '<span>Criteria Top Favourites</span>';
+            topBlock.appendChild(topTitle);
+
+            const grid = document.createElement('div');
+            grid.className = 'row-grid';
+
+            chosenCriteriaRows.forEach(item => {
+              grid.appendChild(createPokemonCard(item.row, variant, item.label, true));
+            });
+
+            topBlock.appendChild(grid);
+            columnCard.appendChild(topBlock);
           }
         }
 
-        if (!categoryHasCards) {
-          const empty = document.createElement("div");
-          empty.className = "empty-note";
-          empty.textContent = "No favourites selected for this category yet.";
-          categoryEl.appendChild(empty);
+        favouritesRenderEl.appendChild(columnCard);
+      });
+    }
+
+    function buildChoiceDisplayGroups(columnId) {
+      const subgroupMap = new Map();
+
+      function ensureGroup(subgroupLabel) {
+        const safeLabel = cleanCellValue(subgroupLabel) || 'Ungrouped';
+
+        if (!subgroupMap.has(safeLabel)) {
+          subgroupMap.set(safeLabel, {
+            key: safeLabel,
+            subgroup: safeLabel,
+            entries: []
+          });
         }
 
-        favouritesRenderEl.appendChild(categoryEl);
+        return subgroupMap.get(safeLabel);
       }
 
-      if (!hasAnyContent) {
-        const note = document.createElement("div");
-        note.className = "empty-note";
-        note.textContent = "Choose favourites in the Choices view to populate this page.";
-        favouritesRenderEl.appendChild(note);
-      }
-    }
+      function ensureEntry(group, criteriaLabel) {
+        const safeCriteria = cleanCellValue(criteriaLabel) || group.subgroup;
 
-    function renderChoiceVariantRow(category, entry, variant) {
-      const wrapper = document.createElement("div");
-
-      const variantLabel = document.createElement("div");
-      variantLabel.className = "variant-label";
-      variantLabel.textContent = variant === "regular" ? "Regular" : "Shiny";
-      wrapper.appendChild(variantLabel);
-
-      const row = makeRow();
-      const selectedSlug = getSelectedSlug(category.id, entry.key, variant);
-
-      entry.pokemon.forEach(pokemon => {
-        row.appendChild(createSelectCard(
-          pokemon,
-          variant,
-          selectedSlug === pokemon.pokemonSlug,
-          entry.criteria,
-          () => {
-            state._choiceOpenState = state._choiceOpenState || {};
-            state._choiceOpenState[category.id] = true;
-            setSelectedSlug(category.id, entry.key, variant, pokemon.pokemonSlug);
-            renderChoicesView();
-            renderFavouritesView();
-          }
-        ));
-      });
-
-      wrapper.appendChild(row);
-      return wrapper;
-    }
-
-    function renderTopChoiceVariantRow(category, scope, groupKey, labelText, variant, pokemonList) {
-      const wrapper = document.createElement("div");
-
-      const variantLabel = document.createElement("div");
-      variantLabel.className = "variant-label";
-      variantLabel.textContent = variant === "regular" ? "Regular" : "Shiny";
-      wrapper.appendChild(variantLabel);
-
-      if (pokemonList.length < 2) {
-        const note = document.createElement("div");
-        note.className = "empty-note";
-        note.textContent = `Pick more ${variant} favourites in this ${scope === "criteria" ? "criteria" : "sub-group"} to unlock top favourite selection.`;
-        wrapper.appendChild(note);
-        return wrapper;
-      }
-
-      const row = makeRow();
-      const selectedSlug = getTopSelectedSlug(category.id, scope, groupKey, variant);
-
-      pokemonList.forEach(pokemon => {
-        row.appendChild(createSelectCard(
-          pokemon,
-          variant,
-          selectedSlug === pokemon.pokemonSlug,
-          labelText,
-          () => {
-            state._choiceOpenState = state._choiceOpenState || {};
-            state._choiceOpenState[category.id] = true;
-            setTopSelectedSlug(category.id, scope, groupKey, variant, pokemon.pokemonSlug);
-            renderChoicesView();
-            renderFavouritesView();
-          }
-        ));
-      });
-
-      wrapper.appendChild(row);
-      return wrapper;
-    }
-
-    function renderChoicesView() {
-      const openState = {};
-      choicesRenderEl.querySelectorAll(".choice-category[data-category-id]").forEach(details => {
-        openState[details.dataset.categoryId] = details.open;
-      });
-
-      if (state._choiceOpenState) {
-        Object.assign(openState, state._choiceOpenState);
-      }
-
-      choicesRenderEl.innerHTML = "";
-
-      for (const item of state.items) {
-        const title = item.title.trim() || (item.type === "heading" ? "Untitled Heading" : "Untitled Category");
-
-        if (item.type === "heading") {
-          const h2 = document.createElement("h2");
-          h2.textContent = title;
-          choicesRenderEl.appendChild(h2);
-          continue;
+        let entry = group.entries.find(item => item.criteria === safeCriteria);
+        if (!entry) {
+          entry = {
+            key: `${group.key}__${safeCriteria}`,
+            criteria: safeCriteria,
+            regularItems: [],
+            shinyItems: []
+          };
+          group.entries.push(entry);
         }
 
-        const details = document.createElement("details");
-        details.className = "choice-category";
-        details.dataset.categoryId = item.id;
-        details.open = !!openState[item.id];
-        details.addEventListener("toggle", () => {
-          state._choiceOpenState = state._choiceOpenState || {};
-          state._choiceOpenState[item.id] = details.open;
+        return entry;
+      }
+
+      state.rows.forEach(row => {
+        const value = cleanCellValue(row.cells[columnId]);
+        if (!value) return;
+
+        const parsed = splitCellValue(value);
+        const selectionKey = makeEntryKey(parsed.subgroup, parsed.criteria);
+
+        const regularSubgroup = getVariantText(parsed.subgroup, 'regular') || 'Ungrouped';
+        const shinySubgroup = getVariantText(parsed.subgroup, 'shiny') || 'Ungrouped';
+
+        const regularCriteria = getVariantText(parsed.criteria, 'regular') || regularSubgroup;
+        const shinyCriteria = getVariantText(parsed.criteria, 'shiny') || shinySubgroup;
+
+        const regularGroup = ensureGroup(regularSubgroup);
+        const regularEntry = ensureEntry(regularGroup, regularCriteria);
+        regularEntry.regularItems.push({
+          row,
+          selectionKey,
+          criteria: regularCriteria
         });
 
-        const summary = document.createElement("summary");
-        summary.className = "choice-category-head";
+        const shinyGroup = ensureGroup(shinySubgroup);
+        const shinyEntry = ensureEntry(shinyGroup, shinyCriteria);
+        shinyEntry.shinyItems.push({
+          row,
+          selectionKey,
+          criteria: shinyCriteria
+        });
+      });
 
-        const h3 = document.createElement("h3");
-        h3.textContent = title;
-        summary.appendChild(h3);
+      const groups = Array.from(subgroupMap.values());
 
-        const pill = document.createElement("div");
-        pill.className = "status-pill";
-        pill.textContent = `Top Favourite: ${getCategoryTopMode(item)}`;
-        summary.appendChild(pill);
+      groups.forEach(group => {
+        group.entries.sort((a, b) =>
+          String(a.criteria || '').localeCompare(String(b.criteria || ''), undefined, { sensitivity: 'base' })
+        );
 
-        details.appendChild(summary);
+        group.entries.forEach(entry => {
+          const seenRegular = new Set();
+          const seenShiny = new Set();
 
-        const body = document.createElement("div");
-        body.className = "choice-category-body";
+          entry.regularItems = entry.regularItems.filter(item => {
+            const slug = getRowSlug(item.row);
+            if (!slug || seenRegular.has(slug)) return false;
+            seenRegular.add(slug);
+            return true;
+          });
 
-        const sections = parseCategoryStructure(item.text);
-        if (!sections.length) {
-          const empty = document.createElement("div");
-          empty.className = "empty-note";
-          empty.textContent = "No valid category entries yet.";
-          body.appendChild(empty);
-        } else {
-          for (const section of sections) {
-            const sectionEl = document.createElement("div");
-            sectionEl.className = "choice-subgroup";
-            if (section.title) appendSubgroupHeading(sectionEl, section.title, "#fafbfd");
+          entry.shinyItems = entry.shinyItems.filter(item => {
+            const slug = getRowSlug(item.row);
+            if (!slug || seenShiny.has(slug)) return false;
+            seenShiny.add(slug);
+            return true;
+          });
 
-            for (const entry of section.entries) {
-              const criteriaEl = document.createElement("div");
-              criteriaEl.className = "choice-criteria";
+          sortRows(entry.regularItems.map(item => item.row));
+          entry.regularItems.sort((a, b) => {
+            const left = pokemonSortValue(a.row);
+            const right = pokemonSortValue(b.row);
+            if (left.dex !== right.dex) return left.dex - right.dex;
+            return left.name.localeCompare(right.name);
+          });
 
-              const criteriaHeading = document.createElement("div");
-              criteriaHeading.className = "choice-criteria-heading";
-              criteriaHeading.textContent = entry.criteria;
-              criteriaEl.appendChild(criteriaHeading);
+          sortRows(entry.shinyItems.map(item => item.row));
+          entry.shinyItems.sort((a, b) => {
+            const left = pokemonSortValue(a.row);
+            const right = pokemonSortValue(b.row);
+            if (left.dex !== right.dex) return left.dex - right.dex;
+            return left.name.localeCompare(right.name);
+          });
+        });
+      });
 
-              criteriaEl.appendChild(renderChoiceVariantRow(item, entry, "regular"));
-              criteriaEl.appendChild(renderChoiceVariantRow(item, entry, "shiny"));
-              sectionEl.appendChild(criteriaEl);
-            }
+      groups.sort((a, b) =>
+        String(a.subgroup || '').localeCompare(String(b.subgroup || ''), undefined, { sensitivity: 'base' })
+      );
 
-            body.appendChild(sectionEl);
-          }
-        }
+      return groups;
+    }
 
-        const topMode = getCategoryTopMode(item);
+    function renderChoices() {
+      choicesRenderEl.innerHTML = '';
+      const columnsWithContent = state.columns.filter(column => buildColumnGroups(column.id).length);
 
-        if (topMode === "Criteria" || topMode === "Both") {
-          const criteriaGroups = getCriteriaTopFavouriteGroups(item);
-          if (criteriaGroups.length) {
-            const topBlock = document.createElement("div");
-            topBlock.className = "choice-top-block";
-
-            appendSubgroupHeading(topBlock, `${title} Criteria Top Favourites`, "#fffdf7");
-
-            const topLabel = document.createElement("div");
-            topLabel.className = "top-fav-label";
-            topLabel.textContent = "Choose the top favourite from your selected favourites with matching criteria.";
-            topBlock.appendChild(topLabel);
-
-            criteriaGroups.forEach(group => {
-              const groupEl = document.createElement("div");
-              groupEl.className = "choice-top-criteria";
-
-              const heading = document.createElement("div");
-              heading.className = "choice-top-heading";
-              heading.textContent = group.label;
-              groupEl.appendChild(heading);
-
-              groupEl.appendChild(renderTopChoiceVariantRow(item, "criteria", group.key, group.label, "regular", group.regular));
-              groupEl.appendChild(renderTopChoiceVariantRow(item, "criteria", group.key, group.label, "shiny", group.shiny));
-
-              topBlock.appendChild(groupEl);
-            });
-
-            body.appendChild(topBlock);
-          }
-        }
-
-        if (topMode === "Sub-Group" || topMode === "Both") {
-          const subgroupGroups = getSubgroupTopFavouriteGroups(item);
-          if (subgroupGroups.length) {
-            const topBlock = document.createElement("div");
-            topBlock.className = "choice-top-block";
-
-            appendSubgroupHeading(topBlock, `${title} Sub-Group Top Favourites`, "#fffdf7");
-
-            const topLabel = document.createElement("div");
-            topLabel.className = "top-fav-label";
-            topLabel.textContent = "Choose the absolute favourite from all chosen favourites within each sub-group.";
-            topBlock.appendChild(topLabel);
-
-            subgroupGroups.forEach(group => {
-              const groupEl = document.createElement("div");
-              groupEl.className = "choice-top-criteria";
-
-              const heading = document.createElement("div");
-              heading.className = "choice-top-heading";
-              heading.textContent = group.label;
-              groupEl.appendChild(heading);
-
-              groupEl.appendChild(renderTopChoiceVariantRow(item, "subgroup", group.key, group.label, "regular", group.regular));
-              groupEl.appendChild(renderTopChoiceVariantRow(item, "subgroup", group.key, group.label, "shiny", group.shiny));
-
-              topBlock.appendChild(groupEl);
-            });
-
-            body.appendChild(topBlock);
-          }
-        }
-
-        details.appendChild(body);
-        choicesRenderEl.appendChild(details);
+      if (!columnsWithContent.length) {
+        choicesRenderEl.innerHTML = '<div class="empty-note">Add categories and rows in Categories view to begin choosing favourites.</div>';
+        return;
       }
 
-      state._choiceOpenState = openState;
-    }
+      columnsWithContent.forEach(column => {
+        const section = document.createElement('section');
+        section.className = 'card';
 
-    function flashSaveButtons() {
-      [document.getElementById("btn-save-categories"), document.getElementById("btn-save-choices")].forEach(button => {
-        const previous = button.textContent;
-        button.textContent = "Saved";
-        button.classList.add("save-flash");
-        setTimeout(() => {
-          button.textContent = previous;
-          button.classList.remove("save-flash");
-        }, 800);
+        const title = document.createElement('h2');
+        title.textContent = column.name || 'Untitled Category';
+        section.appendChild(title);
+
+        const meta = document.createElement('div');
+        meta.className = 'choice-meta-row';
+        meta.innerHTML = `<span class="status-pill">Top Favourites: ${getColumnTopMode(column)}</span>`;
+        section.appendChild(meta);
+
+        const groups = buildChoiceDisplayGroups(column.id);
+        const topMode = getColumnTopMode(column);
+
+        groups.forEach(group => {
+          const subgroupBlock = document.createElement('div');
+          subgroupBlock.className = 'subgroup-block';
+
+          const subgroupTitle = document.createElement('div');
+          subgroupTitle.className = 'subgroup-title';
+          subgroupTitle.innerHTML = `<span>${group.subgroup}</span>`;
+          subgroupBlock.appendChild(subgroupTitle);
+
+          group.entries.forEach(entry => {
+            const entryWrap = document.createElement('div');
+            entryWrap.className = 'choice-entry';
+
+            const label = document.createElement('div');
+            label.className = 'criteria-label';
+            label.textContent = entry.criteria;
+            entryWrap.appendChild(label);
+
+            if (entry.regularItems.length) {
+              const regularHeader = document.createElement('div');
+              regularHeader.className = 'form-header';
+              regularHeader.textContent = 'Regular';
+              entryWrap.appendChild(regularHeader);
+
+              const regularGrid = document.createElement('div');
+              regularGrid.className = 'row-grid';
+
+              entry.regularItems.forEach(item => {
+                const slug = getRowSlug(item.row);
+                regularGrid.appendChild(createSelectableCard(
+                  item.row,
+                  'regular',
+                  item.criteria,
+                  getSelectedSlug(column.id, item.selectionKey, 'regular') === slug,
+                  () => {
+                    setSelectedSlug(column.id, item.selectionKey, 'regular', slug);
+                    renderAll();
+                  }
+                ));
+              });
+
+              entryWrap.appendChild(regularGrid);
+            }
+
+            if (entry.shinyItems.length) {
+              const shinyHeader = document.createElement('div');
+              shinyHeader.className = 'form-header';
+              shinyHeader.textContent = 'Shiny';
+              entryWrap.appendChild(shinyHeader);
+
+              const shinyGrid = document.createElement('div');
+              shinyGrid.className = 'row-grid';
+
+              entry.shinyItems.forEach(item => {
+                const slug = getRowSlug(item.row);
+                shinyGrid.appendChild(createSelectableCard(
+                  item.row,
+                  'shiny',
+                  item.criteria,
+                  getSelectedSlug(column.id, item.selectionKey, 'shiny') === slug,
+                  () => {
+                    setSelectedSlug(column.id, item.selectionKey, 'shiny', slug);
+                    renderAll();
+                  }
+                ));
+              });
+
+              entryWrap.appendChild(shinyGrid);
+            }
+
+            subgroupBlock.appendChild(entryWrap);
+          });
+
+          section.appendChild(subgroupBlock);
+        });
+
+        // Sub-Group top favourites:
+        // grouped by subgroup, choose among criteria
+        if (topMode === 'Sub-Group' || topMode === 'Both') {
+          const subgroupGroups = getCriteriaTopFavouriteGroups(column.id);
+
+          if (subgroupGroups.length) {
+            const topBlock = document.createElement('div');
+            topBlock.className = 'subgroup-block';
+
+            const topTitle = document.createElement('div');
+            topTitle.className = 'subgroup-title';
+            topTitle.innerHTML = `<span>${column.name} Sub-Group Top Favourites</span>`;
+            topBlock.appendChild(topTitle);
+
+            subgroupGroups.forEach(group => {
+              const entryWrap = document.createElement('div');
+              entryWrap.className = 'choice-entry';
+
+              const label = document.createElement('div');
+              label.className = 'criteria-label';
+              label.textContent = formatVariantPair(group.subgroup);
+              entryWrap.appendChild(label);
+
+              if ((group.regularItems || []).length) {
+                const regularHeader = document.createElement('div');
+                regularHeader.className = 'form-header';
+                regularHeader.textContent = 'Regular';
+                entryWrap.appendChild(regularHeader);
+
+                const regularGrid = document.createElement('div');
+                regularGrid.className = 'row-grid';
+
+                group.regularItems.forEach(item => {
+                  const slug = getRowSlug(item.row);
+                  regularGrid.appendChild(createSelectableCard(
+                    item.row,
+                    'regular',
+                    getVariantText(item.criteria, 'regular'),
+                    getTopSelectedSlug(column.id, 'subgroup', group.key, 'regular') === slug,
+                    () => {
+                      setTopSelectedSlug(column.id, 'subgroup', group.key, 'regular', slug);
+                      renderAll();
+                    }
+                  ));
+                });
+
+                entryWrap.appendChild(regularGrid);
+              }
+
+              if ((group.shinyItems || []).length) {
+                const shinyHeader = document.createElement('div');
+                shinyHeader.className = 'form-header';
+                shinyHeader.textContent = 'Shiny';
+                entryWrap.appendChild(shinyHeader);
+
+                const shinyGrid = document.createElement('div');
+                shinyGrid.className = 'row-grid';
+
+                group.shinyItems.forEach(item => {
+                  const slug = getRowSlug(item.row);
+                  shinyGrid.appendChild(createSelectableCard(
+                    item.row,
+                    'shiny',
+                    getVariantText(item.criteria, 'shiny'),
+                    getTopSelectedSlug(column.id, 'subgroup', group.key, 'shiny') === slug,
+                    () => {
+                      setTopSelectedSlug(column.id, 'subgroup', group.key, 'shiny', slug);
+                      renderAll();
+                    }
+                  ));
+                });
+
+                entryWrap.appendChild(shinyGrid);
+              }
+
+              topBlock.appendChild(entryWrap);
+            });
+
+            section.appendChild(topBlock);
+          }
+        }
+
+        // Criteria top favourites:
+        // grouped by criteria, choose among subgroups
+        if (topMode === 'Criteria' || topMode === 'Both') {
+          const criteriaGroups = getSubgroupTopFavouriteGroups(column.id);
+
+          if (criteriaGroups.length) {
+            const topBlock = document.createElement('div');
+            topBlock.className = 'subgroup-block';
+
+            const topTitle = document.createElement('div');
+            topTitle.className = 'subgroup-title';
+            topTitle.innerHTML = `<span>${column.name} Criteria Top Favourites</span>`;
+            topBlock.appendChild(topTitle);
+
+            criteriaGroups.forEach(group => {
+              const entryWrap = document.createElement('div');
+              entryWrap.className = 'choice-entry';
+
+              const label = document.createElement('div');
+              label.className = 'criteria-label';
+              label.textContent = formatVariantPair(group.criteria);
+              entryWrap.appendChild(label);
+
+              if ((group.regularItems || []).length) {
+                const regularHeader = document.createElement('div');
+                regularHeader.className = 'form-header';
+                regularHeader.textContent = 'Regular';
+                entryWrap.appendChild(regularHeader);
+
+                const regularGrid = document.createElement('div');
+                regularGrid.className = 'row-grid';
+
+                group.regularItems.forEach(item => {
+                  const slug = getRowSlug(item.row);
+                  regularGrid.appendChild(createSelectableCard(
+                    item.row,
+                    'regular',
+                    getVariantText(item.subgroup, 'regular'),
+                    getTopSelectedSlug(column.id, 'criteria', group.key, 'regular') === slug,
+                    () => {
+                      setTopSelectedSlug(column.id, 'criteria', group.key, 'regular', slug);
+                      renderAll();
+                    }
+                  ));
+                });
+
+                entryWrap.appendChild(regularGrid);
+              }
+
+              if ((group.shinyItems || []).length) {
+                const shinyHeader = document.createElement('div');
+                shinyHeader.className = 'form-header';
+                shinyHeader.textContent = 'Shiny';
+                entryWrap.appendChild(shinyHeader);
+
+                const shinyGrid = document.createElement('div');
+                shinyGrid.className = 'row-grid';
+
+                group.shinyItems.forEach(item => {
+                  const slug = getRowSlug(item.row);
+                  shinyGrid.appendChild(createSelectableCard(
+                    item.row,
+                    'shiny',
+                    getVariantText(item.subgroup, 'shiny'),
+                    getTopSelectedSlug(column.id, 'criteria', group.key, 'shiny') === slug,
+                    () => {
+                      setTopSelectedSlug(column.id, 'criteria', group.key, 'shiny', slug);
+                      renderAll();
+                    }
+                  ));
+                });
+
+                entryWrap.appendChild(shinyGrid);
+              }
+
+              topBlock.appendChild(entryWrap);
+            });
+
+            section.appendChild(topBlock);
+          }
+        }
+
+        choicesRenderEl.appendChild(section);
       });
     }
 
-    function saveData() {
-      downloadTextFile("favourite.js", exportAsFavouriteJS(state));
-      flashSaveButtons();
+    function renderCategoriesTable() {
+      categoriesHeadEl.innerHTML = '';
+      categoriesBodyEl.innerHTML = '';
+
+      const headRow = document.createElement('tr');
+
+      const imageHead = document.createElement('th');
+      imageHead.className = 'fixed-col image-col';
+      imageHead.innerHTML = '<div class="th-inner"><strong>Images</strong></div>';
+      headRow.appendChild(imageHead);
+
+      const nameHead = document.createElement('th');
+      nameHead.className = 'fixed-col name-col';
+      nameHead.style.left = '160px';
+      nameHead.innerHTML = '<div class="th-inner"><strong>Name</strong></div>';
+      headRow.appendChild(nameHead);
+
+      const dexHead = document.createElement('th');
+      dexHead.className = 'fixed-col dex-col';
+      dexHead.style.left = '340px';
+      dexHead.innerHTML = '<div class="th-inner"><strong>National Dex</strong></div>';
+      headRow.appendChild(dexHead);
+
+      state.columns.forEach((column, index) => {
+        const th = document.createElement('th');
+        th.className = 'category-col';
+        const inner = document.createElement('div');
+        inner.className = 'th-inner';
+        inner.innerHTML = `
+          <div class="header-block">
+            <div>
+              <span class="field-label">Category Name</span>
+              <input class="header-input" data-column-name="${column.id}" value="${column.name.replace(/"/g, '&quot;')}" />
+            </div>
+            <div>
+              <span class="field-label">Top Favourites</span>
+              <select class="header-select" data-column-top="${column.id}">
+                <option value="No" ${getColumnTopMode(column) === 'No' ? 'selected' : ''}>No</option>
+                <option value="Sub-Group" ${getColumnTopMode(column) === 'Sub-Group' ? 'selected' : ''}>Sub-Group</option>
+                <option value="Criteria" ${getColumnTopMode(column) === 'Criteria' ? 'selected' : ''}>Criteria</option>
+                <option value="Both" ${getColumnTopMode(column) === 'Both' ? 'selected' : ''}>Both</option>
+              </select>
+            </div>
+            <div class="header-actions-inline">
+              <button class="mini-btn" type="button" data-column-left="${column.id}">←</button>
+              <button class="mini-btn" type="button" data-column-right="${column.id}">→</button>
+              <button class="mini-btn danger" type="button" data-column-remove="${column.id}">×</button>
+            </div>
+          </div>
+        `;
+        th.appendChild(inner);
+        headRow.appendChild(th);
+      });
+
+      const actionsHead = document.createElement('th');
+      actionsHead.innerHTML = '<div class="th-inner"><strong>Row Actions</strong></div>';
+      headRow.appendChild(actionsHead);
+      categoriesHeadEl.appendChild(headRow);
+
+      state.rows.forEach((row, index) => {
+        const tr = document.createElement('tr');
+
+        const spriteTd = document.createElement('td');
+        spriteTd.className = 'fixed-col image-col';
+
+        const inner = document.createElement('div');
+        inner.className = 'td-inner';
+
+        const imageWrapper = document.createElement('div');
+        imageWrapper.setAttribute('data-row-images', '');
+
+        imageWrapper.appendChild(renderSpritePair(row));
+        inner.appendChild(imageWrapper);
+        spriteTd.appendChild(inner);
+
+        tr.appendChild(spriteTd);
+
+        const nameTd = document.createElement('td');
+        nameTd.className = 'fixed-col name-col';
+        nameTd.style.left = '160px';
+        nameTd.innerHTML = `<div class="td-inner"><input class="cell-input" data-row-name="${row.id}" value="${row.name.replace(/"/g, '&quot;')}" /></div>`;
+        tr.appendChild(nameTd);
+
+        const dexTd = document.createElement('td');
+        dexTd.className = 'fixed-col dex-col';
+        dexTd.style.left = '340px';
+        dexTd.innerHTML = `<div class="td-inner"><input class="cell-input" data-row-dex="${row.id}" value="${row.dex.replace(/"/g, '&quot;')}" /></div>`;
+        tr.appendChild(dexTd);
+
+        state.columns.forEach(column => {
+          const td = document.createElement('td');
+          td.className = 'category-col';
+          td.innerHTML = `<div class="td-inner"><input class="cell-input" data-cell-row="${row.id}" data-cell-column="${column.id}" value="${(row.cells[column.id] || '').replace(/"/g, '&quot;')}" placeholder="Subgroup, Criteria" /></div>`;
+          tr.appendChild(td);
+        });
+
+        const actionsTd = document.createElement('td');
+        actionsTd.innerHTML = `
+          <div class="td-inner">
+            <div class="row-actions">
+              <button class="mini-btn" type="button" data-row-up="${row.id}">↑</button>
+              <button class="mini-btn" type="button" data-row-down="${row.id}">↓</button>
+              <button class="mini-btn danger" type="button" data-row-remove="${row.id}">×</button>
+            </div>
+          </div>
+        `;
+        tr.appendChild(actionsTd);
+
+        categoriesBodyEl.appendChild(tr);
+      });
     }
 
-    document.getElementById("btn-add-category").addEventListener("click", () => {
-      state.items.push({
-        id: uid(),
-        type: "category",
-        title: "",
-        text: "",
-        topFavourite: "No"
+    function bindCategoriesTableEvents() {
+      categoriesHeadEl.querySelectorAll('[data-column-name]').forEach(input => {
+        input.addEventListener('input', event => {
+          const column = state.columns.find(item => item.id === event.target.dataset.columnName);
+          if (!column) return;
+          column.name = event.target.value;
+          renderChoices();
+          renderFavourites();
+        });
       });
-      renderAll();
-    });
 
-    document.getElementById("btn-add-heading").addEventListener("click", () => {
-      state.items.push({
-        id: uid(),
-        type: "heading",
-        title: "",
-        text: ""
+      categoriesHeadEl.querySelectorAll('[data-column-top]').forEach(select => {
+        select.addEventListener('change', event => {
+          const column = state.columns.find(item => item.id === event.target.dataset.columnTop);
+          if (!column) return;
+          column.topFavourites = event.target.value;
+          pruneTopSelections();
+          renderAll();
+        });
       });
-      renderAll();
-    });
 
-    document.getElementById("btn-save-categories").addEventListener("click", saveData);
-    document.getElementById("btn-save-choices").addEventListener("click", saveData);
-    document.getElementById("btn-reset-categories").addEventListener("click", resetData);
-    document.getElementById("btn-reset-choices").addEventListener("click", resetData);
+      categoriesHeadEl.querySelectorAll('[data-column-left]').forEach(button => {
+        button.addEventListener('click', () => moveColumn(button.dataset.columnLeft, -1));
+      });
+      categoriesHeadEl.querySelectorAll('[data-column-right]').forEach(button => {
+        button.addEventListener('click', () => moveColumn(button.dataset.columnRight, 1));
+      });
+      categoriesHeadEl.querySelectorAll('[data-column-remove]').forEach(button => {
+        button.addEventListener('click', () => removeColumn(button.dataset.columnRemove));
+      });
+
+      categoriesBodyEl.querySelectorAll('[data-row-name]').forEach(input => {
+        input.addEventListener('input', event => {
+          const rowId = event.target.dataset.rowName;
+          const row = state.rows.find(item => item.id === rowId);
+          if (!row) return;
+
+          row.name = event.target.value;
+          pruneSelections();
+
+          const tr = event.target.closest('tr');
+          if (tr) {
+            const imageCell = tr.querySelector('[data-row-images]');
+            if (imageCell) {
+              imageCell.innerHTML = '';
+              imageCell.appendChild(renderSpritePair(row));
+            }
+          }
+
+          renderChoices();
+          renderFavourites();
+        });
+      });
+
+      categoriesBodyEl.querySelectorAll('[data-row-dex]').forEach(input => {
+        input.addEventListener('input', event => {
+          const row = state.rows.find(item => item.id === event.target.dataset.rowDex);
+          if (!row) return;
+          row.dex = event.target.value;
+          pruneSelections();
+          renderChoices();
+          renderFavourites();
+        });
+      });
+
+      categoriesBodyEl.querySelectorAll('[data-cell-row]').forEach(input => {
+        input.addEventListener('input', event => {
+          const row = state.rows.find(item => item.id === event.target.dataset.cellRow);
+          if (!row) return;
+          row.cells[event.target.dataset.cellColumn] = event.target.value;
+          pruneSelections();
+          renderChoices();
+          renderFavourites();
+        });
+      });
+
+      categoriesBodyEl.querySelectorAll('[data-row-up]').forEach(button => {
+        button.addEventListener('click', () => moveRow(button.dataset.rowUp, -1));
+      });
+      categoriesBodyEl.querySelectorAll('[data-row-down]').forEach(button => {
+        button.addEventListener('click', () => moveRow(button.dataset.rowDown, 1));
+      });
+      categoriesBodyEl.querySelectorAll('[data-row-remove]').forEach(button => {
+        button.addEventListener('click', () => removeRow(button.dataset.rowRemove));
+      });
+    }
 
     function renderAll() {
-      renderCategoriesView();
-      renderChoicesView();
-      renderFavouritesView();
-      ensureHeaderFavouritesToggle();
-      setView(state.currentView);
-      setFavouritesVariant(state.favouritesVariant);
+      pruneSelections();
+      renderCategoriesTable();
+      bindCategoriesTableEvents();
+      renderChoices();
+      renderFavourites();
     }
 
+    btnViewFavourites.addEventListener('click', () => setView('favourites'));
+    btnViewChoices.addEventListener('click', () => setView('choices'));
+    btnViewCategories.addEventListener('click', () => setView('categories'));
+    btnFavouritesRegular.addEventListener('click', () => setFavouritesVariant('regular'));
+    btnFavouritesShiny.addEventListener('click', () => setFavouritesVariant('shiny'));
+
+    document.getElementById('btn-add-row').addEventListener('click', addRow);
+    document.getElementById('btn-add-column').addEventListener('click', addColumn);
+
+    document.getElementById('btn-save-categories').addEventListener('click', event => {
+      downloadTextFile('favourite.js', exportAsFavouriteJS());
+      flashButton(event.currentTarget);
+    });
+    document.getElementById('btn-save-choices').addEventListener('click', event => {
+      downloadTextFile('favourite.js', exportAsFavouriteJS());
+      flashButton(event.currentTarget);
+    });
+    document.getElementById('btn-reset-categories').addEventListener('click', resetData);
+    document.getElementById('btn-reset-choices').addEventListener('click', resetData);
+    document.getElementById('btn-sort-rows').addEventListener('click', sortAllRows);
+
     renderAll();
+    setView('favourites');
+    setFavouritesVariant('regular');
   </script>
 </body>
 
