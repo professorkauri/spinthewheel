@@ -487,7 +487,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "035",
       "name": "Clefairy",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -496,7 +496,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "036",
       "name": "Clefable",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -514,7 +514,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "037",
       "name": "Vulpix",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Orange/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -523,7 +523,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "037",
       "name": "Vulpix Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Blue/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -532,7 +532,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "038",
       "name": "Ninetales",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/Grey",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -541,7 +541,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "038",
       "name": "Ninetales Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Blue/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -550,7 +550,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "039",
       "name": "Jigglypuff",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -559,7 +559,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "040",
       "name": "Wigglytuff",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -568,7 +568,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "041",
       "name": "Zubat",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -577,7 +577,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "042",
       "name": "Golbat",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -586,7 +586,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "043",
       "name": "Oddish",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -595,7 +595,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "044",
       "name": "Gloom",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -604,7 +604,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "045",
       "name": "Vileplume",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -613,7 +613,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "046",
       "name": "Paras",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Orange",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -622,7 +622,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "047",
       "name": "Parasect",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Orange/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -631,7 +631,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "048",
       "name": "Venonat",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -640,7 +640,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "049",
       "name": "Venomoth",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -649,7 +649,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "050",
       "name": "Diglett",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -658,7 +658,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "050",
       "name": "Diglett Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Brown/Red",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -667,7 +667,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "051",
       "name": "Dugtrio",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -676,7 +676,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "051",
       "name": "Dugtrio Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Brown/Red",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -685,7 +685,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "052",
       "name": "Meowth",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/Grey",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -694,7 +694,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "052",
       "name": "Meowth Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -703,7 +703,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "052",
       "name": "Meowth Galar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Galar, Brown/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -721,7 +721,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "053",
       "name": "Persian",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/White",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -730,7 +730,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "053",
       "name": "Persian Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -739,7 +739,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "054",
       "name": "Psyduck",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -748,7 +748,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "055",
       "name": "Golduck",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -757,7 +757,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "056",
       "name": "Mankey",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, White/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -766,7 +766,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "057",
       "name": "Primeape",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -775,7 +775,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "058",
       "name": "Growlithe",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Orange/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -784,7 +784,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "059",
       "name": "Arcanine",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Orange/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -793,7 +793,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "060",
       "name": "Poliwag",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -802,7 +802,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "061",
       "name": "Poliwhirl",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -811,7 +811,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "062",
       "name": "Poliwrath",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -820,7 +820,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "063",
       "name": "Abra",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -829,7 +829,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "064",
       "name": "Kadabra",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -838,7 +838,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "065",
       "name": "Alakazam",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -856,7 +856,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "066",
       "name": "Machop",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -865,7 +865,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "067",
       "name": "Machoke",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -874,7 +874,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "068",
       "name": "Machamp",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -892,7 +892,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "069",
       "name": "Bellsprout",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -901,7 +901,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "070",
       "name": "Weepinbell",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -910,7 +910,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "071",
       "name": "Victreebel",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -928,7 +928,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "072",
       "name": "Tentacool",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -937,7 +937,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "073",
       "name": "Tentacruel",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -946,7 +946,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "074",
       "name": "Geodude",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Grey/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -955,7 +955,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "074",
       "name": "Geodude Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Grey/Orange",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -964,7 +964,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "075",
       "name": "Graveler",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Grey/Orange",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -973,7 +973,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "075",
       "name": "Graveler Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Grey/Orange",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -982,7 +982,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "076",
       "name": "Golem",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Grey/Brown",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -991,7 +991,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "076",
       "name": "Golem Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Grey/Brown",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1000,7 +1000,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "077",
       "name": "Ponyta",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Red/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1009,7 +1009,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "077",
       "name": "Ponyta Galar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Galar, Pink/White",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1018,7 +1018,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "078",
       "name": "Rapidash",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Red/Grey",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1027,7 +1027,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "078",
       "name": "Rapidash Galar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Galar, Pink/White",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1036,7 +1036,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "079",
       "name": "Slowpoke",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1045,7 +1045,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "079",
       "name": "Slowpoke Galar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Galar, Pink/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1054,7 +1054,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "080",
       "name": "Slowbro",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1063,7 +1063,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "080",
       "name": "Slowbro Galar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1081,7 +1081,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "081",
       "name": "Magnemite",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Grey/White",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1090,7 +1090,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "082",
       "name": "Magneton",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Grey/White",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1099,7 +1099,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "083",
       "name": "Farfetchd",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Red",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1108,7 +1108,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "083",
       "name": "Farfetchd Galar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1117,7 +1117,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "084",
       "name": "Doduo",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1126,7 +1126,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "085",
       "name": "Dodrio",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1135,7 +1135,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "086",
       "name": "Seel",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, White/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1144,7 +1144,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "087",
       "name": "Dewgong",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, White/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1153,7 +1153,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "088",
       "name": "Grimer",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1162,7 +1162,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "088",
       "name": "Grimer Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Green/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1171,7 +1171,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "089",
       "name": "Muk",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1180,7 +1180,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "089",
       "name": "Muk Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Green/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1189,7 +1189,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "090",
       "name": "Shellder",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Orange",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1198,7 +1198,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "091",
       "name": "Cloyster",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1207,7 +1207,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "092",
       "name": "Gastly",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Black/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1216,7 +1216,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "093",
       "name": "Haunter",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1225,7 +1225,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "094",
       "name": "Gengar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Grey",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1252,7 +1252,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "095",
       "name": "Onix",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Grey/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1261,7 +1261,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "096",
       "name": "Drowzee",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1270,7 +1270,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "097",
       "name": "Hypno",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1279,7 +1279,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "098",
       "name": "Krabby",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Orange/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1288,7 +1288,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "099",
       "name": "Kingler",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Orange/Grey",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1306,7 +1306,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "100",
       "name": "Voltorb",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Red/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1315,7 +1315,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "101",
       "name": "Electrode",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Red/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1324,7 +1324,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "102",
       "name": "Exeggcute",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink/Orange",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1333,7 +1333,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "103",
       "name": "Exeggutor",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Green/Brown",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1342,7 +1342,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "103",
       "name": "Exeggutor Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Green/Brown",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1351,7 +1351,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "104",
       "name": "Cubone",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1360,7 +1360,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "105",
       "name": "Marowak",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1369,7 +1369,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "105",
       "name": "Marowak Alola",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Alola, Black/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1378,7 +1378,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "106",
       "name": "Hitmonlee",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1387,7 +1387,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "107",
       "name": "Hitmonchan",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Red/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1396,7 +1396,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "108",
       "name": "Lickitung",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1405,7 +1405,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "109",
       "name": "Koffing",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1414,7 +1414,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "110",
       "name": "Weezing",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1423,7 +1423,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "110",
       "name": "Weezing Galar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Grey/Brown",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1432,7 +1432,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "111",
       "name": "Rhyhorn",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Grey/Brown",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1441,7 +1441,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "112",
       "name": "Rhydon",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Grey/Brown",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1450,7 +1450,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "113",
       "name": "Chansey",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink/White",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1459,7 +1459,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "114",
       "name": "Tangela",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1468,7 +1468,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "115",
       "name": "Kangaskhan",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Grey",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1486,7 +1486,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "116",
       "name": "Horsea",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1495,7 +1495,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "117",
       "name": "Seadra",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1504,7 +1504,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "118",
       "name": "Goldeen",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Orange",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1513,7 +1513,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "119",
       "name": "Seaking",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Orange",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1522,7 +1522,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "120",
       "name": "Staryu",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/White",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1531,7 +1531,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "121",
       "name": "Starmie",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1549,7 +1549,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "122",
       "name": "Mr Mime",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1558,7 +1558,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "122",
       "name": "Mr Mime Galar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1567,7 +1567,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "123",
       "name": "Scyther",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1576,7 +1576,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "124",
       "name": "Jynx",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Red/Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1585,7 +1585,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "125",
       "name": "Electabuzz",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/Orange",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1594,7 +1594,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "126",
       "name": "Magmar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Red/Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1603,7 +1603,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "127",
       "name": "Pinsir",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1621,7 +1621,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "128",
       "name": "Tauros",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1630,7 +1630,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "129",
       "name": "Magikarp",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Red/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1639,7 +1639,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "130",
       "name": "Gyarados",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Red",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1657,7 +1657,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "131",
       "name": "Lapras",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1675,7 +1675,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "132",
       "name": "Ditto",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1684,7 +1684,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "133",
       "name": "Eevee",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/White",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1702,7 +1702,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "134",
       "name": "Vaporeon",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1711,7 +1711,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "135",
       "name": "Jolteon",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1720,7 +1720,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "136",
       "name": "Flareon",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Orange/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1729,7 +1729,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "137",
       "name": "Porygon",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1738,7 +1738,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "138",
       "name": "Omanyte",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1747,7 +1747,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "139",
       "name": "Omastar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1756,7 +1756,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "140",
       "name": "Kabuto",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1765,7 +1765,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "141",
       "name": "Kabutops",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Brown/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1774,7 +1774,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "142",
       "name": "Aerodactyl",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1792,7 +1792,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "143",
       "name": "Snorlax",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1810,7 +1810,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "144",
       "name": "Articuno",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1819,7 +1819,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "144",
       "name": "Articuno Galar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Galar, Purple/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1828,7 +1828,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "145",
       "name": "Zapdos",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1837,7 +1837,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "145",
       "name": "Zapdos Galar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Galar, Orange/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1846,7 +1846,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "146",
       "name": "Moltres",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1855,7 +1855,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "146",
       "name": "Moltres Galar",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Galar, Black/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1864,7 +1864,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "147",
       "name": "Dratini",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1873,7 +1873,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "148",
       "name": "Dragonair",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Blue/Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1882,7 +1882,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "149",
       "name": "Dragonite",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Yellow/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1900,7 +1900,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "150",
       "name": "Mewtwo",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Purple/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -1927,7 +1927,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "151",
       "name": "Mew",
       "cells": {
-        "col_colour": "",
+        "col_colour": "Kanto, Pink/Blue",
         "col_20c7f019228c5819d84a42642": ""
       }
     },
@@ -11776,8 +11776,8 @@ window.FAVOURITE_POKEMON_DATA = {
         "shiny": "charizard"
       },
       "Kanto__Blue|||Purple": {
-        "regular": "wartortle",
-        "shiny": "wartortle"
+        "regular": "omanyte",
+        "shiny": "lapras"
       },
       "Kanto__Blue": {
         "regular": "",
@@ -11788,7 +11788,7 @@ window.FAVOURITE_POKEMON_DATA = {
         "shiny": ""
       },
       "Kanto__Green|||Yellow": {
-        "regular": "ivysaur",
+        "regular": "caterpie",
         "shiny": "caterpie"
       },
       "Kanto__Green": {
@@ -11804,7 +11804,7 @@ window.FAVOURITE_POKEMON_DATA = {
         "shiny": "butterfree"
       },
       "Kanto__Red|||Yellow": {
-        "regular": "charmeleon",
+        "regular": "magikarp",
         "shiny": ""
       },
       "Kanto__Yellow|||Green": {
@@ -11830,6 +11830,54 @@ window.FAVOURITE_POKEMON_DATA = {
       "Kanto__Purple|||Grey": {
         "regular": "",
         "shiny": "rattata"
+      },
+      "Kanto__Black|||Purple": {
+        "regular": "gastly",
+        "shiny": ""
+      },
+      "Kanto__Purple|||Blue": {
+        "regular": "nidoran-m",
+        "shiny": "koffing"
+      },
+      "Kanto__Grey|||Brown": {
+        "regular": "rhyhorn",
+        "shiny": "rhyhorn"
+      },
+      "Kanto__Brown|||Green": {
+        "regular": "",
+        "shiny": "dodrio"
+      },
+      "Kanto__Orange|||Yellow": {
+        "regular": "krabby",
+        "shiny": ""
+      },
+      "Kanto__Purple|||Orange": {
+        "regular": "",
+        "shiny": "shellder"
+      },
+      "Kanto__Pink|||Purple": {
+        "regular": "porygon",
+        "shiny": ""
+      },
+      "Kanto__Blue|||Pink": {
+        "regular": "",
+        "shiny": "dragonair"
+      },
+      "Kanto__Brown|||Red": {
+        "regular": "",
+        "shiny": "sandslash"
+      },
+      "Kanto__White|||Green": {
+        "regular": "mankey",
+        "shiny": ""
+      },
+      "Kanto__Brown|||White": {
+        "regular": "",
+        "shiny": "staryu"
+      },
+      "Kanto__Yellow|||Orange": {
+        "regular": "raichu",
+        "shiny": ""
       }
     },
     "col_20c7f019228c5819d84a42642": {
@@ -11867,15 +11915,15 @@ window.FAVOURITE_POKEMON_DATA = {
     "col_colour": {
       "criteria": {
         "Blue": {
-          "regular": "wartortle",
-          "shiny": "sandslash-alola"
+          "regular": "",
+          "shiny": "koffing"
         },
         "Black": {
           "regular": "rattata-alola",
           "shiny": "charizard"
         },
         "Red": {
-          "regular": "charmeleon",
+          "regular": "",
           "shiny": "rattata-alola"
         },
         "Orange": {
@@ -11887,12 +11935,12 @@ window.FAVOURITE_POKEMON_DATA = {
           "shiny": "arbok"
         },
         "Green": {
-          "regular": "ivysaur",
+          "regular": "",
           "shiny": "bulbasaur"
         },
         "Purple": {
           "regular": "butterfree",
-          "shiny": "wartortle"
+          "shiny": ""
         },
         "Yellow": {
           "regular": "kakuna",
@@ -11913,8 +11961,8 @@ window.FAVOURITE_POKEMON_DATA = {
           "shiny": "raichu-alola"
         },
         "Kanto": {
-          "regular": "wartortle",
-          "shiny": "bulbasaur"
+          "regular": "omanyte",
+          "shiny": "koffing"
         }
       }
     }
