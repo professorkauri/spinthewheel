@@ -384,7 +384,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "025",
       "name": "Pikachu",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "Kanto, Yellow/Orange",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -404,7 +404,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "026",
       "name": "Raichu",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "Kanto, Yellow/Orange",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -414,7 +414,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "026",
       "name": "Raichu Alola",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "Alola, Orange/Brown",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -1844,7 +1844,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "128",
       "name": "Tauros",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Tauros",
         "col_colour": "Kanto, Brown/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -1854,7 +1854,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "128",
       "name": "Tauros Aqua Breed",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Tauros",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -1864,7 +1864,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "128",
       "name": "Tauros Blaze Breed",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Tauros",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -1874,7 +1874,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "128",
       "name": "Tauros Combat Breed",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Tauros",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -1944,7 +1944,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "133",
       "name": "Eevee",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Eevee",
         "col_colour": "Kanto, Brown/White",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -1954,7 +1954,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "133",
       "name": "Eevee Gmax",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Eevee",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -1964,7 +1964,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "134",
       "name": "Vaporeon",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Eevee",
         "col_colour": "Kanto, Blue/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -1974,7 +1974,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "135",
       "name": "Jolteon",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Eevee",
         "col_colour": "Kanto, Yellow/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -1984,7 +1984,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "136",
       "name": "Flareon",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Eevee",
         "col_colour": "Kanto, Orange/Yellow",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -1994,7 +1994,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "137",
       "name": "Porygon",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Artificial",
         "col_colour": "Kanto, Pink/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -2004,7 +2004,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "138",
       "name": "Omanyte",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "Kanto, Blue/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -2014,7 +2014,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "139",
       "name": "Omastar",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "Kanto, Blue/Purple",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -2024,7 +2024,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "140",
       "name": "Kabuto",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "Kanto, Brown/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -2034,7 +2034,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "141",
       "name": "Kabutops",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "Kanto, Brown/Green",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -2044,7 +2044,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "142",
       "name": "Aerodactyl",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "Kanto, Purple/Pink",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -2454,7 +2454,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "172",
       "name": "Pichu",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -2714,7 +2714,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "196",
       "name": "Espeon",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Eevee",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -2724,7 +2724,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "197",
       "name": "Umbreon",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Eevee",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -4074,7 +4074,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "311",
       "name": "Plusle",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -4084,7 +4084,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "312",
       "name": "Minun",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -4444,7 +4444,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "345",
       "name": "Lileep",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -4454,7 +4454,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "346",
       "name": "Cradily",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -4464,7 +4464,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "347",
       "name": "Anorith",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -4474,7 +4474,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "348",
       "name": "Armaldo",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -5264,7 +5264,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "408",
       "name": "Cranidos",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -5274,7 +5274,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "409",
       "name": "Rampardos",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -5284,7 +5284,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "410",
       "name": "Shieldon",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -5294,7 +5294,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "411",
       "name": "Bastiodon",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -5394,7 +5394,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "417",
       "name": "Pachirisu",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -5994,7 +5994,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "470",
       "name": "Leafeon",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Eevee",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -6004,7 +6004,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "471",
       "name": "Glaceon",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Eevee",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -6104,7 +6104,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "479",
       "name": "Rotom",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Rotom",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -6114,7 +6114,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "479",
       "name": "Rotom Fan",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Rotom",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -6124,7 +6124,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "479",
       "name": "Rotom Frost",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Rotom",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -6134,7 +6134,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "479",
       "name": "Rotom Heat",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Rotom",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -6144,7 +6144,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "479",
       "name": "Rotom Mow",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Rotom",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -6154,7 +6154,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "479",
       "name": "Rotom Wash",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Rotom",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -7214,7 +7214,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "564",
       "name": "Tirtouga",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -7224,7 +7224,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "565",
       "name": "Carracosta",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -7234,7 +7234,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "566",
       "name": "Archen",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -7244,7 +7244,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "567",
       "name": "Archeops",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -7474,7 +7474,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "587",
       "name": "Emolga",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -8864,7 +8864,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "696",
       "name": "Tyrunt",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -8874,7 +8874,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "697",
       "name": "Tyrantrum",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -8884,7 +8884,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "698",
       "name": "Amaura",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -8894,7 +8894,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "699",
       "name": "Aurorus",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -8904,7 +8904,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "700",
       "name": "Sylveon",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Eevee",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -8934,7 +8934,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "702",
       "name": "Dedenne",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -9830,11 +9830,21 @@ window.FAVOURITE_POKEMON_DATA = {
       }
     },
     {
+      "id": "row_1155_minior-orange-meteor",
+      "dex": "774",
+      "name": "Minior",
+      "cells": {
+        "col_71c854ae046ae19d893bd660": "Species, Minior",
+        "col_colour": "",
+        "col_20c7f019228c5819d84a42642": ""
+      }
+    },
+    {
       "id": "row_1165_minior-blue",
       "dex": "774",
-      "name": "Minior Blue",
+      "name": "Minior 5 Blue",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Minior",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -9842,9 +9852,9 @@ window.FAVOURITE_POKEMON_DATA = {
     {
       "id": "row_1164_minior-green",
       "dex": "774",
-      "name": "Minior Green",
+      "name": "Minior 4 Green",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Minior",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -9852,9 +9862,9 @@ window.FAVOURITE_POKEMON_DATA = {
     {
       "id": "row_1166_minior-indigo",
       "dex": "774",
-      "name": "Minior Indigo",
+      "name": "Minior 6 Indigo",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Minior",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -9862,19 +9872,9 @@ window.FAVOURITE_POKEMON_DATA = {
     {
       "id": "row_1162_minior-orange",
       "dex": "774",
-      "name": "Minior Orange",
+      "name": "Minior 2 Orange",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
-        "col_colour": "",
-        "col_20c7f019228c5819d84a42642": ""
-      }
-    },
-    {
-      "id": "row_1155_minior-orange-meteor",
-      "dex": "774",
-      "name": "Minior Orange Meteor",
-      "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Minior",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -9882,19 +9882,9 @@ window.FAVOURITE_POKEMON_DATA = {
     {
       "id": "row_1161_minior-red",
       "dex": "774",
-      "name": "Minior Red",
+      "name": "Minior 1 Red",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
-        "col_colour": "",
-        "col_20c7f019228c5819d84a42642": ""
-      }
-    },
-    {
-      "id": "row_774_minior-red-meteor",
-      "dex": "774",
-      "name": "Minior Red Meteor",
-      "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Minior",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -9902,9 +9892,9 @@ window.FAVOURITE_POKEMON_DATA = {
     {
       "id": "row_1167_minior-violet",
       "dex": "774",
-      "name": "Minior Violet",
+      "name": "Minior 7 Violet",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Minior",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -9912,9 +9902,9 @@ window.FAVOURITE_POKEMON_DATA = {
     {
       "id": "row_1163_minior-yellow",
       "dex": "774",
-      "name": "Minior Yellow",
+      "name": "Minior 3 Yellow",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Species, Minior",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -11284,7 +11274,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "880",
       "name": "Dracozolt",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -11294,7 +11284,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "881",
       "name": "Arctozolt",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -11304,7 +11294,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "882",
       "name": "Dracovish",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -11314,7 +11304,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "883",
       "name": "Arctovish",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Fossil",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -11834,7 +11824,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "921",
       "name": "Pawmi",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -11844,7 +11834,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "922",
       "name": "Pawmo",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }
@@ -11854,7 +11844,7 @@ window.FAVOURITE_POKEMON_DATA = {
       "dex": "923",
       "name": "Pawmot",
       "cells": {
-        "col_71c854ae046ae19d893bd660": "",
+        "col_71c854ae046ae19d893bd660": "Roles, Pikaclone",
         "col_colour": "",
         "col_20c7f019228c5819d84a42642": ""
       }

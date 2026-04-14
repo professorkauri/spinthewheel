@@ -31,8 +31,6 @@ Roles
 - Mythical
 - Artificial Pokemon
 - Object Pokemon
-- Baby pokemon
-- Extra-terrestrial
 - psuedo-legendary
 
 Gimmick Forms
