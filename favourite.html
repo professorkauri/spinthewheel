@@ -781,8 +781,8 @@
       display: block;
       position: absolute;
       content: " ";
-      width: 16px;
-      height: 16px;
+      width: 6px;
+      height: 6px;
       background-image: url(images/shiny_icon.png);
       background-size: contain;
       top: 4px;
@@ -945,6 +945,57 @@
 
     function iconPath(slug, isShiny) {
       return `images/pokemon/${slug}/${isShiny ? 'shiny.png' : 'regular.png'}`;
+    }
+
+    const imageAvailabilityCache = new Map();
+    let imageAvailabilityRenderQueued = false;
+
+    function queueImageAvailabilityRender() {
+      if (imageAvailabilityRenderQueued) return;
+      imageAvailabilityRenderQueued = true;
+
+      requestAnimationFrame(() => {
+        imageAvailabilityRenderQueued = false;
+        renderChoices();
+        renderFavourites();
+      });
+    }
+
+    function checkImageAvailability(src) {
+      if (!src) return Promise.resolve(false);
+
+      const cached = imageAvailabilityCache.get(src);
+      if (cached !== undefined) {
+        return cached instanceof Promise ? cached : Promise.resolve(cached);
+      }
+
+      const promise = new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = src;
+      }).then(result => {
+        imageAvailabilityCache.set(src, result);
+        return result;
+      });
+
+      imageAvailabilityCache.set(src, promise);
+      return promise;
+    }
+
+    function hasVariantImageSync(row, variant) {
+      const slug = getRowSlug(row);
+      if (!slug) return false;
+
+      const src = iconPath(slug, variant === 'shiny');
+      const cached = imageAvailabilityCache.get(src);
+
+      if (cached === undefined) {
+        checkImageAvailability(src).then(() => queueImageAvailabilityRender());
+        return false;
+      }
+
+      return cached instanceof Promise ? false : !!cached;
     }
 
     function cleanCellValue(value) {
@@ -1587,7 +1638,6 @@
 
     function pruneSelections() {
       const validColumns = new Set(state.columns.map(column => column.id));
-      const validRowSlugs = new Set(state.rows.map(getRowSlug).filter(Boolean));
 
       Object.keys(state.selections).forEach(columnId => {
         if (!validColumns.has(columnId)) {
@@ -1595,23 +1645,28 @@
           return;
         }
 
-        const validEntryKeys = new Set();
+        const validEntryMap = new Map();
 
         buildChoiceDisplayGroups(columnId).forEach(group => {
           group.entries.forEach(entry => {
-            validEntryKeys.add(entry.key);
+            validEntryMap.set(entry.key, {
+              regular: new Set(entry.regularItems.map(item => getRowSlug(item.row)).filter(Boolean)),
+              shiny: new Set(entry.shinyItems.map(item => getRowSlug(item.row)).filter(Boolean))
+            });
           });
         });
 
         Object.keys(state.selections[columnId] || {}).forEach(entryKey => {
-          if (!validEntryKeys.has(entryKey)) {
+          const valid = validEntryMap.get(entryKey);
+
+          if (!valid) {
             delete state.selections[columnId][entryKey];
             return;
           }
 
           const bucket = state.selections[columnId][entryKey];
-          if (bucket.regular && !validRowSlugs.has(bucket.regular)) bucket.regular = '';
-          if (bucket.shiny && !validRowSlugs.has(bucket.shiny)) bucket.shiny = '';
+          if (bucket.regular && !valid.regular.has(bucket.regular)) bucket.regular = '';
+          if (bucket.shiny && !valid.shiny.has(bucket.shiny)) bucket.shiny = '';
         });
       });
 
@@ -1973,13 +2028,15 @@
           criteria: regularCriteria
         });
 
-        const shinyGroup = ensureGroup(shinySubgroup);
-        const shinyEntry = ensureEntry(shinyGroup, shinyCriteria, shinySelectionKey);
-        shinyEntry.shinyItems.push({
-          row,
-          selectionKey: shinySelectionKey,
-          criteria: shinyCriteria
-        });
+        if (hasVariantImageSync(row, 'shiny')) {
+          const shinyGroup = ensureGroup(shinySubgroup);
+          const shinyEntry = ensureEntry(shinyGroup, shinyCriteria, shinySelectionKey);
+          shinyEntry.shinyItems.push({
+            row,
+            selectionKey: shinySelectionKey,
+            criteria: shinyCriteria
+          });
+        }
       });
 
       const groups = Array.from(subgroupMap.values());
@@ -2021,13 +2078,17 @@
             return left.name.localeCompare(right.name);
           });
         });
+
+        group.entries = group.entries.filter(entry => entry.regularItems.length || entry.shinyItems.length);
       });
 
-      groups.sort((a, b) =>
+      const filteredGroups = groups.filter(group => group.entries.length);
+
+      filteredGroups.sort((a, b) =>
         String(a.subgroup || '').localeCompare(String(b.subgroup || ''), undefined, { sensitivity: 'base' })
       );
 
-      return groups;
+      return filteredGroups;
     }
 
     function renderChoices() {
