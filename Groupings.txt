@@ -1,0 +1,42 @@
+STARTERS
+1st Evo
+- Gen #
+2nd Evo
+3rd Evo
+
+COLOURS
+Region
+- Red
+- Orange...
+
+TYPE (Primary Type Only)
+Region
+- Normal
+- Fighting...
+
+GROUPINGS
+Species
+- Hitmons
+- Eeveelution
+- Elemental Monkeys
+- Regional
+- Convergent
+- Minior
+
+Roles
+- Fossil Pokemon
+- Pikaclones
+- Legendary
+- Legendary (Box)
+- Mythical
+- Artificial Pokemon
+- Object Pokemon
+- Baby pokemon
+- Extra-terrestrial
+- psuedo-legendary
+
+Gimmick Forms
+- Mega Evolution
+- Gigantamax
+- Past Paradox
+- Future Paradox

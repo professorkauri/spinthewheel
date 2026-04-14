@@ -371,7 +371,7 @@
       padding: 12px;
       background: #fafbfd;
       margin-bottom: 12px;
-      text-align:center;
+      text-align: center;
     }
 
     .subgroup-block.fav_block {
@@ -1052,6 +1052,7 @@
       currentView: 'favourites',
       favouritesVariant: 'regular',
       openChoiceCards: {},
+      openFavouriteCards: {},
       categoriesSearch: ''
     };
 
@@ -1124,6 +1125,10 @@
         state.openChoiceCards = {};
       }
 
+      if (viewName === 'favourites' && previousView !== 'favourites') {
+        state.openFavouriteCards = {};
+      }
+
       favouritesViewEl.classList.toggle('is-active', viewName === 'favourites');
       choicesViewEl.classList.toggle('is-active', viewName === 'choices');
       categoriesViewEl.classList.toggle('is-active', viewName === 'categories');
@@ -1133,6 +1138,10 @@
 
       if (viewName === 'choices') {
         renderChoices();
+      }
+
+      if (viewName === 'favourites') {
+        renderFavourites();
       }
     }
 
@@ -1787,6 +1796,11 @@
       columnsWithContent.forEach(column => {
         const details = document.createElement('details');
         details.className = 'card favourites-card';
+        details.open = !!state.openFavouriteCards[column.id];
+
+        details.addEventListener('toggle', () => {
+          state.openFavouriteCards[column.id] = details.open;
+        });
 
         const summary = document.createElement('summary');
         summary.className = 'favourites-card-summary';
