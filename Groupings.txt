@@ -19,9 +19,8 @@ Species
 - Hitmons
 - Eeveelution
 - Elemental Monkeys
-- Regional
-- Convergent
 - Minior
+- Deerling and Sawsbuck
 
 Roles
 - Fossil Pokemon
@@ -32,9 +31,15 @@ Roles
 - Artificial Pokemon
 - Object Pokemon
 - psuedo-legendary
+- Ultra Beast
+- Regis
 
-Gimmick Forms
+Forms
 - Mega Evolution
 - Gigantamax
 - Past Paradox
 - Future Paradox
+- Primal-Origin
+- Therian forms
+
+- Other (resolute, fusion, stellar, bloodmoon, Hero, mask, battle bond, Deoxys)
