@@ -675,6 +675,11 @@
       padding: 0px;
     }
 
+    #categories-body tr:hover td,
+    #categories-body tr:focus-within td {
+      background: var(--kauri-grey);
+    }
+
     .header-block {
       display: grid;
       gap: 8px;
@@ -731,6 +736,36 @@
       box-shadow: 0 0 0 2px var(--kauri-bluelight);
     }
 
+    .colour-cell-editor {
+      display: flex;
+      gap: 6px;
+      padding: 6px;
+    }
+
+    .colour-cell-editor select,
+    .colour-cell-editor input {
+      width: 100%;
+      border: 1px solid var(--kauri-darkgrey);
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-size: 12px;
+    }
+
+    .colour-select-wrap {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .colour-swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid #bbb;
+      background: var(--swatch, #fff);
+    }
+
     .toolbar-search {
       min-width: 220px;
       width: min(320px, 100%);
@@ -769,6 +804,14 @@
       place-items: center;
       overflow: hidden;
       position: relative;
+      scale: 1;
+      transition: all 0.25s ease;
+
+      &:hover {
+        scale: 2;
+        z-index: 1;
+        transform: translateY(-10px);
+      }
     }
 
     .sprite-thumb img {
@@ -792,7 +835,7 @@
 
     .row-actions {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 6px;
     }
 
@@ -907,6 +950,7 @@
           <button id="btn-add-row" type="button">Add Row</button>
           <button id="btn-add-column" type="button">Add Category</button>
           <button id="btn-sort-rows" type="button">Sort Rows</button>
+          <button id="btn-auto-fill-colours" type="button">Auto-fill Missing Colours</button>
           <input id="categories-search" class="toolbar-search" type="search" placeholder="Search rows..." />
         </div>
         <div class="table-shell">
@@ -1122,6 +1166,7 @@
     const btnViewCategories = document.getElementById('btn-view-categories');
     const btnSaveHeader = document.getElementById('btn-save-header');
     const btnResetHeader = document.getElementById('btn-reset-header');
+    const btnAutoFillColours = document.getElementById('btn-auto-fill-colours');
     const headerShinyToggle = document.getElementById('header-shiny-toggle');
     const toggleLabelRegular = document.getElementById('toggle-label-regular');
     const toggleLabelShiny = document.getElementById('toggle-label-shiny');
@@ -2372,6 +2417,133 @@
       });
     }
 
+    const POKEMON_COLOUR_OPTIONS = [
+      'Black', 'Blue', 'Brown', 'Green', 'Grey',
+      'Orange', 'Pink', 'Purple', 'Red', 'White', 'Yellow'
+    ];
+
+    const POKEMON_REGION_OPTIONS = [
+      'Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova',
+      'Kalos', 'Alola', 'Galar', 'Hisui', 'Paldea', 'Unknown'
+    ];
+
+    const POKEMON_COLOUR_SWATCHES = {
+      Black: '#222222',
+      Blue: '#4f8fd8',
+      Brown: '#8b5a2b',
+      Green: '#58a85b',
+      Grey: '#9b9b9b',
+      Orange: '#f28c28',
+      Pink: '#f49ac2',
+      Purple: '#8e63c7',
+      Red: '#d94a4a',
+      White: '#ffffff',
+      Yellow: '#f2d34f'
+    };
+
+    function isColourColumn(column) {
+      return String(column.id || '').trim() === 'col_colour' ||
+        String(column.name || '').trim().toLowerCase() === 'of every colour';
+    }
+
+    function parseColourCellValue(value) {
+      const clean = cleanCellValue(value);
+      const parts = clean.split(',');
+      const region = cleanCellValue(parts.shift() || '');
+      const colourPart = cleanCellValue(parts.join(','));
+      const colours = colourPart.split('/');
+
+      return {
+        region,
+        regular: cleanCellValue(colours[0] || ''),
+        shiny: cleanCellValue(colours.slice(1).join('/') || colours[0] || '')
+      };
+    }
+
+    function formatColourCellValue(region, regular, shiny) {
+      const safeRegion = cleanCellValue(region);
+      const safeRegular = cleanCellValue(regular);
+      const safeShiny = cleanCellValue(shiny);
+
+      if (!safeRegion && !safeRegular && !safeShiny) return '';
+
+      const colourText = safeRegular === safeShiny || !safeShiny
+        ? safeRegular
+        : `${safeRegular}/${safeShiny}`;
+
+      return `${safeRegion || 'Unknown'}, ${colourText || 'Unknown'}`;
+    }
+
+    function makeColourOptions(selectedValue) {
+      const selected = cleanCellValue(selectedValue);
+
+      return [''].concat(POKEMON_COLOUR_OPTIONS).map(colour => {
+        const label = colour || '—';
+        return `<option value="${colour}" ${colour === selected ? 'selected' : ''}>${label}</option>`;
+      }).join('');
+    }
+
+    function makeRegionOptions(selectedValue) {
+      const selected = cleanCellValue(selectedValue);
+
+      return [''].concat(POKEMON_REGION_OPTIONS).map(region => {
+        const label = region || '—';
+        return `<option value="${region}" ${region === selected ? 'selected' : ''}>${label}</option>`;
+      }).join('');
+    }
+
+    function renderColourCellEditor(row, column) {
+      const parsed = parseColourCellValue(row.cells[column.id]);
+      const regularSwatch = POKEMON_COLOUR_SWATCHES[parsed.regular] || '#fff';
+      const shinySwatch = POKEMON_COLOUR_SWATCHES[parsed.shiny] || '#fff';
+
+      return `
+    <div class="colour-cell-editor" data-colour-editor="${row.id}" data-colour-column="${column.id}">
+      <select data-colour-region="${row.id}" data-cell-column="${column.id}">
+        ${makeRegionOptions(parsed.region)}
+      </select>
+
+      <div class="colour-select-wrap">
+        <span class="colour-swatch" style="--swatch:${regularSwatch}"></span>
+        <select data-colour-regular="${row.id}" data-cell-column="${column.id}">
+          ${makeColourOptions(parsed.regular)}
+        </select>
+      </div>
+
+      <div class="colour-select-wrap">
+        <span class="colour-swatch" style="--swatch:${shinySwatch}"></span>
+        <select data-colour-shiny="${row.id}" data-cell-column="${column.id}">
+          ${makeColourOptions(parsed.shiny)}
+        </select>
+      </div>
+    </div>
+  `;
+    }
+
+    function updateColourCellFromEditor(rowId, columnId) {
+      const row = state.rows.find(item => item.id === rowId);
+      if (!row) return;
+
+      const editor = categoriesBodyEl.querySelector(`[data-colour-editor="${rowId}"][data-colour-column="${columnId}"]`);
+      if (!editor) return;
+
+      const region = editor.querySelector('[data-colour-region]')?.value || '';
+      const regular = editor.querySelector('[data-colour-regular]')?.value || '';
+      const shiny = editor.querySelector('[data-colour-shiny]')?.value || '';
+
+      row.cells[columnId] = formatColourCellValue(region, regular, shiny);
+
+      const regularSwatch = editor.querySelector('[data-colour-regular]')?.closest('.colour-select-wrap')?.querySelector('.colour-swatch');
+      const shinySwatch = editor.querySelector('[data-colour-shiny]')?.closest('.colour-select-wrap')?.querySelector('.colour-swatch');
+
+      if (regularSwatch) regularSwatch.style.setProperty('--swatch', POKEMON_COLOUR_SWATCHES[regular] || '#fff');
+      if (shinySwatch) shinySwatch.style.setProperty('--swatch', POKEMON_COLOUR_SWATCHES[shiny] || '#fff');
+
+      pruneSelections();
+      renderChoices();
+      renderFavourites();
+    }
+
     function renderCategoriesTable() {
       categoriesHeadEl.innerHTML = '';
       categoriesBodyEl.innerHTML = '';
@@ -2466,7 +2638,9 @@
         state.columns.forEach(column => {
           const td = document.createElement('td');
           td.className = 'category-col';
-          td.innerHTML = `<div class="td-inner"><input class="cell-input" data-cell-row="${row.id}" data-cell-column="${column.id}" value="${(row.cells[column.id] || '').replace(/"/g, '&quot;')}" placeholder="Subgroup, Criteria" /></div>`;
+          td.innerHTML = isColourColumn(column)
+            ? `<div class="td-inner">${renderColourCellEditor(row, column)}</div>`
+            : `<div class="td-inner"><input class="cell-input" data-cell-row="${row.id}" data-cell-column="${column.id}" value="${(row.cells[column.id] || '').replace(/"/g, '&quot;')}" placeholder="Subgroup, Criteria" /></div>`;
           tr.appendChild(td);
         });
 
@@ -2562,6 +2736,17 @@
         });
       });
 
+      categoriesBodyEl.querySelectorAll('[data-colour-region], [data-colour-regular], [data-colour-shiny]').forEach(input => {
+        input.addEventListener('change', event => {
+          const rowId =
+            event.target.dataset.colourRegion ||
+            event.target.dataset.colourRegular ||
+            event.target.dataset.colourShiny;
+
+          updateColourCellFromEditor(rowId, event.target.dataset.cellColumn);
+        });
+      });
+
       categoriesBodyEl.querySelectorAll('[data-row-up]').forEach(button => {
         button.addEventListener('click', () => moveRow(button.dataset.rowUp, -1));
       });
@@ -2571,6 +2756,233 @@
       categoriesBodyEl.querySelectorAll('[data-row-remove]').forEach(button => {
         button.addEventListener('click', () => removeRow(button.dataset.rowRemove));
       });
+    }
+
+    function getColourColumnId() {
+      const colourColumn = state.columns.find(column =>
+        String(column.id || '').trim() === 'col_colour' ||
+        String(column.name || '').trim().toLowerCase() === 'of every colour'
+      );
+
+      return colourColumn ? colourColumn.id : '';
+    }
+
+    function getRegionFromDex(dex) {
+      const number = Number.parseInt(String(dex || '').trim(), 10);
+
+      if (!Number.isFinite(number)) return 'Unknown';
+      if (number <= 151) return 'Kanto';
+      if (number <= 251) return 'Johto';
+      if (number <= 386) return 'Hoenn';
+      if (number <= 493) return 'Sinnoh';
+      if (number <= 649) return 'Unova';
+      if (number <= 721) return 'Kalos';
+      if (number <= 809) return 'Alola';
+      if (number <= 898) return 'Galar';
+      if (number <= 905) return 'Hisui';
+      if (number <= 1025) return 'Paldea';
+
+      return 'Unknown';
+    }
+
+    function getFormRegionFromName(row) {
+      const name = String(row && row.name || '').toLowerCase();
+
+      if (name.includes(' alola')) return 'Alola';
+      if (name.includes(' galar')) return 'Galar';
+      if (name.includes(' hisui')) return 'Hisui';
+      if (name.includes(' paldea')) return 'Paldea';
+
+      return getRegionFromDex(row.dex);
+    }
+
+    function loadImageForColourAnalysis(src) {
+      return new Promise(resolve => {
+        const img = new Image();
+
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+
+        img.src = src;
+      });
+    }
+
+    function rgbToHsl(r, g, b) {
+      r /= 255;
+      g /= 255;
+      b /= 255;
+
+      const max = Math.max(r, g, b);
+      const min = Math.min(r, g, b);
+      let h = 0;
+      let s = 0;
+      const l = (max + min) / 2;
+
+      if (max !== min) {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+        switch (max) {
+          case r:
+            h = ((g - b) / d + (g < b ? 6 : 0));
+            break;
+          case g:
+            h = ((b - r) / d + 2);
+            break;
+          case b:
+            h = ((r - g) / d + 4);
+            break;
+        }
+
+        h *= 60;
+      }
+
+      return { h, s, l };
+    }
+
+    function getColourFamilyFromRgb(r, g, b) {
+      const { h, s, l } = rgbToHsl(r, g, b);
+
+      if (l < 0.13) return 'Black';
+      if (l > 0.86 && s < 0.28) return 'White';
+      if (s < 0.16) return 'Grey';
+
+      if (h >= 345 || h < 12) return 'Red';
+      if (h < 30) return 'Orange';
+      if (h < 50) return 'Brown';
+      if (h < 68) return 'Yellow';
+      if (h < 155) return 'Green';
+      if (h < 205) return 'Blue';
+      if (h < 258) return 'Blue';
+      if (h < 292) return 'Purple';
+      if (h < 345) return 'Pink';
+
+      return 'Grey';
+    }
+
+    async function analyseSpriteDominantColour(src) {
+      const img = await loadImageForColourAnalysis(src);
+      if (!img) return '';
+
+      const canvas = document.createElement('canvas');
+      const size = 96;
+      canvas.width = size;
+      canvas.height = size;
+
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      if (!ctx) return '';
+
+      ctx.clearRect(0, 0, size, size);
+      ctx.drawImage(img, 0, 0, size, size);
+
+      let pixels;
+
+      try {
+        pixels = ctx.getImageData(0, 0, size, size).data;
+      } catch (error) {
+        console.warn('Could not analyse sprite because the canvas was blocked:', src, error);
+        return '';
+      }
+      const scores = {};
+
+      for (let index = 0; index < pixels.length; index += 4) {
+        const r = pixels[index];
+        const g = pixels[index + 1];
+        const b = pixels[index + 2];
+        const a = pixels[index + 3];
+
+        if (a < 80) continue;
+
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        const contrast = max - min;
+        const { s, l } = rgbToHsl(r, g, b);
+
+        if (l < 0.06 || l > 0.96) continue;
+
+        const colour = getColourFamilyFromRgb(r, g, b);
+
+        let weight = a / 255;
+
+        if (colour === 'Black' || colour === 'Grey' || colour === 'White') {
+          weight *= 0.65;
+        }
+
+        if (contrast < 18 && colour !== 'Black' && colour !== 'White' && colour !== 'Grey') {
+          weight *= 0.5;
+        }
+
+        weight *= 0.7 + s;
+
+        scores[colour] = (scores[colour] || 0) + weight;
+      }
+
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      return sorted[0] ? sorted[0][0] : '';
+    }
+
+    async function autoFillMissingColours() {
+      const colourColumnId = getColourColumnId();
+
+      if (!colourColumnId) {
+        alert('Could not find the Of Every Colour column.');
+        return;
+      }
+
+      const rowsToFill = state.rows.filter(row => !cleanCellValue(row.cells[colourColumnId]));
+
+      if (!rowsToFill.length) {
+        alert('No missing colour entries found.');
+        return;
+      }
+
+      if (btnAutoFillColours) {
+        btnAutoFillColours.disabled = true;
+        btnAutoFillColours.textContent = 'Analysing...';
+      }
+
+      let filledCount = 0;
+      let skippedCount = 0;
+
+      for (const row of rowsToFill) {
+        const slug = getRowSlug(row);
+        if (!slug) {
+          skippedCount += 1;
+          continue;
+        }
+
+        const regularColour = await analyseSpriteDominantColour(iconPath(slug, false));
+        const shinyColour = await analyseSpriteDominantColour(iconPath(slug, true));
+
+        if (!regularColour && !shinyColour) {
+          skippedCount += 1;
+          continue;
+        }
+
+        const region = getFormRegionFromName(row);
+        const safeRegularColour = regularColour || shinyColour || 'Unknown';
+        const safeShinyColour = shinyColour || regularColour || 'Unknown';
+
+        row.cells[colourColumnId] = safeRegularColour === safeShinyColour
+          ? `${region}, ${safeRegularColour}`
+          : `${region}, ${safeRegularColour}/${safeShinyColour}`;
+
+        filledCount += 1;
+      }
+
+      renderAll();
+
+      if (btnAutoFillColours) {
+        btnAutoFillColours.disabled = false;
+        btnAutoFillColours.textContent = `Filled ${filledCount}`;
+        setTimeout(() => {
+          btnAutoFillColours.textContent = 'Auto-fill Missing Colours';
+        }, 1200);
+      }
+
+      if (skippedCount) {
+        alert(`Filled ${filledCount} missing colour entries. Skipped ${skippedCount} rows where images could not be analysed.`);
+      }
     }
 
     function renderAll() {
@@ -2605,6 +3017,8 @@
 
     btnResetHeader.addEventListener('click', resetData);
     document.getElementById('btn-sort-rows').addEventListener('click', sortAllRows);
+
+    btnAutoFillColours.addEventListener('click', autoFillMissingColours);
 
     renderAll();
 
